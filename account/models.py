@@ -1,30 +1,52 @@
+# -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
 from django.conf.global_settings import EMAIL_BACKEND
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from common.models import HistoryModel
 
-class Role(models.Model):
-    name=models.CharField(max_length=30, verbose_name=u'Tên', help_text=u'Tên Role')
-    # TODO
-    # ALL=0
-    # VIEW=1
-    # UPDATE=2
-    # DELETE=3
-    # VALUE_CHOICES = (
-    #     (ALL, 'Full'),
-    #     (VIEW, u'Xem'),
-    #     (UPDATE, u'Sửa'),
-    #     (UPDATE, u'Xóa'),
-    # )
-    # value=models.SmallIntegerField(choices=VALUE_CHOICES,
-    #                                default=ALL,
-    #                                verbose_name='')
-    description=models.CharField(max_length=200, blank=True)
-    def __unicode__(self):
-        return self.name
-class Account(HistoryModel):
+# class Role(models.Model):
+#     name=models.CharField(max_length=30, verbose_name=u'Tên', help_text=u'Tên Role')
+#     # TODO
+#     # ALL=0
+#     # VIEW=1
+#     # UPDATE=2
+#     # DELETE=3
+#     # VALUE_CHOICES = (
+#     #     (ALL, 'Full'),
+#     #     (VIEW, u'Xem'),
+#     #     (UPDATE, u'Sửa'),
+#     #     (UPDATE, u'Xóa'),
+#     # )
+#     # value=models.SmallIntegerField(choices=VALUE_CHOICES,
+#     #                                default=ALL,
+#     #                                verbose_name='')
+#     description=models.CharField(max_length=200, blank=True, verbose_name=u'Mô tả')
+#     def __unicode__(self):
+#         return self.name
+class AccountManager(BaseUserManager):
+    def create_user(self, email, password=None):
+        if not email:
+            raise ValueError(u'Người dùng phải có email')
+        user = self.model(email=self.normalize_email(email))
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, email, password=None):
+        if not email:
+            raise ValueError(u'Người dùng phải có email')
+        user = self.model(email=self.normalize_email(email))
+        user.set_password(password)
+        user.is_admin=True
+        user.save(using=self._db)
+        return user
+
+class Account(AbstractBaseUser):
+    class Meta:
+        verbose_name = u'Tài khoản'
+        verbose_name_plural = u'Tài khoản'
     EMAIL_PASS=0
     GOOGLE = 1
     FACEBOOK = 2
@@ -33,8 +55,16 @@ class Account(HistoryModel):
         (GOOGLE, u'Google'),
         (FACEBOOK, u'Facebook'),
     )
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    creator=models.ForeignKey(u'self', null=False, editable=False,
+    USERNAME_FIELD = 'email'
+    # REQUIRED_FIELDS = ['email']
+    objects = AccountManager()
+    email = models.EmailField(
+        # verbose_name='Email',
+        max_length=255,
+        unique=True,
+    )
+    creator=models.ForeignKey(u'self',
+                              null=True,
                               verbose_name=u'Người tạo',
                               help_text=u'Là người dùng hiện tại')
     login_type=models.SmallIntegerField(blank=False,
@@ -43,28 +73,85 @@ class Account(HistoryModel):
                                         verbose_name=u'Kiểu đăng nhập',
                                         help_text=u'Kiểu đăng nhập'
                                         )
-    reset_pass_key=models.CharField(blank=True, null=True, max_length=255,
+    reset_pass_key=models.CharField(blank=True, null=True,
+                                    max_length=255,
                                     verbose_name=u'Key đặt lại mật khẩu',
-                                    help_text=u'Được tạo tự động')
-    reset_pass_expire=models.DateTimeField(blank=True, null=True)
-    action_yn=models.BooleanField(blank=True, default=True)
-    delete_yn=models.BooleanField(blank=True, default=False)
-    block_yn=models.BooleanField(blank=True, default=False)
-    block_expire=models.DateTimeField(blank=False)
-    avarta_url_full=models.CharField(blank=True)
-    avarta_url=models.CharField(blank=True)
-    failure_count=models.IntegerField(blank=True, default=0)
-    login_again_yn=models.BooleanField(blank=True, default=False)
-    date_of_birth=models.DateField(blank=True)
-    role=models.ForeignKey(Role, blank=True)
-    family_name=models.CharField(blank=True)
-    name=models.CharField(blank=True)
-    description=models.CharField(blank=False)
-    address_1 = models.CharField(blank=False)
-    address_2 = models.CharField(blank=False)
-    address_3 = models.CharField(blank=False)
-    city = models.CharField(blank=True)
+                                    help_text=u'Được tạo tự động khi người dùng đặt lại mật khẩu')
+    reset_pass_expire=models.DateTimeField(blank=True, null=True,
+                                           verbose_name=u'Hạn đặt lại mật khẩu',
+                                           help_text=u'Được tạo tự động khi người dùng đặt lại mật khẩu')
+    is_admin = models.BooleanField(default=False, verbose_name=u'Quản trị', help_text=u'Đặt là người quản trị')
+    is_active=models.BooleanField(blank=False, default=True,
+                                  verbose_name=u'Đang hoạt động',
+                                  help_text=u'Trạng thái hoạt động hiện tại của tài khoản')
+    is_delete=models.BooleanField(blank=False, default=False,
+                                  verbose_name=u'Đã xoá',
+                                  help_text=u'Bản ghi đã được xoá hay chưa')
+    is_block=models.BooleanField(blank=False, default=False,
+                                 verbose_name=u'Khoá',
+                                 help_text=u'Tài khoản có đang bị khoá không')
+    block_expire=models.DateTimeField(blank=True, null=True,
+                                      verbose_name=u'Hạn khoá tài khoản',
+                                      help_text=u'Hạn khoá tài khoản. Để trống để khóa vô thời hạn')
+    avarta_url_full=models.URLField(blank=True,
+                                    max_length=255,
+                                    verbose_name=u'Đường dẫn ảnh đại diện',
+                                    help_text=u'Đường dẫn ảnh đại diện. Để trống để dùng ảnh mặc định')
+    avarta_url=models.URLField(blank=True,
+                                    verbose_name=u'Đường dẫn ảnh đại diện thu nhỏ',
+                                    help_text=u'Đường dẫn ảnh đại diện thu nhỏ. Để trống để dùng ảnh mặc định')
+    failure_count=models.SmallIntegerField(blank=False, default=0,
+                                           verbose_name=u'Số lần đăng nhập lỗi',
+                                           help_text=u'Số lần đăng nhập lỗi. Nếu vượt quá số lần, sẽ bị khóa tài khoản')
+    is_login_again_required=models.BooleanField(blank=False, default=False,
+                                       verbose_name=u'Yêu cầu phải đăng nhập lại',
+                                       help_text=u'Yêu cầu người dùng phải đăng nhập lại.')
+    date_of_birth=models.DateField(blank=True,
+                                   null=True,
+                                   verbose_name=u'Ngày sinh')
+    # role=models.ForeignKey(Role, blank=False, verbose_name=u'Vai trò')
+    family_name=models.CharField(blank=False, max_length=255,
+                                 verbose_name=u'Họ',
+                                 help_text=u'Họ và tên đệm')
+    name=models.CharField(blank=False, max_length=255,
+                          verbose_name=u'Tên')
+    description=models.CharField(blank=True, max_length=255,
+                                 verbose_name=u'Mô tả')
+    address_1 = models.CharField(blank=True, max_length=100,
+                                 verbose_name=u'Địa chỉ 1')
+    address_2 = models.CharField(blank=True, max_length=100,
+                                 verbose_name=u'Địa chỉ 2')
+    address_3 = models.CharField(blank=True, max_length=100,
+                                 verbose_name=u'Địa chỉ 3')
+    city = models.CharField(blank=False, max_length=100,
+                            verbose_name=u'Thành phố')
+    create_time = models.DateTimeField(auto_now_add=True, blank=False, verbose_name=u'Thời gian tạo')
+    update_time = models.DateTimeField(blank=True, null=True, verbose_name=u'Thời gian cập nhật')
 
+    def get_full_name(self):
+        # The user is identified by their email address
+        return self.email
+
+    def get_short_name(self):
+        # The user is identified by their email address
+        return self.email
+    @property
+    def is_staff(self):
+        "Is the user a member of staff?"
+        # Simplest possible answer: All admins are staff
+        return self.is_admin
+
+    def has_perm(self, perm, obj=None):
+        "Does the user have a specific permission?"
+        # Simplest possible answer: Yes, always
+        return True
+
+    def has_module_perms(self, app_label):
+        "Does the user have permissions to view the app `app_label`?"
+        # Simplest possible answer: Yes, always
+        return True
+    def __unicode__(self):
+        return self.email
 # class Page(HistoryModel):
 #     title=models.CharField(max_length=255, verbose_name=u'Tiêu đề', help_text=u'Tiêu đề trang web')
 #     url=models.CharField(max_length=255)

@@ -1,4 +1,4 @@
-
+# -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.db import models
 
@@ -17,8 +17,9 @@ from django.db import models
 #     class Meta:
 #         abstract = True
 class HistoryModel(models.Model):
-    create_time=models.DateTimeField(auto_now_add=True, blank=True)
-    update_time=models.DateTimeField(blank=False)
+    create_time=models.DateTimeField(auto_now_add=True, blank=False, verbose_name=u'Thời gian tạo')
+    update_time=models.DateTimeField(blank=True, verbose_name=u'Thời gian cập nhật')
+    # TODO
     class Meta:
         abstract = True
 # class CreatorModel(models.Model):

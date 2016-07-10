@@ -90,3 +90,12 @@ ENV/
 # Rope project settings
 .ropeproject
 
+account/statis/
+account/templates/
+outline/static/
+outline/templates/
+outline_hlu/settings/
+static/
+templates/
+university/static/
+university/templates/
