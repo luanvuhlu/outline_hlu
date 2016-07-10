@@ -1,56 +1,87 @@
+# -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
 from django.db import models
-from account.models import Account
-from common.models import HistoryModel
+from account.models import Account, CreatorModel
+from common.models import BaseModel, CITIES_CHOICES, AddressModel, NameModel
 
 # Create your models here.
-class University(HistoryModel):
-    founding=models.DateTimeField(blank=False)
-    address_1 = models.CharField(blank=False)
-    address_2 = models.CharField(blank=False)
-    address_3 = models.CharField(blank=False)
-    city = models.CharField(blank=True)
-    name = models.CharField(blank=True)
-    name_abbr=models.CharField(blank=False)
-    user = models.ForeignKey(Account, blank=False)
+class University(BaseModel, AddressModel, NameModel, CreatorModel):
+    founding=models.DateTimeField(blank=False, verbose_name=u'Ngày thành lập')
+    class Meta:
+        verbose_name=u'Đại học'
+        verbose_name_plural=u'Đại học'
+    def __unicode__(self):
+        return self.name_abbr if self.name_abbr else self.name
 
-class SpecializedStudy(HistoryModel):
-    address=models.CharField(blank=False)
+class SpecializedStudy(BaseModel, NameModel, CreatorModel):
+    address = models.CharField(blank=True, max_length=100,
+                                 verbose_name=u'Địa chỉ')
     university=models.ForeignKey(University, blank=True)
-    name = models.CharField(blank=True)
-    name_abbr = models.CharField(blank=False)
-    user = models.ForeignKey(Account, blank=False)
+    class Meta:
+        verbose_name = u'Khoa'
+        verbose_name_plural = u'Khoa'
 
-class Course(HistoryModel):
-    university=models.ForeignKey(University, blank=True)
-    current_yn=models.BooleanField(blank=True, default=True)
-    name = models.CharField(blank=True)
-    name_abbr = models.CharField(blank=False)
-    user = models.ForeignKey(Account, blank=False)
+    def __unicode__(self):
+        return self.name_abbr if self.name_abbr else self.name
 
-class UClass(HistoryModel):
-    course=models.ForeignKey(Course, blank=True)
+class Course(BaseModel, NameModel, CreatorModel):
+    university=models.ForeignKey(University, blank=False)
+    class Meta:
+        verbose_name=u'Khoá'
+        verbose_name_plural = u'Khoá'
+    def __unicode__(self):
+        return self.name_abbr if self.name_abbr else self.name
+class UClass(BaseModel, NameModel, CreatorModel):
+    course=models.ForeignKey(Course, blank=False)
     specialized_study=models.ForeignKey(SpecializedStudy, blank=False)
-    description=models.CharField(blank=False)
-    name = models.CharField(blank=True)
-    name_abbr = models.CharField(blank=False)
-    user = models.ForeignKey(Account, blank=False)
-
-class Subject(HistoryModel):
+    description=models.CharField(blank=True, max_length=255, verbose_name=u'Mô tả')
+    class Meta:
+        verbose_name = u'Lớp'
+        verbose_name_plural = u'Lớp'
+    def __unicode__(self):
+        return self.name_abbr if self.name_abbr else self.name
+class Subject(BaseModel, NameModel, CreatorModel):
+    CREDIT_CHOICES =(
+        (1, '1'),
+        (2, '2'),
+        (3, '3'),
+        (4, '4'),
+        (5, '5'),
+    )
     specialized_study=models.ForeignKey(SpecializedStudy, blank=True)
-    credit=models.IntegerField(blank=True, default=2)
-    description=models.CharField(blank=False)
-    name = models.CharField(blank=True)
-    name_abbr = models.CharField(blank=False)
-    user = models.ForeignKey(Account, blank=False)
+    credit=models.SmallIntegerField(blank=False, default=2,
+                               choices=CREDIT_CHOICES,
+                               verbose_name=u'Số tín chỉ')
+    description=models.CharField(blank=True, max_length=255,
+                                 verbose_name=u'Mô tả')
+    class Meta:
+        verbose_name=u'Môn học'
+        verbose_name_plural=u'Môn học'
+    def __unicode__(self):
+        return self.name_abbr if self.name_abbr else self.name
 
-class Scholastic(HistoryModel):
-    name=models.CharField(blank=True)
-    user = models.ForeignKey(Account, blank=False)
+class Scholastic(BaseModel, CreatorModel):
+    name = models.CharField(blank=False, max_length=255,
+                            verbose_name=u'Tên')
+    class Meta:
+        verbose_name = u'Năm học'
+        verbose_name_plural = u'Năm học'
+
+    def __unicode__(self):
+        return self.name
 class Student(Account):
-    nick_name=models.CharField(blank=False)
+    nick_name=models.CharField(blank=True, max_length=255,
+                            verbose_name=u'Biệt hiệu')
     u_class=models.ForeignKey(UClass, blank=False)
+    class Meta:
+        verbose_name = u'Sinh viên'
+        verbose_name_plural = u'Sinh viên'
 class Lecturer(Account):
-    nick_name=models.CharField(blank=False)
+    nick_name=models.CharField(blank=True, max_length=255,
+                            verbose_name=u'Biệt hiệu')
     specialized_study=models.ForeignKey(SpecializedStudy, blank=False)
+
+    class Meta:
+        verbose_name = u'Giảng viên'
+        verbose_name_plural = u'Giảng viên'

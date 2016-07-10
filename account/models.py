@@ -4,7 +4,9 @@ from __future__ import unicode_literals
 from django.conf.global_settings import EMAIL_BACKEND
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
-from common.models import HistoryModel
+from softdelete.models import SoftDeleteObject, SoftDeleteManager
+from common.models import BaseModel, CITIES_CHOICES, AddressModel
+
 
 # class Role(models.Model):
 #     name=models.CharField(max_length=30, verbose_name=u'Tên', help_text=u'Tên Role')
@@ -25,7 +27,7 @@ from common.models import HistoryModel
 #     description=models.CharField(max_length=200, blank=True, verbose_name=u'Mô tả')
 #     def __unicode__(self):
 #         return self.name
-class AccountManager(BaseUserManager):
+class AccountManager(BaseUserManager, SoftDeleteManager):
     def create_user(self, email, password=None):
         if not email:
             raise ValueError(u'Người dùng phải có email')
@@ -43,7 +45,7 @@ class AccountManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-class Account(AbstractBaseUser):
+class Account(AbstractBaseUser, BaseModel, AddressModel):
     class Meta:
         verbose_name = u'Tài khoản'
         verbose_name_plural = u'Tài khoản'
@@ -56,7 +58,6 @@ class Account(AbstractBaseUser):
         (FACEBOOK, u'Facebook'),
     )
     USERNAME_FIELD = 'email'
-    # REQUIRED_FIELDS = ['email']
     objects = AccountManager()
     email = models.EmailField(
         # verbose_name='Email',
@@ -84,9 +85,9 @@ class Account(AbstractBaseUser):
     is_active=models.BooleanField(blank=False, default=True,
                                   verbose_name=u'Đang hoạt động',
                                   help_text=u'Trạng thái hoạt động hiện tại của tài khoản')
-    is_delete=models.BooleanField(blank=False, default=False,
-                                  verbose_name=u'Đã xoá',
-                                  help_text=u'Bản ghi đã được xoá hay chưa')
+    # is_delete=models.BooleanField(blank=False, default=False,
+    #                               verbose_name=u'Đã xoá',
+    #                               help_text=u'Bản ghi đã được xoá hay chưa')
     is_block=models.BooleanField(blank=False, default=False,
                                  verbose_name=u'Khoá',
                                  help_text=u'Tài khoản có đang bị khoá không')
@@ -117,17 +118,6 @@ class Account(AbstractBaseUser):
                           verbose_name=u'Tên')
     description=models.CharField(blank=True, max_length=255,
                                  verbose_name=u'Mô tả')
-    address_1 = models.CharField(blank=True, max_length=100,
-                                 verbose_name=u'Địa chỉ 1')
-    address_2 = models.CharField(blank=True, max_length=100,
-                                 verbose_name=u'Địa chỉ 2')
-    address_3 = models.CharField(blank=True, max_length=100,
-                                 verbose_name=u'Địa chỉ 3')
-    city = models.CharField(blank=False, max_length=100,
-                            verbose_name=u'Thành phố')
-    create_time = models.DateTimeField(auto_now_add=True, blank=False, verbose_name=u'Thời gian tạo')
-    update_time = models.DateTimeField(blank=True, null=True, verbose_name=u'Thời gian cập nhật')
-
     def get_full_name(self):
         # The user is identified by their email address
         return self.email
@@ -167,3 +157,12 @@ class Account(AbstractBaseUser):
 #     creator = models.ForeignKey(u'self', blank=False, editable=False,
 #                                 verbose_name=u'Người tạo',
 #                                 help_text=u'Là người dùng hiện tại')
+
+class CreatorModel(models.Model):
+    creator = models.ForeignKey(Account,
+                                blank=False,
+                                null=False,
+                                verbose_name=u'Người tạo',
+                                help_text=u'Là người dùng hiện tại')
+    class Meta:
+        abstract = True
