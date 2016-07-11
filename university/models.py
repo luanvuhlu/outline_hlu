@@ -7,10 +7,10 @@ from common.models import BaseModel, CITIES_CHOICES, AddressModel, NameModel
 
 # Create your models here.
 class University(BaseModel, AddressModel, NameModel, CreatorModel):
-    founding=models.DateTimeField(blank=False, verbose_name=u'Ngày thành lập')
+    founding=models.DateField(blank=False, verbose_name=u'Ngày thành lập')
     class Meta:
         verbose_name=u'Đại học'
-        verbose_name_plural=u'Đại học'
+        verbose_name_plural=verbose_name
     def __unicode__(self):
         return self.name_abbr if self.name_abbr else self.name
 
@@ -20,7 +20,7 @@ class SpecializedStudy(BaseModel, NameModel, CreatorModel):
     university=models.ForeignKey(University, blank=True)
     class Meta:
         verbose_name = u'Khoa'
-        verbose_name_plural = u'Khoa'
+        verbose_name_plural = verbose_name
 
     def __unicode__(self):
         return self.name_abbr if self.name_abbr else self.name
@@ -29,7 +29,7 @@ class Course(BaseModel, NameModel, CreatorModel):
     university=models.ForeignKey(University, blank=False)
     class Meta:
         verbose_name=u'Khoá'
-        verbose_name_plural = u'Khoá'
+        verbose_name_plural = verbose_name
     def __unicode__(self):
         return self.name_abbr if self.name_abbr else self.name
 class UClass(BaseModel, NameModel, CreatorModel):
@@ -38,7 +38,7 @@ class UClass(BaseModel, NameModel, CreatorModel):
     description=models.CharField(blank=True, max_length=255, verbose_name=u'Mô tả')
     class Meta:
         verbose_name = u'Lớp'
-        verbose_name_plural = u'Lớp'
+        verbose_name_plural = verbose_name
     def __unicode__(self):
         return self.name_abbr if self.name_abbr else self.name
 class Subject(BaseModel, NameModel, CreatorModel):
@@ -57,7 +57,7 @@ class Subject(BaseModel, NameModel, CreatorModel):
                                  verbose_name=u'Mô tả')
     class Meta:
         verbose_name=u'Môn học'
-        verbose_name_plural=u'Môn học'
+        verbose_name_plural=verbose_name
     def __unicode__(self):
         return self.name_abbr if self.name_abbr else self.name
 
@@ -66,7 +66,7 @@ class Scholastic(BaseModel, CreatorModel):
                             verbose_name=u'Tên')
     class Meta:
         verbose_name = u'Năm học'
-        verbose_name_plural = u'Năm học'
+        verbose_name_plural = verbose_name
 
     def __unicode__(self):
         return self.name
@@ -76,7 +76,7 @@ class Student(Account):
     u_class=models.ForeignKey(UClass, blank=False)
     class Meta:
         verbose_name = u'Sinh viên'
-        verbose_name_plural = u'Sinh viên'
+        verbose_name_plural = verbose_name
 class Lecturer(Account):
     nick_name=models.CharField(blank=True, max_length=255,
                             verbose_name=u'Biệt hiệu')
@@ -84,4 +84,4 @@ class Lecturer(Account):
 
     class Meta:
         verbose_name = u'Giảng viên'
-        verbose_name_plural = u'Giảng viên'
+        verbose_name_plural = verbose_name

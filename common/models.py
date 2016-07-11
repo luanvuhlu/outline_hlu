@@ -86,6 +86,7 @@ class AddressModel(models.Model):
     address_3 = models.CharField(blank=True, max_length=100,
                                  verbose_name=u'Địa chỉ 3')
     city = models.SmallIntegerField(blank=False,
+                                    null=True,
                                     choices=CITIES_CHOICES,
                                     verbose_name=u'Thành phố')
     class Meta:

@@ -1,8 +1,23 @@
 from django.contrib import admin
-from models import Outline
+from common.admin import BaseAdmin
+from models import Outline, OutlineLearningResource, SubjectSchedule, Problem, ProblemDetail, Week
 # Register your models here.
 
-class OutLineAdmin(admin.ModelAdmin):
+@admin.register(Outline)
+class OutLineAdmin(BaseAdmin):
     pass
-
-admin.site.register(Outline, OutLineAdmin)
+@admin.register(OutlineLearningResource)
+class OutlineLearningResourceAdmin(BaseAdmin):
+    pass
+@admin.register(SubjectSchedule)
+class SubjectScheduleAdmin(BaseAdmin):
+    pass
+@admin.register(Problem)
+class ProblemAdmin(BaseAdmin):
+    pass
+@admin.register(ProblemDetail)
+class ProblemDetailAdmin(BaseAdmin):
+    pass
+@admin.register(Week)
+class WeekAdmin(BaseAdmin):
+    pass

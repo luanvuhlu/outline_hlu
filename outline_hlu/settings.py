@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'common',
     'university',
     'library',
-    # 'outline',
+    'outline',
 
 ]
 
@@ -65,7 +65,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'templates')]
         ,
-        'APP_DIRS': True,
+        # 'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -73,12 +73,15 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'loaders': [
+                'django.template.loaders.eggs.Loader',
+            ]
         },
     },
 ]
-TEMPLATE_LOADERS = (
-    'django.template.loaders.eggs.Loader',
-)
+# TEMPLATE_LOADERS = (
+#     'django.template.loaders.eggs.Loader',
+# )
 
 WSGI_APPLICATION = 'outline_hlu.wsgi.application'
 
