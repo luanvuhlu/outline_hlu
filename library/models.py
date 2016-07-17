@@ -25,21 +25,36 @@ class LearningResourceType(BaseModel, CreatorModel):
         verbose_name_plural=verbose_name
     def __unicode__(self):
         return self.name
+class Publishing(BaseModel, CreatorModel):
+    name=models.CharField(blank=False, max_length=255,
+                          verbose_name=u'Tên')
+    class Meta:
+        verbose_name=u'Nhà xuất bản'
+        verbose_name_plural=verbose_name
+    def __unicode__(self):
+        return self.name
 class LearningResource(BaseModel, CreatorModel):
     name=models.CharField(blank=False, max_length=255,
                           verbose_name=u'Tên')
     author=models.CharField(blank=True, max_length=255,
                             verbose_name=u'Tác giả')
+    publishing=models.ForeignKey(Publishing, blank=True, null=True,
+                                 verbose_name=u'Nhà xuất bản')
     pub_year=models.SmallIntegerField(blank=True,
                                       validators=[MaxValueValidator(datetime.now().year)],
                                       verbose_name=u'Năm xuất bản')
-    library=models.ForeignKey(Library, blank=False, null=False)
-    resource_type=models.ForeignKey(LearningResourceType, blank=False, null=False)
-    is_avaiable=models.BooleanField(blank=False, default=True, verbose_name=u'Có sẵn')
+    library=models.ForeignKey(Library, blank=True, null=True,
+                              verbose_name=u'Thư viện')
+    resource_type=models.ForeignKey(LearningResourceType, blank=True, null=True,
+                                    verbose_name=u'Loại tài liệu')
+    is_avaiable=models.BooleanField(blank=False, default=True, verbose_name=u'Có sẵn',
+                                    help_text=u'Có ở thư viện hoặc được bày bán không')
     is_sale=models.BooleanField(blank=False, default=False, verbose_name=u'Có bán')
-    sale_place=models.CharField(blank=True, max_length=255, verbose_name=u'Nơi bán')
+    sale_place=models.CharField(blank=True, max_length=255, verbose_name=u'Nơi bán',
+                                help_text=u'Để trống nếu bán ngay tại trường')
     is_borrow=models.BooleanField(blank=False, default=True, verbose_name=u'Có thể mượn')
-    borrow_place=models.CharField(blank=True, max_length=255, verbose_name=u'Nơi mượn')
+    borrow_place=models.CharField(blank=True, max_length=255, verbose_name=u'Nơi mượn',
+                                  help_text=u'Để trống nếu cho mượn ngay tại thư viện')
     class Meta:
         verbose_name = u'Học liệu'
         verbose_name_plural = verbose_name

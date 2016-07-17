@@ -28,18 +28,18 @@ from common.models import BaseModel, AddressModel
 #     def __unicode__(self):
 #         return self.name
 class AccountManager(BaseUserManager, SoftDeleteManager):
-    def create_user(self, email, city, password=None):
+    def create_user(self, email, password=None):
         if not email:
             raise ValueError(u'Người dùng phải có email')
-        user = self.model(email=self.normalize_email(email), city=city)
+        user = self.model(email=self.normalize_email(email))
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, city, password=None):
+    def create_superuser(self, email, password=None):
         if not email:
             raise ValueError(u'Người dùng phải có email')
-        user = self.model(email=self.normalize_email(email), city=city)
+        user = self.model(email=self.normalize_email(email))
         user.set_password(password)
         user.is_admin=True
         user.save(using=self._db)
@@ -58,7 +58,7 @@ class Account(AbstractBaseUser, BaseModel, AddressModel):
         (FACEBOOK, u'Facebook'),
     )
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ('family_name', 'name', )
+    # REQUIRED_FIELDS = ('family_name', 'name', )
     objects = AccountManager()
     email = models.EmailField(
         # verbose_name='Email',

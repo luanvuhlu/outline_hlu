@@ -3,16 +3,13 @@ from __future__ import unicode_literals
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from django.contrib.auth.models import User
 from common.admin import BaseAdmin
 from models import Account
 
 @admin.register(Account)
 class UserAdmin(BaseUserAdmin, BaseAdmin):
-    # inlines = (AccountInLine, )
     form = UserChangeForm
     add_form = UserCreationForm
-    # verbose_name = u'Tài khoản'
     readonly_fields = ('creator',
                        'reset_pass_key',
                        'create_time',
