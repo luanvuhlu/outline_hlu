@@ -15,7 +15,7 @@ class Library(BaseModel, AddressModel, NameModel, CreatorModel):
         verbose_name = u'Thư viện'
         verbose_name_plural = verbose_name
     def __unicode__(self):
-        return '%s %s' % (self.name_abbr if self.name_abbr else self.name, self.university)
+        return self.name_abbr if self.name_abbr else self.name
 
 class LearningResourceType(BaseModel, CreatorModel):
     name=models.CharField(blank=False, max_length=100,
@@ -25,9 +25,7 @@ class LearningResourceType(BaseModel, CreatorModel):
         verbose_name_plural=verbose_name
     def __unicode__(self):
         return self.name
-class Publishing(BaseModel, CreatorModel):
-    name=models.CharField(blank=False, max_length=255,
-                          verbose_name=u'Tên')
+class Publishing(BaseModel, CreatorModel, NameModel):
     class Meta:
         verbose_name=u'Nhà xuất bản'
         verbose_name_plural=verbose_name
@@ -39,14 +37,17 @@ class LearningResource(BaseModel, CreatorModel):
     author=models.CharField(blank=True, max_length=255,
                             verbose_name=u'Tác giả')
     publishing=models.ForeignKey(Publishing, blank=True, null=True,
-                                 verbose_name=u'Nhà xuất bản')
+                                 verbose_name=u'Nhà xuất bản',
+                                 help_text=u'Để trống nếu không có')
     pub_year=models.SmallIntegerField(blank=True,
                                       validators=[MaxValueValidator(datetime.now().year)],
                                       verbose_name=u'Năm xuất bản')
     library=models.ForeignKey(Library, blank=True, null=True,
-                              verbose_name=u'Thư viện')
+                              verbose_name=u'Thư viện',
+                              help_text=u'Để trống nếu không có')
     resource_type=models.ForeignKey(LearningResourceType, blank=True, null=True,
-                                    verbose_name=u'Loại tài liệu')
+                                    verbose_name=u'Loại tài liệu',
+                                    help_text=u'Để trống nếu không có')
     is_avaiable=models.BooleanField(blank=False, default=True, verbose_name=u'Có sẵn',
                                     help_text=u'Có ở thư viện hoặc được bày bán không')
     is_sale=models.BooleanField(blank=False, default=False, verbose_name=u'Có bán')

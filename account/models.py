@@ -163,7 +163,7 @@ class CreatorModel(models.Model):
     creator = models.ForeignKey(Account,
                                 blank=False,
                                 null=False,
-                                verbose_name=u'Người tạo',
-                                help_text=u'Là người dùng hiện tại')
+                                # editable=False,
+                                verbose_name=u'Người tạo')
     class Meta:
         abstract = True

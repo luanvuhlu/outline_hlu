@@ -10,10 +10,8 @@ from models import Account
 class UserAdmin(BaseUserAdmin, BaseAdmin):
     form = UserChangeForm
     add_form = UserCreationForm
-    readonly_fields = ('creator',
+    readonly_fields = (
                        'reset_pass_key',
-                       'create_time',
-                       'update_time',
                        )
     radio_fields = {'login_type': admin.VERTICAL}
     list_display = ('email', 'date_of_birth', 'is_admin', 'deleted')

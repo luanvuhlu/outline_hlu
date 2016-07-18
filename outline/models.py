@@ -140,7 +140,7 @@ class HomeWork(BaseModel, CreatorModel):
     type=models.SmallIntegerField(blank=False, default=0,
                                   choices=TYPE_CHOICES,
                                   verbose_name=u'Loại bài tập')
-    ORDER_CHOICES=[(x, x) for x in range(0, 2)]
+    ORDER_CHOICES=[(x, x) for x in range(0, 3)]
     order=models.SmallIntegerField(blank=False, default=0,
                                    choices=ORDER_CHOICES,
                                    verbose_name=u'Thứ tự',

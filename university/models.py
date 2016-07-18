@@ -34,7 +34,7 @@ class Course(BaseModel, NameModel, CreatorModel):
         return self.name_abbr if self.name_abbr else self.name
 class UClass(BaseModel, NameModel, CreatorModel):
     course=models.ForeignKey(Course, blank=False)
-    specialized_study=models.ForeignKey(SpecializedStudy, blank=False, verbose_name=u'Khoa')
+    specialized_study=models.ForeignKey(SpecializedStudy, blank=False)
     description=models.CharField(blank=True, max_length=255, verbose_name=u'Mô tả')
     class Meta:
         verbose_name = u'Lớp'
@@ -42,14 +42,8 @@ class UClass(BaseModel, NameModel, CreatorModel):
     def __unicode__(self):
         return self.name_abbr if self.name_abbr else self.name
 class Subject(BaseModel, NameModel, CreatorModel):
-    CREDIT_CHOICES =(
-        (1, '1'),
-        (2, '2'),
-        (3, '3'),
-        (4, '4'),
-        (5, '5'),
-    )
-    specialized_study=models.ManyToManyField(SpecializedStudy, blank=True)
+    CREDIT_CHOICES = [(i, i) for i in range(1, 6)]
+    specialized_study=models.ForeignKey(SpecializedStudy, blank=True)
     credit=models.SmallIntegerField(blank=False, default=2,
                                choices=CREDIT_CHOICES,
                                verbose_name=u'Số tín chỉ')
@@ -73,8 +67,7 @@ class Scholastic(BaseModel, CreatorModel):
 class Student(Account):
     nick_name=models.CharField(blank=True, max_length=255,
                             verbose_name=u'Biệt hiệu')
-    u_class=models.ForeignKey(UClass, blank=False,
-                              verbose_name=u'Lớp')
+    u_class=models.ForeignKey(UClass, blank=False)
     class Meta:
         verbose_name = u'Sinh viên'
         verbose_name_plural = verbose_name
