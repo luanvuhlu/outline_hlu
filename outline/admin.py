@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.forms.models import BaseInlineFormSet
 from common.admin import BaseAdmin
 from models import Outline, OutlineLearningResource, SubjectSchedule, Problem, ProblemDetail, Week
 # Register your models here.

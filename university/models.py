@@ -17,7 +17,7 @@ class University(BaseModel, AddressModel, NameModel, CreatorModel):
 class SpecializedStudy(BaseModel, NameModel, CreatorModel):
     address = models.CharField(blank=True, max_length=100,
                                  verbose_name=u'Địa chỉ')
-    university=models.ForeignKey(University, blank=True)
+    university=models.ForeignKey(University, blank=False)
     class Meta:
         verbose_name = u'Khoa'
         verbose_name_plural = verbose_name

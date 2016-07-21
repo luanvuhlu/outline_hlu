@@ -95,6 +95,6 @@ class BaseModel(SoftDeleteObject):
     objects = SoftDeleteManager()
     # deleted_at = models.DateTimeField(blank=True, null=True, default=None, verbose_name=u'Đã xoá lúc')
     create_time=models.DateTimeField(auto_now_add=True, blank=False, verbose_name=u'Thời gian tạo')
-    update_time=models.DateTimeField(blank=True, null=True, verbose_name=u'Thời gian cập nhật')
+    update_time=models.DateTimeField(auto_now_add=True, blank=True, null=True, verbose_name=u'Thời gian cập nhật')
     class Meta:
         abstract = True
