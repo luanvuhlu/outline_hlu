@@ -1,7 +1,7 @@
+# -*- coding: utf-8 -*-
 from django.contrib import admin
-from django.forms.models import BaseInlineFormSet
 from common.admin import BaseAdmin
-from models import Outline, OutlineLearningResource, SubjectSchedule, Problem, ProblemDetail, Week
+from models import Outline, OutlineLearningResource, Problem, ProblemDetail
 # Register your models here.
 
 class ProblemInline(admin.StackedInline):
@@ -15,9 +15,6 @@ class OutLineAdmin(BaseAdmin):
 @admin.register(OutlineLearningResource)
 class OutlineLearningResourceAdmin(BaseAdmin):
     pass
-@admin.register(SubjectSchedule)
-class SubjectScheduleAdmin(BaseAdmin):
-    pass
 class ProblemDetailInline(admin.StackedInline):
     model = ProblemDetail
     exclude = ('creator', 'create_time', 'deleted_at', 'update_time')
@@ -27,7 +24,4 @@ class ProblemAdmin(BaseAdmin):
     inlines = [ProblemDetailInline, ]
 @admin.register(ProblemDetail)
 class ProblemDetailAdmin(BaseAdmin):
-    pass
-@admin.register(Week)
-class WeekAdmin(BaseAdmin):
     pass

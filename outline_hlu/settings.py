@@ -32,6 +32,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'material',
+    # 'material.frontend',
+    'material.admin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,6 +47,8 @@ INSTALLED_APPS = [
     'university',
     'library',
     'outline',
+    'schedule',
+    'homework',
 
 ]
 
@@ -72,6 +77,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',
             ],
             'loaders': [
                 'django.template.loaders.eggs.Loader',
@@ -125,12 +131,22 @@ TIME_ZONE = 'Asia/Ho_Chi_Minh'
 
 USE_I18N = True
 
-USE_L10N = True
+USE_L10N = False
 
 USE_TZ = True
+
+DATE_FORMAT = 'd/m/Y'
+# TIME_FORMAT = 'H:i:s'
+DATETIME_FORMAT = 'd/m/Y H:i:s'
+# YEAR_MONTH_FORMAT = 'F Y'
+# MONTH_DAY_FORMAT = 'j F'
+# SHORT_DATE_FORMAT = 'j N Y'
+# SHORT_DATETIME_FORMAT = 'j N Y H:i'
+FIRST_DAY_OF_WEEK = 1
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = 'static/'
 AUTH_USER_MODEL = 'account.Account'

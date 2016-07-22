@@ -56,6 +56,8 @@ class LearningResource(BaseModel, CreatorModel):
     is_borrow=models.BooleanField(blank=False, default=True, verbose_name=u'Có thể mượn')
     borrow_place=models.CharField(blank=True, max_length=255, verbose_name=u'Nơi mượn',
                                   help_text=u'Để trống nếu cho mượn ngay tại thư viện')
+    description = models.CharField(blank=True, max_length=255,
+                                   verbose_name=u'Mô tả')
     class Meta:
         verbose_name = u'Học liệu'
         verbose_name_plural = verbose_name
