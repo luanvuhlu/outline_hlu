@@ -21,6 +21,7 @@ class CourseAdmin(BaseAdmin):
         model = Course
 @admin.register(SpecializedStudy)
 class SpecializedStudyAdmin(BaseAdmin):
+    list_display = ('name', 'university', 'create_time')
     fieldsets = (
         (None, {'fields': ('university', 'name', 'name_abbr', 'address')}),
     )
@@ -40,11 +41,18 @@ class UClassAdmin(BaseAdmin):
     )
     class Meta:
         model = UClass
+
 @admin.register(Subject)
 class SubjectAdmin(BaseAdmin):
     fieldsets = (
         (None, {'fields': ('specialized_study', 'name', 'name_abbr', 'credit')}),
     )
+    list_display = ('name', 'specialized_study', 'credit', 'create_time')
+    radio_fields = {"credit": admin.HORIZONTAL}
+    raw_id_fields = ('specialized_study', )
+    autocomplete_lookup_fields = {
+        'fk' : ['specialized_study'],
+    }
     class Meta:
         model = Subject
 @admin.register(Student)
@@ -57,7 +65,13 @@ class StudentAdmin(BaseAdmin):
 @admin.register(Lecturer)
 class LecturerAdmin(BaseAdmin):
     fieldsets = (
-        (None, {'fields': ('account', 'nick_name')}),
+        (None, {'fields': ('account', 'specialized_study', 'nick_name')}),
     )
+    list_display = ('get_family_name', 'get_name', 'get_email', )
+    list_display_links = ('get_family_name', 'get_name', 'get_email', )
+    raw_id_fields = ('account', 'specialized_study', )
+    autocomplete_lookup_fields = {
+        'fk' : ['account', 'specialized_study'],
+    }
     class Meta:
         model = Lecturer

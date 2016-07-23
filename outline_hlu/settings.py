@@ -32,9 +32,12 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # 'dal',
+    # 'dal_select2',
     'material',
     # 'material.frontend',
-    'material.admin',
+    # 'material.admin',
+    'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -49,6 +52,7 @@ INSTALLED_APPS = [
     'library',
     'outline',
     'homework',
+    # 'ajax_select',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -149,3 +153,11 @@ FIRST_DAY_OF_WEEK = 1
 STATIC_URL = '/static/'
 STATIC_ROOT = 'static/'
 AUTH_USER_MODEL = 'account.Account'
+# Absolute path to the directory that holds media.
+# Example: "/home/media/media.lawrence.com/"
+MEDIA_ROOT = ''
+
+# URL that handles the media served from MEDIA_ROOT. Make sure to use a
+# trailing slash if there is a path component (optional in other cases).
+# Examples: "http://media.lawrence.com", "http://example.com/media/"
+MEDIA_URL = ''

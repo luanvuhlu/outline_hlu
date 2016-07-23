@@ -110,6 +110,9 @@ class Account(AbstractBaseUser, BaseModel, AddressModel):
         return True
     def __unicode__(self):
         return self.email
+    @staticmethod
+    def autocomplete_search_fields():
+        return ("email__icontains", "name__icontains", )
 class CreatorModel(models.Model):
     creator = models.ForeignKey(Account,
                                 blank=False,

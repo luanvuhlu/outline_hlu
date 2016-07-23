@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
 from common.admin import BaseAdmin
+from university.models import Scholastic
 from models import Outline, OutlineLearningResource, Problem, ProblemDetail
 # Register your models here.
 
@@ -18,6 +19,9 @@ class ProblemInline(admin.StackedInline):
 @admin.register(Outline)
 class OutLineAdmin(BaseAdmin):
     inlines = [ProblemInline, ]
+    fieldsets = (
+        (None, {'fields': ('scholastic', 'subject', 'course')}),
+    )
     pass
 @admin.register(OutlineLearningResource)
 class OutlineLearningResourceAdmin(BaseAdmin):

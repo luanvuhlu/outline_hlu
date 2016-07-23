@@ -12,5 +12,5 @@ class HomeWorkAdmin(BaseAdmin):
     list_display_links = ('type_order_name', )
     fieldsets =(
         (None, {'fields': ('outline', ('type', 'order'), ('page_limit_start', 'page_limit_end'))}),
-        (u'Khác', {'fields': ('handwritten', 'is_presenstation_required', 'presentation', 'other_requirement')})
+        (u'Yêu cầu khác', {'fields': ('handwritten', 'is_not_presenstation_required', 'presentation', 'other_requirement')})
     )

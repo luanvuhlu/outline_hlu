@@ -79,9 +79,9 @@ class HomeWork(BaseModel, CreatorModel):
     handwritten=models.BooleanField(blank=False, null=False,
                                     default=False,
                                     verbose_name=u'Yêu cầu viết tay')
-    is_presenstation_required=models.BooleanField(blank=False, null=False,
-                                                  default=True,
-                                                  verbose_name=u'Yêu cầu thuyết trình')
+    is_not_presenstation_required=models.BooleanField(blank=False, null=False,
+                                                  default=False,
+                                                  verbose_name=u'Không yêu cầu thuyết trình')
     presentation=models.CharField(blank=True, max_length=255,
                                   verbose_name=u'Nội dung thuyết trình')
     other_requirement=models.CharField(blank=True, max_length=255,
