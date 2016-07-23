@@ -5,7 +5,7 @@ from django.db import models
 from homework.models import HomeWork
 
 from account.models import CreatorModel
-from common.models import BaseModel
+from common.models import BaseModel, DescriptionField
 from outline.models import Outline
 # Create your models here.
 class Week(BaseModel, CreatorModel):
@@ -14,8 +14,7 @@ class Week(BaseModel, CreatorModel):
                               verbose_name=u'Đề cương')
     order=models.SmallIntegerField(blank=False, choices=ORDER_CHOICES,
                               verbose_name=u'Số thứ tự của tuần')
-    description = models.CharField(blank=True, max_length=255,
-                                   verbose_name=u'Mô tả')
+    description = DescriptionField()
     class Meta:
         verbose_name=u'Tuần học'
         verbose_name_plural=verbose_name
@@ -23,6 +22,7 @@ class Week(BaseModel, CreatorModel):
         return u'Tuần %s - %s' % (self.order, self.outline.__unicode__())
 class SubjectSchedule(BaseModel, CreatorModel):
     week=models.ForeignKey(Week, blank=False)
+    description = DescriptionField()
     class Meta:
         verbose_name=u'Lịch trình học hàng tuần'
         verbose_name_plural=verbose_name
@@ -38,6 +38,7 @@ class LearningDay(BaseModel, CreatorModel):
     type=models.SmallIntegerField(blank=False, choices=TYPE_CHOICES,
                                   default=0,
                                   verbose_name=u'Giờ')
+    description = DescriptionField()
     class Meta:
         verbose_name=u'Ngày học'
         verbose_name_plural=verbose_name
@@ -50,7 +51,7 @@ class LearningDayContent(BaseModel, CreatorModel):
                                      verbose_name=u'Thứ tự')
     content = models.CharField(blank=False, max_length=255,
                            verbose_name=u'Nội dung')
-
+    description = DescriptionField()
     class Meta:
         verbose_name = u'Nội dung học'
         verbose_name_plural = verbose_name
@@ -63,7 +64,7 @@ class LearningDayRequirement(BaseModel, CreatorModel):
                                      verbose_name=u'Thứ tự')
     content = models.CharField(blank=False, max_length=255,
                                verbose_name=u'Yêu cầu')
-
+    description = DescriptionField()
     class Meta:
         verbose_name = u'Yêu cầu chuẩn bị cho giờ học'
         verbose_name_plural = verbose_name
@@ -81,8 +82,7 @@ class HomeWorkAction(BaseModel, CreatorModel):
     )
     type=models.SmallIntegerField(blank=False,
                                   verbose_name=u'Hoạt động')
-    desciption=models.CharField(blank=True, max_length=255,
-                                verbose_name=u'Mô tả')
+    description = DescriptionField()
     class Meta:
         verbose_name=u'Hoạt động bài tập'
         verbose_name_plural=verbose_name

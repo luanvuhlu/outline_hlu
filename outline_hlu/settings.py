@@ -44,12 +44,11 @@ INSTALLED_APPS = [
     'softdelete',
     'account',
     'common',
+    'schedule',
     'university',
     'library',
     'outline',
-    'schedule',
     'homework',
-
 ]
 
 MIDDLEWARE_CLASSES = [

@@ -98,3 +98,9 @@ class BaseModel(SoftDeleteObject):
     update_time=models.DateTimeField(auto_now_add=True, blank=True, null=True, verbose_name=u'Thời gian cập nhật')
     class Meta:
         abstract = True
+class DescriptionField(models.CharField):
+    def __init__(self, *args, **kwargs):
+        super(DescriptionField, self).__init__(*args, **kwargs)
+        self.max_length = 255
+        self.blank = True
+        self.verbose_name = u'Mô tả'

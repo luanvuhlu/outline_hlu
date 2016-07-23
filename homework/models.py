@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from account.models import Account, CreatorModel
-from common.models import BaseModel
+from common.models import BaseModel, DescriptionField
 from outline.models import Outline
 
 # Create your models here.
@@ -44,8 +44,7 @@ class HomeWorkFormat(BaseModel, CreatorModel):
                                     verbose_name=u'Dãn dòng')
     other=models.CharField(blank=True, max_length=255,
                            verbose_name=u'Yêu cầu khác')
-    description=models.CharField(blank=True, max_length=255,
-                                 verbose_name=u'mô tả')
+    description = DescriptionField()
     class Meta:
         verbose_name=u'Định dạng bài tập'
         verbose_name_plural=verbose_name
@@ -87,6 +86,7 @@ class HomeWork(BaseModel, CreatorModel):
                                   verbose_name=u'Nội dung thuyết trình')
     other_requirement=models.CharField(blank=True, max_length=255,
                                        verbose_name=u'Yêu cầu khác')
+    description = DescriptionField()
     class Meta:
         verbose_name=u'Bài tập'
         verbose_name_plural=verbose_name

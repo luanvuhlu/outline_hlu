@@ -8,6 +8,13 @@ class ProblemInline(admin.StackedInline):
     model = Problem
     exclude = ('creator', 'create_time', 'deleted_at', 'update_time')
     extra = 15
+    def save_formset(self, request, form, formset, change):
+        instances = formset.save(commit = False)
+        if not change:
+            for instance in instances:
+                instance.creator=request.user
+                instance.save()
+        formset.save_m2m()
 @admin.register(Outline)
 class OutLineAdmin(BaseAdmin):
     inlines = [ProblemInline, ]

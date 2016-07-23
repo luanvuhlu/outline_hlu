@@ -18,8 +18,8 @@ class UserAdmin(BaseUserAdmin, BaseAdmin):
     fieldsets = (
         (None, {'fields': ('email', 'password', )}),
         (u'Thông tin người dùng', {'fields': (
-            'date_of_birth',
             ('family_name', 'name'),
+            'date_of_birth',
             'address_1',
             'address_2',
             'address_3',
@@ -43,9 +43,8 @@ class UserAdmin(BaseUserAdmin, BaseAdmin):
                         'password2',)
         }),
         (u'Thông tin người dùng', {'fields': (
+            ('family_name', 'name'),
             'date_of_birth',
-            'family_name',
-            'name',
             'address_1',
             'address_2',
             'address_3',
@@ -61,7 +60,7 @@ class UserAdmin(BaseUserAdmin, BaseAdmin):
     def get_fieldsets(self, request, obj=None):
         if not obj:
             return self.add_fieldsets
-        return self.fieldsets
+        return self.fieldsets+BaseAdmin.fieldsets
     def get_readonly_fields(self, request, obj=None):
         if obj: #Changing Mode
             # Readonly Email
