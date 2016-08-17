@@ -58,7 +58,7 @@ class HomeWork(BaseModel, CreatorModel):
         (2, u'Nhóm tháng'),
         (3, u'Học kỳ'),
     )
-    type=models.SmallIntegerField(blank=False, default=0,
+    hw_type=models.SmallIntegerField(blank=False, default=0,
                                   choices=TYPE_CHOICES,
                                   verbose_name=u'Loại bài tập')
     ORDER_CHOICES=[(x, x) for x in range(0, 3)]
@@ -67,7 +67,7 @@ class HomeWork(BaseModel, CreatorModel):
                                    choices=ORDER_CHOICES,
                                    verbose_name=u'Thứ tự',
                                    help_text=u'Chọn 0 nếu chỉ có 1 bài tập')
-    format=models.ForeignKey(HomeWorkFormat, verbose_name=u'Định dạng')
+    hw_format=models.ForeignKey(HomeWorkFormat, verbose_name=u'Định dạng')
     page_limit_start=models.SmallIntegerField(blank=True,
                                               null=True,
                                               verbose_name=u'Số trang tối thiểu',
