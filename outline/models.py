@@ -13,7 +13,7 @@ class Outline(BaseModel, CreatorModel):
                                  verbose_name=u'Năm học')
     subject=models.ForeignKey(Subject, blank=False, null=False,
                               verbose_name=u'Môn học')
-    course=models.ForeignKey(Course, blank=False, null=False,
+    course=models.ForeignKey(Course, blank=True, null=False,
                              verbose_name=u'Khóa')
     description = DescriptionField()
     class Meta:
@@ -21,6 +21,9 @@ class Outline(BaseModel, CreatorModel):
         verbose_name_plural=verbose_name
     def __unicode__(self):
         return '%s K%s Năm học %s' % (self.subject, self.course, self.scholastic)
+    def course_verbose(self):
+        return self.course if self.course else u'Tất cả'
+    course_verbose.short_description = u'Khoá'
 class OutlineLearningResource(BaseModel, CreatorModel):
     REQUIRED_TYPE=0
     OPTION_TYPE=1
