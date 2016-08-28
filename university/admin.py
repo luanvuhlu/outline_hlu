@@ -60,6 +60,10 @@ class StudentAdmin(BaseAdmin):
     fieldsets = (
         (None, {'fields': ('account', 'u_class', 'nick_name')}),
     )
+    raw_id_fields = ('u_class', 'account', )
+    autocomplete_lookup_fields = {
+        'fk' : ['u_class', 'account'],
+    }
     class Meta:
         model = Student
 @admin.register(Lecturer)

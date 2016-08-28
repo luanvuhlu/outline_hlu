@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'outline',
     'homework',
     # 'ajax_select',
+    'bootstrap3',
 ]
 
 MIDDLEWARE_CLASSES = [

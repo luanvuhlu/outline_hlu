@@ -45,6 +45,9 @@ class UClass(BaseModel, NameModel, CreatorModel):
         verbose_name_plural = verbose_name
     def __unicode__(self):
         return self.name_abbr if self.name_abbr else self.name
+    @staticmethod
+    def autocomplete_search_fields():
+        return ("name__icontains", )
 class Subject(BaseModel, NameModel, CreatorModel):
     CREDIT_CHOICES = [(i, "%s tín chỉ" % i) for i in range(1, 6)]
     specialized_study=models.ForeignKey(SpecializedStudy, blank=True, verbose_name=u'Bộ môn/Khoa')
@@ -57,7 +60,9 @@ class Subject(BaseModel, NameModel, CreatorModel):
         verbose_name_plural=verbose_name
     def __unicode__(self):
         return self.name
-
+    @staticmethod
+    def autocomplete_search_fields():
+        return ("name__icontains", "name_abbr__icontains")
 class Scholastic(BaseModel, CreatorModel):
     name = models.CharField(blank=False, max_length=255,
                             verbose_name=u'Tên')
@@ -68,31 +73,35 @@ class Scholastic(BaseModel, CreatorModel):
 
     def __unicode__(self):
         return self.name
-class Student(BaseModel, CreatorModel):
-    account = models.ForeignKey(Account, verbose_name=u'Tài khoản', related_name='student_account')
-    nick_name=models.CharField(blank=True, max_length=255,
-                            verbose_name=u'Biệt hiệu')
-    u_class=models.ForeignKey(UClass, verbose_name=u'Lớp')
-    description = DescriptionField()
-    class Meta:
-        verbose_name = u'Sinh viên'
-        verbose_name_plural = verbose_name
-class Lecturer(BaseModel, CreatorModel):
-    account=models.ForeignKey(Account, verbose_name=u'Tài khoản', related_name='lecture_account')
-    nick_name=models.CharField(blank=True, max_length=255,
-                            verbose_name=u'Biệt hiệu')
-    specialized_study=models.ForeignKey(SpecializedStudy,
-                                        verbose_name=u'Bộ môn/Khoa')
+class Person(BaseModel, CreatorModel):
+    nick_name = models.CharField(blank=True, max_length=255,
+                                 verbose_name=u'Biệt hiệu')
     description = DescriptionField()
     class Meta:
         verbose_name = u'Giảng viên'
         verbose_name_plural = verbose_name
+        abstract = True
+
     def get_family_name(self):
         return self.account.family_name
+
     def get_name(self):
         return self.account.name
+
     def get_email(self):
         return self.account.email
-    get_email.short_description='Email'
+    def __unicode__(self):
+        return self.account.__unicode__()
+    get_email.short_description = 'Email'
     get_family_name.short_description = u'Họ'
     get_name.short_description = u'Tên'
+class Student(Person):
+    account = models.ForeignKey(Account, verbose_name=u'Tài khoản', related_name='student_account')
+    u_class=models.ForeignKey(UClass, verbose_name=u'Lớp')
+    class Meta:
+        verbose_name = u'Sinh viên'
+        verbose_name_plural = verbose_name
+class Lecturer(Person):
+    account = models.ForeignKey(Account, verbose_name=u'Tài khoản', related_name='lecture_account')
+    specialized_study=models.ForeignKey(SpecializedStudy,
+                                        verbose_name=u'Bộ môn/Khoa')
