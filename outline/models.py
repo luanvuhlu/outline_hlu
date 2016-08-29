@@ -13,7 +13,7 @@ class Outline(BaseModel, CreatorModel):
                                  verbose_name=u'Năm học')
     subject=models.ForeignKey(Subject, blank=False, null=False,
                               verbose_name=u'Môn học')
-    course=models.ForeignKey(Course, blank=True, null=False,
+    course=models.ForeignKey(Course, blank=True, null=True,
                              verbose_name=u'Khóa')
     description = DescriptionField()
     class Meta:

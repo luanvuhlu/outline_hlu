@@ -45,6 +45,12 @@ class UClass(BaseModel, NameModel, CreatorModel):
         verbose_name_plural = verbose_name
     def __unicode__(self):
         return self.name_abbr if self.name_abbr else self.name
+    def full_name(self):
+        return '%s%s' % (self.course, self.name)
+    full_name.short_description = u'Tên'
+    def get_university(self):
+        return self.course.university
+    get_university.short_description=u'Đại học'
     @staticmethod
     def autocomplete_search_fields():
         return ("name__icontains", )
@@ -60,6 +66,9 @@ class Subject(BaseModel, NameModel, CreatorModel):
         verbose_name_plural=verbose_name
     def __unicode__(self):
         return self.name
+    def get_university(self):
+        return self.specialized_study.university
+    get_university.short_description=u'Đại học'
     @staticmethod
     def autocomplete_search_fields():
         return ("name__icontains", "name_abbr__icontains")
