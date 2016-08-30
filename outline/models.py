@@ -24,6 +24,12 @@ class Outline(BaseModel, CreatorModel):
     def course_verbose(self):
         return self.course if self.course else u'Tất cả'
     course_verbose.short_description = u'Khoá'
+    def university_verbose(self):
+        return self.subject.specialized_study.university
+    university_verbose.short_description = u'Đại học'
+    @staticmethod
+    def autocomplete_search_fields():
+        return ("subject__name__icontains", "course__name")
 class OutlineLearningResource(BaseModel, CreatorModel):
     REQUIRED_TYPE=0
     OPTION_TYPE=1
@@ -35,7 +41,7 @@ class OutlineLearningResource(BaseModel, CreatorModel):
                               verbose_name=u'Đề cương')
     learning_resource=models.ForeignKey(LearningResource, blank=False, null=False,
                                         verbose_name=u'Học liệu')
-    resource_type=models.SmallIntegerField(blank=False,
+    resource_type=models.SmallIntegerField(blank=False, default=REQUIRED_TYPE,
                                    choices=RESOURCE_TYPE_CHOICES,
                                    verbose_name=u'Loại tài liệu')
     description = DescriptionField()
@@ -61,12 +67,18 @@ class Problem(BaseModel, CreatorModel):
 class ProblemDetail(BaseModel, CreatorModel):
     problem=models.ForeignKey(Problem, blank=False, null=False,
                               verbose_name=u'Vấn đề')
-    content=models.CharField(blank=True, max_length=255,
+    content=models.CharField(blank=False, max_length=255,
                              verbose_name=u'Nội dung vấn đề')
     ORDER_CHOICES = [(x, x) for x in range(1, 10)]
     order = models.SmallIntegerField(blank=False, choices=ORDER_CHOICES,
                                      verbose_name=u'Số')
     description = DescriptionField()
+    def outline_name(self):
+        return self.problem.outline
+    outline_name.short_description = u'Đề cương'
+    def university_name(self):
+        return self.subject.specialized_study.university
+    university_name.short_description = u'Đại học'
     class Meta:
         verbose_name = u'Nội dung vấn đề'
         verbose_name_plural = verbose_name
@@ -113,3 +125,8 @@ class AdvisoryTime(BaseModel, CreatorModel):
     place=models.CharField(blank=True, max_length=255,
                            verbose_name=u'Địa điểm')
     description = DescriptionField()
+    class Meta:
+        verbose_name=u'Thời gian tư vấn'
+        verbose_name_plural=verbose_name
+    def __unicode__(self):
+        return '%s %s' % (self.outline.__unicode__(), self.get_day_of_week_display())

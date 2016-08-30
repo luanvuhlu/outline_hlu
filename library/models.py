@@ -42,7 +42,7 @@ class LearningResource(BaseModel, CreatorModel):
     publishing=models.ForeignKey(Publishing, blank=True, null=True,
                                  verbose_name=u'Nhà xuất bản',
                                  help_text=u'Để trống nếu không có')
-    pub_year=models.SmallIntegerField(blank=True,
+    pub_year=models.SmallIntegerField(blank=True, null=True,
                                       validators=[MaxValueValidator(datetime.now().year)],
                                       verbose_name=u'Năm xuất bản')
     library=models.ForeignKey(Library, blank=True, null=True,
@@ -65,3 +65,6 @@ class LearningResource(BaseModel, CreatorModel):
         verbose_name_plural = verbose_name
     def __unicode__(self):
         return self.name
+    @staticmethod
+    def autocomplete_search_fields():
+        return ("name__icontains", "author__icontains")
