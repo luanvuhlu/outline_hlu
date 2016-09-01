@@ -92,11 +92,13 @@ class HomeWork(BaseModel, CreatorModel):
         verbose_name_plural=verbose_name
     def type_order_name(self):
         if self.order:
-            return "%s %s" % (self.get_type_display(), self.order)
-        return self.get_type_display()
-
+            return "%s %s" % (self.get_hw_type_display(), self.order)
+        return self.get_hw_type_display()
+    def university_name(self):
+        return self.outline.subject.specialized_study.university
+    university_name.short_description = u'Đại học'
     type_order_name.short_description = u'Tên'
     def __unicode__(self):
         if self.order:
-            return "%s %s %s" % (self.get_type_display(), self.order, self.outline.__unicode__())
-        return "%s %s" % (self.get_type_display(), self.outline.__unicode__())
+            return "%s %s %s" % (self.get_hw_type_display(), self.order, self.outline.__unicode__())
+        return "%s %s" % (self.get_hw_type_display(), self.outline.__unicode__())

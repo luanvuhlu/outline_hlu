@@ -20,7 +20,7 @@ class Outline(BaseModel, CreatorModel):
         verbose_name=u'Đề cương'
         verbose_name_plural=verbose_name
     def __unicode__(self):
-        return '%s K%s Năm học %s' % (self.subject, self.course, self.scholastic)
+        return '%s %s' % (self.subject, self.scholastic)
     def course_verbose(self):
         return self.course if self.course else u'Tất cả'
     course_verbose.short_description = u'Khoá'
@@ -62,6 +62,9 @@ class Problem(BaseModel, CreatorModel):
     class Meta:
         verbose_name = u'Vấn đề'
         verbose_name_plural = verbose_name
+    def university_name(self):
+        return self.outline.subject.specialized_study.university
+    university_name.short_description = u'Đại học'
     def __unicode__(self):
         return 'Vấn đề %s' % self.order
 class ProblemDetail(BaseModel, CreatorModel):
@@ -69,7 +72,7 @@ class ProblemDetail(BaseModel, CreatorModel):
                               verbose_name=u'Vấn đề')
     content=models.CharField(blank=False, max_length=255,
                              verbose_name=u'Nội dung vấn đề')
-    ORDER_CHOICES = [(x, x) for x in range(1, 10)]
+    ORDER_CHOICES = [(x, x) for x in range(1, 11)]
     order = models.SmallIntegerField(blank=False, choices=ORDER_CHOICES,
                                      verbose_name=u'Số')
     description = DescriptionField()
@@ -77,7 +80,7 @@ class ProblemDetail(BaseModel, CreatorModel):
         return self.problem.outline
     outline_name.short_description = u'Đề cương'
     def university_name(self):
-        return self.subject.specialized_study.university
+        return self.problem.outline.subject.specialized_study.university
     university_name.short_description = u'Đại học'
     class Meta:
         verbose_name = u'Nội dung vấn đề'

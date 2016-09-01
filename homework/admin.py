@@ -13,9 +13,13 @@ class HomeWorkFormatAdmin(BaseAdmin):
     )
 @admin.register(HomeWork)
 class HomeWorkAdmin(BaseAdmin):
-    list_display = ('type_order_name', 'outline', 'create_time')
+    list_display = ('type_order_name', 'outline', 'university_name', 'create_time')
     list_display_links = ('type_order_name', )
     fieldsets =(
-        (None, {'fields': ('outline', ('hw_type', 'order'), ('page_limit_start', 'page_limit_end'))}),
+        (None, {'fields': ('outline', ('hw_type', 'order'), ('page_limit_start', 'page_limit_end'), 'hw_format')}),
         (u'Yêu cầu khác', {'fields': ('handwritten', 'is_not_presenstation_required', 'presentation', 'other_requirement')})
     )
+class HomeWorkInine(admin.TabularInline):
+    model = HomeWork
+    exclude = ('other_requirement', 'presentation', 'is_not_presenstation_required', 'description', 'creator', 'create_time', 'deleted_at', 'update_time')
+    extra = 5
