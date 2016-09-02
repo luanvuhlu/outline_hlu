@@ -12,6 +12,11 @@ class LibraryAdmin(BaseAdmin):
         (None, {'fields': ('name', 'name_abbr', 'university')}),
         (u'Địa chỉ', {'fields': ('address_1', 'address_2', 'address_3', 'city', )}),
     )
+    search_fields = ['name', 'university__name', 'city']
+    list_filter = (
+        ('university', admin.RelatedOnlyFieldListFilter),
+    )
+    ordering = ('name', 'university', 'create_time')
     class Meta:
         model = Library
 @admin.register(Publishing)
@@ -20,6 +25,8 @@ class PublishingAdmin(BaseAdmin):
     fieldsets = (
         (None, {'fields': ('name', 'name_abbr', )}),
     )
+    search_fields = ['name']
+    ordering = ('name', 'create_time')
     class Meta:
         model = Publishing
 @admin.register(LearningResource)
@@ -31,6 +38,13 @@ class LearningResourceAdmin(BaseAdmin):
         (u'Bán', {'fields': (('is_sale', 'sale_place'), )}),
         (u'Khác', {'fields': ('description', )}),
     )
+    search_fields = ['name', 'author', 'pub_year', 'publishing__name']
+    list_filter = (
+        ('resource_type', admin.RelatedOnlyFieldListFilter),
+        ('publishing', admin.RelatedOnlyFieldListFilter),
+        ('library', admin.RelatedOnlyFieldListFilter),
+    )
+    ordering = ('name', 'author', 'create_time')
     class Meta:
         model = LearningResource
 @admin.register(LearningResourceType)
@@ -39,5 +53,7 @@ class LearningResourceTypeAdmin(BaseAdmin):
     fieldsets = (
         (None, {'fields': ('name', )}),
     )
+    search_fields = ['name']
+    ordering = ('name', 'create_time')
     class Meta:
         model = LearningResourceType

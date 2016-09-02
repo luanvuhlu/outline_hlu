@@ -15,6 +15,7 @@ class BaseAdmin(admin.ModelAdmin):
     add_fieldsets = (
         (u'Khác', {'fields': ('description',)}),
     )
+    date_hierarchy = 'create_time'
     def save_model(self, request, obj, form, change):
         if not change:
             obj.creator = request.user
