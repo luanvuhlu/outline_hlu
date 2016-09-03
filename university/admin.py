@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
-from models import University, SpecializedStudy, Scholastic, Course, UClass, Subject, Lecturer, Student
+from models import University, SpecializedStudy, Scholastic, Course, UClass, Subject, Lecturer, Student, StudySession
 from common.admin import BaseAdmin
 # Register your models here.
 
@@ -30,12 +30,30 @@ class SpecializedStudyAdmin(BaseAdmin):
         model = SpecializedStudy
 @admin.register(Scholastic)
 class ScholasticAdmin(BaseAdmin):
-    list_display = ('name', 'create_time')
+    list_display = ('name', 'start_date', 'end_date', 'create_time')
     fieldsets = (
-        (None, {'fields': ('name', )}),
+        (None, {'fields': ('name', 'start_date', 'end_date')}),
     )
+    def get_readonly_fields(self, request, obj=None):
+        return self.readonly_fields+('name',)
+    def save_model(self, request, obj, form, change):
+        obj.name = '%s-%s' % (obj.start_date.year, obj.end_date.year)
+        obj.save()
     class Meta:
         model = Scholastic
+@admin.register(StudySession)
+class StudySessionAdmin(BaseAdmin):
+    list_display = ('scholastic', 'order', 'start_date', 'end_date', 'create_time')
+    fieldsets = (
+        (None, {'fields': ('scholastic', 'order', ('start_date', 'end_date'))}),
+    )
+    radio_fields = {'order': admin.HORIZONTAL}
+    def save_model(self, request, obj, form, change):
+        
+        obj.name = '%s-%s' % (obj.start_date.year, obj.end_date.year)
+        obj.save()
+    class Meta:
+        model = StudySession
 @admin.register(UClass)
 class UClassAdmin(BaseAdmin):
     list_display = ('full_name', 'course', 'specialized_study', 'get_university', 'create_time')

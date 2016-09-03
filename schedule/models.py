@@ -18,6 +18,9 @@ class Week(BaseModel, CreatorModel):
     class Meta:
         verbose_name=u'Tuần học'
         verbose_name_plural=verbose_name
+    def university_name(self):
+        return self.outline.subject.specialized_study.university
+    university_name.short_description = u'Đại học'
     def __unicode__(self):
         return u'Tuần %s - %s' % (self.order, self.outline.__unicode__())
 class SubjectSchedule(BaseModel, CreatorModel):
@@ -26,7 +29,9 @@ class SubjectSchedule(BaseModel, CreatorModel):
     class Meta:
         verbose_name=u'Lịch trình học hàng tuần'
         verbose_name_plural=verbose_name
-
+    def university_name(self):
+        return self.outline.subject.specialized_study.university
+    university_name.short_description = u'Đại học'
     def __unicode__(self):
         return self.week.__unicode__()
 class LearningDay(BaseModel, CreatorModel):
@@ -34,55 +39,78 @@ class LearningDay(BaseModel, CreatorModel):
     TYPE_CHOICES=(
         (0, u'Lý thuyết'),
         (1, u'Thảo luận'),
+        (2, u'Tự học'),
     )
-    type=models.SmallIntegerField(blank=False, choices=TYPE_CHOICES,
-                                  default=0,
+    ORDER_CHOICES = [(x, x) for x in range(1, 3)]
+    day_type=models.SmallIntegerField(blank=False, choices=TYPE_CHOICES,
                                   verbose_name=u'Giờ')
+    order = models.SmallIntegerField(blank=True, null=True, choices=ORDER_CHOICES,
+                                    help_text=u'Để trống nếu chỉ có 1 giờ',
+                                     verbose_name=u'Số')
     description = DescriptionField()
     class Meta:
         verbose_name=u'Ngày học'
         verbose_name_plural=verbose_name
+    def university_name(self):
+        return self.week.outline.subject.specialized_study.university
+    university_name.short_description = u'Đại học'
+    def outline_name(self):
+        return self.week.outline
+    outline_name.short_description = u'Đề cương'
     def __unicode__(self):
-        return u'Giờ %s Tuần %s' % (self.get_type_display(), self.week)
+        return u'Giờ %s Tuần %s' % (self.get_day_type_display(), self.week)
 class LearningDayContent(BaseModel, CreatorModel):
     day=models.ForeignKey(LearningDay, verbose_name=u'Ngày học')
-    ORDER_CHOICES = [(order, order) for order in range(1, 11)]
-    order = models.SmallIntegerField(blank=False, choices=ORDER_CHOICES,
-                                     verbose_name=u'Thứ tự')
+    # ORDER_CHOICES = [(order, order) for order in range(1, 11)]
+    # order = models.SmallIntegerField(blank=False, choices=ORDER_CHOICES,
+    #                                  verbose_name=u'Thứ tự')
     content = models.CharField(blank=False, max_length=255,
                            verbose_name=u'Nội dung')
     description = DescriptionField()
     class Meta:
         verbose_name = u'Nội dung học'
         verbose_name_plural = verbose_name
+    def university_name(self):
+        return self.day.week.outline.subject.specialized_study.university
+    university_name.short_description = u'Đại học'
     def __unicode__(self):
-        return u'Giờ %s Tuần %s Nội dung thứ %s' % (self.day.get_type_display(), self.day.week, self.order)
+        return u'Giờ %s Tuần %s' % (self.day.get_day_type_display(), self.day.week)
 class LearningDayRequirement(BaseModel, CreatorModel):
     day = models.ForeignKey(LearningDay, verbose_name=u'Ngày học')
-    ORDER_CHOICES = [(order, order) for order in range(1, 11)]
-    order = models.SmallIntegerField(blank=False, choices=ORDER_CHOICES,
-                                     verbose_name=u'Thứ tự')
+    # ORDER_CHOICES = [(order, order) for order in range(1, 11)]
+    # order = models.SmallIntegerField(blank=False, choices=ORDER_CHOICES,
+    #                                  verbose_name=u'Thứ tự')
     content = models.CharField(blank=False, max_length=255,
                                verbose_name=u'Yêu cầu')
     description = DescriptionField()
     class Meta:
         verbose_name = u'Yêu cầu chuẩn bị cho giờ học'
         verbose_name_plural = verbose_name
-
+    def university_name(self):
+        return self.day.week.outline.subject.specialized_study.university
+    university_name.short_description = u'Đại học'
     def __unicode__(self):
-        return u'Giờ %s Tuần %s Yêu cầu thứ %s' % (self.day.get_type_display(), self.day.week, self.order)
+        return u'Giờ %s Tuần %s' % (self.day.get_day_type_display(), self.day.week)
 class HomeWorkAction(BaseModel, CreatorModel):
     # TODO otutline in form and filter by it
-    home_work=models.ForeignKey(HomeWork, verbose_name=u'Bài tập')
-    subject_schedule=models.ForeignKey(SubjectSchedule, verbose_name=u'Tuần')
+    homework=models.ForeignKey(HomeWork, verbose_name=u'Bài tập')
+    week=models.ForeignKey(Week, null=True, blank=True, verbose_name=u'Tuần')
     TYPE_CHOICES=(
         (0, u'Nhận'),
         (1, u'Nộp'),
         (2, u'Thuyết trình'),
+        (3, u'Làm'),
     )
-    type=models.SmallIntegerField(blank=False,
+    hwa_type=models.SmallIntegerField(blank=False,
+                                    default=0,
+                                    choices = TYPE_CHOICES,
                                   verbose_name=u'Hoạt động')
     description = DescriptionField()
     class Meta:
         verbose_name=u'Hoạt động bài tập'
         verbose_name_plural=verbose_name
+    def university_name(self):
+        return self.homework.outline.subject.specialized_study.university
+    university_name.short_description = u'Đại học'
+    def __unicode__(self):
+        return '%s %s' % (self.get_hwa_type_display(), self.homework)

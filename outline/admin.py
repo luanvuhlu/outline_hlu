@@ -3,6 +3,7 @@ from django.contrib import admin
 from common.admin import BaseAdmin
 from university.models import Scholastic
 from homework.admin import HomeWorkInine
+from schedule.admin import WeekInline
 from models import Outline, OutlineLearningResource, Problem, ProblemDetail, AdvisoryTime
 # Register your models here.
 
@@ -32,7 +33,7 @@ class AdvisoryTimeInline(admin.TabularInline):
     extra = 3
 @admin.register(Outline)
 class OutLineAdmin(BaseAdmin):
-    inlines = [ProblemInline, OutlineLearningResourceInline, AdvisoryTimeInline, HomeWorkInine]
+    inlines = [ProblemInline, OutlineLearningResourceInline, WeekInline,AdvisoryTimeInline, HomeWorkInine]
     radio_fields = {'course': admin.VERTICAL, 'scholastic': admin.VERTICAL}
     list_display = ('subject', 'course_verbose', 'scholastic', 'university_verbose', 'create_time')
     fieldsets = (

@@ -75,13 +75,30 @@ class Subject(BaseModel, NameModel, CreatorModel):
 class Scholastic(BaseModel, CreatorModel):
     name = models.CharField(blank=False, max_length=255,
                             verbose_name=u'Tên')
+    start_date=models.DateField(blank=False, null=False, verbose_name=u'Ngày bắt đầu')
+    end_date=models.DateField(blank=False, null=False, verbose_name=u'Ngày kết thúc')
     description = DescriptionField()
     class Meta:
         verbose_name = u'Năm học'
         verbose_name_plural = verbose_name
-
     def __unicode__(self):
         return self.name
+class StudySession(BaseModel, CreatorModel):
+    scholastic=models.ForeignKey(Scholastic, blank=False, null=False,
+                                 verbose_name=u'Năm học')
+    ORDER_CHOICES = [(order, order) for order in range(0, 4)]
+    order = models.SmallIntegerField(blank=False, null=True, choices=ORDER_CHOICES,
+                                    default=0,
+                                    verbose_name=u'Thứ tự',
+                                    help_text=u'Để 0 nếu là môn 15 tuần')
+    start_date=models.DateField(blank=True, null=False, verbose_name=u'Ngày bắt đầu',
+                                    help_text=u'Để trống nếu trùng với ngày của năm học')
+    end_date=models.DateField(blank=True, null=False, verbose_name=u'Ngày kết thúc',
+                                    help_text=u'Để trống nếu trùng với ngày của năm học')
+    description = DescriptionField()
+    class Meta:
+        verbose_name = u'Đợt học'
+        verbose_name_plural = verbose_name
 class Person(BaseModel, CreatorModel):
     nick_name = models.CharField(blank=True, max_length=255,
                                  verbose_name=u'Biệt hiệu')
