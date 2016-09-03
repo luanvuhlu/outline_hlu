@@ -83,13 +83,28 @@ class Scholastic(BaseModel, CreatorModel):
         verbose_name_plural = verbose_name
     def __unicode__(self):
         return self.name
-class StudySession(BaseModel, CreatorModel):
+class Semester(BaseModel, CreatorModel):
     scholastic=models.ForeignKey(Scholastic, blank=False, null=False,
                                  verbose_name=u'Năm học')
-    ORDER_CHOICES = [(order, order) for order in range(0, 4)]
+    ORDER_CHOICES = [(order, u'Kỳ %s' % order) for order in range(1, 2)]
+    order = models.SmallIntegerField(blank=False, null=True, choices=ORDER_CHOICES,
+                                    default=1,
+                                    verbose_name=u'Học kỳ')
+    start_date=models.DateField(blank=True, null=False, verbose_name=u'Ngày bắt đầu')
+    end_date=models.DateField(blank=True, null=False, verbose_name=u'Ngày kết thúc')
+    description = DescriptionField()
+    class Meta:
+        verbose_name = u'Học kỳ'
+        verbose_name_plural = verbose_name
+    def __unicode__(self):
+        return u'Năm học %s Học kỳ %s' % (self.scholastic.name, self.order)
+class StudySession(BaseModel, CreatorModel):
+    semester=models.ForeignKey(Semester, blank=False, null=False,
+                                 verbose_name=u'Năm học')
+    ORDER_CHOICES = [(order, u'Đợt %s' % order) for order in range(0, 4)]
     order = models.SmallIntegerField(blank=False, null=True, choices=ORDER_CHOICES,
                                     default=0,
-                                    verbose_name=u'Thứ tự',
+                                    verbose_name=u'Đợt',
                                     help_text=u'Để 0 nếu là môn 15 tuần')
     start_date=models.DateField(blank=True, null=False, verbose_name=u'Ngày bắt đầu',
                                     help_text=u'Để trống nếu trùng với ngày của năm học')
@@ -99,6 +114,8 @@ class StudySession(BaseModel, CreatorModel):
     class Meta:
         verbose_name = u'Đợt học'
         verbose_name_plural = verbose_name
+    def __unicode__(self):
+        return u'Năm học %s Đợt %s' % (self.scholastic.name, self.order)
 class Person(BaseModel, CreatorModel):
     nick_name = models.CharField(blank=True, max_length=255,
                                  verbose_name=u'Biệt hiệu')

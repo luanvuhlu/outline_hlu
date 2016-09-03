@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
-from models import University, SpecializedStudy, Scholastic, Course, UClass, Subject, Lecturer, Student, StudySession
+from models import University, SpecializedStudy, Scholastic, Course, UClass, Subject, Lecturer, Student, StudySession, Semester
 from common.admin import BaseAdmin
 # Register your models here.
 
@@ -28,6 +28,10 @@ class SpecializedStudyAdmin(BaseAdmin):
     )
     class Meta:
         model = SpecializedStudy
+class StudySessionInline(admin.TabularInline):
+    model = StudySession
+    exclude = ('description', 'creator', 'create_time', 'deleted_at', 'update_time')
+    extra = 4
 @admin.register(Scholastic)
 class ScholasticAdmin(BaseAdmin):
     list_display = ('name', 'start_date', 'end_date', 'create_time')
@@ -38,20 +42,32 @@ class ScholasticAdmin(BaseAdmin):
         return self.readonly_fields+('name',)
     def save_model(self, request, obj, form, change):
         obj.name = '%s-%s' % (obj.start_date.year, obj.end_date.year)
-        obj.save()
+        BaseAdmin.save_model(self, request, obj, form, change)
     class Meta:
         model = Scholastic
-@admin.register(StudySession)
-class StudySessionAdmin(BaseAdmin):
+@admin.register(Semester)
+class SemesterAdmin(BaseAdmin):
+    inlines = [StudySessionInline]
     list_display = ('scholastic', 'order', 'start_date', 'end_date', 'create_time')
     fieldsets = (
         (None, {'fields': ('scholastic', 'order', ('start_date', 'end_date'))}),
     )
     radio_fields = {'order': admin.HORIZONTAL}
+    class Meta:
+        model = Semester
+@admin.register(StudySession)
+class StudySessionAdmin(BaseAdmin):
+    list_display = ('semester', 'order', 'start_date', 'end_date', 'create_time')
+    fieldsets = (
+        (None, {'fields': ('semester', 'order', ('start_date', 'end_date'))}),
+    )
+    radio_fields = {'order': admin.HORIZONTAL}
     def save_model(self, request, obj, form, change):
-        
-        obj.name = '%s-%s' % (obj.start_date.year, obj.end_date.year)
-        obj.save()
+        if not obj.start_date:
+            obj.start_date = obj.semester.start_date
+        if not obj.end_date:
+            obj.end_date = obj.semester.end_date
+        BaseAdmin.save_model(self, request, obj, form, change)
     class Meta:
         model = StudySession
 @admin.register(UClass)
