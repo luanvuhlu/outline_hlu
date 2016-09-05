@@ -4,7 +4,8 @@ from __future__ import unicode_literals
 from django.db import models
 from account.models import Account, CreatorModel
 from common.models import BaseModel, DescriptionField
-from university.models import UClass, SpecializedStudy, Scholastic, Subject, Course
+from university.models import UClass, SpecializedStudy, Subject, Course
+from university.models import Scholastic
 from library.models import LearningResource
 
 # Create your models here.

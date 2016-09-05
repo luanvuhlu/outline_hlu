@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
 from common.admin import BaseAdmin
-from university.models import Scholastic
 from homework.admin import HomeWorkInine
 from schedule.admin import WeekInline
 from models import Outline, OutlineLearningResource, Problem, ProblemDetail, AdvisoryTime

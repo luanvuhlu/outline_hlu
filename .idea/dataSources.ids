@@ -1,0 +1,2134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="Django default" uuid="5ea38f7c-df7c-4e07-a81b-c526e2a31105">
+    <database-info product="SQLite" version="3.8.11" jdbc-version="2.1" driver-name="SQLiteJDBC" driver-version="native"/>
+    <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed"/>
+    <database-model serializer="dbm" rdbms="SQLITE" format-version="2.6">
+      <schema id="1">
+        <visible>1</visible>
+      </schema>
+      <table id="2" parent="1" name="account_account"/>
+      <table id="3" parent="1" name="auth_group"/>
+      <table id="4" parent="1" name="auth_group_permissions"/>
+      <table id="5" parent="1" name="auth_permission"/>
+      <table id="6" parent="1" name="django_admin_log"/>
+      <table id="7" parent="1" name="django_content_type"/>
+      <table id="8" parent="1" name="django_migrations"/>
+      <table id="9" parent="1" name="django_session"/>
+      <table id="10" parent="1" name="homework_homework"/>
+      <table id="11" parent="1" name="homework_homeworkformat"/>
+      <table id="12" parent="1" name="library_learningresource"/>
+      <table id="13" parent="1" name="library_learningresourcetype"/>
+      <table id="14" parent="1" name="library_library"/>
+      <table id="15" parent="1" name="library_publishing"/>
+      <table id="16" parent="1" name="outline_advisorytime"/>
+      <table id="17" parent="1" name="outline_outline"/>
+      <table id="18" parent="1" name="outline_outlinelearningresource"/>
+      <table id="19" parent="1" name="outline_problem"/>
+      <table id="20" parent="1" name="outline_problemdetail"/>
+      <table id="21" parent="1" name="outline_targetawareness"/>
+      <table id="22" parent="1" name="outline_targetawarenessdetail"/>
+      <table id="23" parent="1" name="schedule_homeworkaction"/>
+      <table id="24" parent="1" name="schedule_learningday"/>
+      <table id="25" parent="1" name="schedule_learningdaycontent"/>
+      <table id="26" parent="1" name="schedule_learningdayrequirement"/>
+      <table id="27" parent="1" name="schedule_subjectschedule"/>
+      <table id="28" parent="1" name="schedule_week"/>
+      <table id="29" parent="1" name="softdelete_changeset"/>
+      <table id="30" parent="1" name="softdelete_softdeleterecord"/>
+      <table id="31" parent="1" name="sqlite_sequence"/>
+      <table id="32" parent="1" name="university_course"/>
+      <table id="33" parent="1" name="university_lecturer"/>
+      <table id="34" parent="1" name="university_scholastic"/>
+      <table id="35" parent="1" name="university_specializedstudy"/>
+      <table id="36" parent="1" name="university_student"/>
+      <table id="37" parent="1" name="university_subject"/>
+      <table id="38" parent="1" name="university_uclass"/>
+      <table id="39" parent="1" name="university_university"/>
+      <column id="40" parent="2" name="id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="41" parent="2" name="password">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(128)(0,-1)|12</data-type>
+      </column>
+      <column id="42" parent="2" name="last_login">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="43" parent="2" name="deleted_at">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="44" parent="2" name="address_1">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(100)(0,-1)|12</data-type>
+      </column>
+      <column id="45" parent="2" name="address_2">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(100)(0,-1)|12</data-type>
+      </column>
+      <column id="46" parent="2" name="address_3">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(100)(0,-1)|12</data-type>
+      </column>
+      <column id="47" parent="2" name="city">
+        <data-type>SMALLINT(0,-1)|4</data-type>
+      </column>
+      <column id="48" parent="2" name="create_time">
+        <mandatory>1</mandatory>
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="49" parent="2" name="update_time">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="50" parent="2" name="email">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="51" parent="2" name="login_type">
+        <mandatory>1</mandatory>
+        <data-type>SMALLINT(0,-1)|4</data-type>
+      </column>
+      <column id="52" parent="2" name="reset_pass_key">
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="53" parent="2" name="reset_pass_expire">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="54" parent="2" name="is_admin">
+        <mandatory>1</mandatory>
+        <data-type>BOOL(0,-1)|4</data-type>
+      </column>
+      <column id="55" parent="2" name="is_active">
+        <mandatory>1</mandatory>
+        <data-type>BOOL(0,-1)|4</data-type>
+      </column>
+      <column id="56" parent="2" name="is_block">
+        <mandatory>1</mandatory>
+        <data-type>BOOL(0,-1)|4</data-type>
+      </column>
+      <column id="57" parent="2" name="block_expire">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="58" parent="2" name="avarta_url_full">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="59" parent="2" name="avarta_url">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(200)(0,-1)|12</data-type>
+      </column>
+      <column id="60" parent="2" name="failure_count">
+        <mandatory>1</mandatory>
+        <data-type>SMALLINT(0,-1)|4</data-type>
+      </column>
+      <column id="61" parent="2" name="is_login_again_required">
+        <mandatory>1</mandatory>
+        <data-type>BOOL(0,-1)|4</data-type>
+      </column>
+      <column id="62" parent="2" name="date_of_birth">
+        <data-type>DATE(0,-1)|12</data-type>
+      </column>
+      <column id="63" parent="2" name="family_name">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="64" parent="2" name="name">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="65" parent="2" name="description">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="66" parent="2" name="creator_id">
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <index id="67" parent="2" name="sqlite_autoindex_account_account_1">
+        <name-surrogate>1</name-surrogate>
+        <columns>email</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="68" parent="2">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="69" parent="2" name="#FAKE_account_account_1">
+        <name-surrogate>1</name-surrogate>
+        <columns>creator_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <column id="70" parent="3" name="id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="71" parent="3" name="name">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(80)(0,-1)|12</data-type>
+      </column>
+      <index id="72" parent="3" name="sqlite_autoindex_auth_group_1">
+        <name-surrogate>1</name-surrogate>
+        <columns>name</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="73" parent="3">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="74" parent="4" name="id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="75" parent="4" name="group_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="76" parent="4" name="permission_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <index id="77" parent="4" name="sqlite_autoindex_auth_group_permissions_1">
+        <name-surrogate>1</name-surrogate>
+        <columns>group_id
+permission_id</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="78" parent="4">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="79" parent="4" name="#FAKE_auth_group_permissions_2">
+        <name-surrogate>1</name-surrogate>
+        <columns>group_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.auth_group.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="80" parent="4" name="#FAKE_auth_group_permissions_1">
+        <name-surrogate>1</name-surrogate>
+        <columns>permission_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.auth_permission.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <column id="81" parent="5" name="id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="82" parent="5" name="content_type_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="83" parent="5" name="codename">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(100)(0,-1)|12</data-type>
+      </column>
+      <column id="84" parent="5" name="name">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <index id="85" parent="5" name="sqlite_autoindex_auth_permission_1">
+        <name-surrogate>1</name-surrogate>
+        <columns>content_type_id
+codename</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="86" parent="5">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="87" parent="5" name="#FAKE_auth_permission_1">
+        <name-surrogate>1</name-surrogate>
+        <columns>content_type_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.django_content_type.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <column id="88" parent="6" name="id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="89" parent="6" name="action_time">
+        <mandatory>1</mandatory>
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="90" parent="6" name="object_id">
+        <data-type>TEXT(0,-1)|12</data-type>
+      </column>
+      <column id="91" parent="6" name="object_repr">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(200)(0,-1)|12</data-type>
+      </column>
+      <column id="92" parent="6" name="action_flag">
+        <mandatory>1</mandatory>
+        <data-type>SMALLINT UNSIGNED(0,-1)|4</data-type>
+      </column>
+      <column id="93" parent="6" name="change_message">
+        <mandatory>1</mandatory>
+        <data-type>TEXT(0,-1)|12</data-type>
+      </column>
+      <column id="94" parent="6" name="content_type_id">
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="95" parent="6" name="user_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <key id="96" parent="6">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="97" parent="6" name="#FAKE_django_admin_log_2">
+        <name-surrogate>1</name-surrogate>
+        <columns>content_type_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.django_content_type.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="98" parent="6" name="#FAKE_django_admin_log_1">
+        <name-surrogate>1</name-surrogate>
+        <columns>user_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.account_account.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <column id="99" parent="7" name="id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="100" parent="7" name="app_label">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(100)(0,-1)|12</data-type>
+      </column>
+      <column id="101" parent="7" name="model">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(100)(0,-1)|12</data-type>
+      </column>
+      <index id="102" parent="7" name="sqlite_autoindex_django_content_type_1">
+        <name-surrogate>1</name-surrogate>
+        <columns>app_label
+model</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="103" parent="7">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="104" parent="8" name="id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="105" parent="8" name="app">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="106" parent="8" name="name">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="107" parent="8" name="applied">
+        <mandatory>1</mandatory>
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <key id="108" parent="8">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="109" parent="9" name="session_key">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(40)(0,-1)|12</data-type>
+      </column>
+      <column id="110" parent="9" name="session_data">
+        <mandatory>1</mandatory>
+        <data-type>TEXT(0,-1)|12</data-type>
+      </column>
+      <column id="111" parent="9" name="expire_date">
+        <mandatory>1</mandatory>
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <index id="112" parent="9" name="django_session_de54fa62">
+        <columns>expire_date</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="113" parent="9">
+        <columns>session_key</columns>
+        <primary>1</primary>
+      </key>
+      <column id="114" parent="10" name="id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="115" parent="10" name="deleted_at">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="116" parent="10" name="create_time">
+        <mandatory>1</mandatory>
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="117" parent="10" name="update_time">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="118" parent="10" name="type">
+        <mandatory>1</mandatory>
+        <data-type>SMALLINT(0,-1)|4</data-type>
+      </column>
+      <column id="119" parent="10" name="order">
+        <mandatory>1</mandatory>
+        <data-type>SMALLINT(0,-1)|4</data-type>
+      </column>
+      <column id="120" parent="10" name="page_limit_start">
+        <data-type>SMALLINT(0,-1)|4</data-type>
+      </column>
+      <column id="121" parent="10" name="page_limit_end">
+        <data-type>SMALLINT(0,-1)|4</data-type>
+      </column>
+      <column id="122" parent="10" name="handwritten">
+        <mandatory>1</mandatory>
+        <data-type>BOOL(0,-1)|4</data-type>
+      </column>
+      <column id="123" parent="10" name="presentation">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="124" parent="10" name="other_requirement">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="125" parent="10" name="description">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="126" parent="10" name="creator_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="127" parent="10" name="format_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="128" parent="10" name="outline_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="129" parent="10" name="is_not_presenstation_required">
+        <mandatory>1</mandatory>
+        <data-type>BOOL(0,-1)|4</data-type>
+      </column>
+      <key id="130" parent="10">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="131" parent="10" name="#FAKE_homework_homework_3">
+        <name-surrogate>1</name-surrogate>
+        <columns>creator_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.account_account.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="132" parent="10" name="#FAKE_homework_homework_2">
+        <name-surrogate>1</name-surrogate>
+        <columns>format_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.homework_homeworkformat.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="133" parent="10" name="#FAKE_homework_homework_1">
+        <name-surrogate>1</name-surrogate>
+        <columns>outline_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.outline_outline.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <column id="134" parent="11" name="id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="135" parent="11" name="deleted_at">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="136" parent="11" name="create_time">
+        <mandatory>1</mandatory>
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="137" parent="11" name="update_time">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="138" parent="11" name="name">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(100)(0,-1)|12</data-type>
+      </column>
+      <column id="139" parent="11" name="page_size">
+        <mandatory>1</mandatory>
+        <data-type>SMALLINT(0,-1)|4</data-type>
+      </column>
+      <column id="140" parent="11" name="font">
+        <mandatory>1</mandatory>
+        <data-type>SMALLINT(0,-1)|4</data-type>
+      </column>
+      <column id="141" parent="11" name="size_unit">
+        <mandatory>1</mandatory>
+        <data-type>SMALLINT(0,-1)|4</data-type>
+      </column>
+      <column id="142" parent="11" name="top_margin">
+        <mandatory>1</mandatory>
+        <data-type>REAL(0,-1)|6</data-type>
+      </column>
+      <column id="143" parent="11" name="bottom_margin">
+        <mandatory>1</mandatory>
+        <data-type>REAL(0,-1)|6</data-type>
+      </column>
+      <column id="144" parent="11" name="left_margin">
+        <mandatory>1</mandatory>
+        <data-type>REAL(0,-1)|6</data-type>
+      </column>
+      <column id="145" parent="11" name="right_margin">
+        <mandatory>1</mandatory>
+        <data-type>REAL(0,-1)|6</data-type>
+      </column>
+      <column id="146" parent="11" name="break_lines">
+        <mandatory>1</mandatory>
+        <data-type>REAL(0,-1)|6</data-type>
+      </column>
+      <column id="147" parent="11" name="other">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="148" parent="11" name="description">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="149" parent="11" name="creator_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <key id="150" parent="11">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="151" parent="11" name="#FAKE_homework_homeworkformat_1">
+        <name-surrogate>1</name-surrogate>
+        <columns>creator_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.account_account.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <column id="152" parent="12" name="id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="153" parent="12" name="deleted_at">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="154" parent="12" name="create_time">
+        <mandatory>1</mandatory>
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="155" parent="12" name="update_time">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="156" parent="12" name="name">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="157" parent="12" name="author">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="158" parent="12" name="pub_year">
+        <mandatory>1</mandatory>
+        <data-type>SMALLINT(0,-1)|4</data-type>
+      </column>
+      <column id="159" parent="12" name="is_avaiable">
+        <mandatory>1</mandatory>
+        <data-type>BOOL(0,-1)|4</data-type>
+      </column>
+      <column id="160" parent="12" name="is_sale">
+        <mandatory>1</mandatory>
+        <data-type>BOOL(0,-1)|4</data-type>
+      </column>
+      <column id="161" parent="12" name="sale_place">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="162" parent="12" name="is_borrow">
+        <mandatory>1</mandatory>
+        <data-type>BOOL(0,-1)|4</data-type>
+      </column>
+      <column id="163" parent="12" name="borrow_place">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="164" parent="12" name="description">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="165" parent="12" name="creator_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="166" parent="12" name="library_id">
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="167" parent="12" name="publishing_id">
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="168" parent="12" name="resource_type_id">
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <key id="169" parent="12">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="170" parent="12" name="#FAKE_library_learningresource_4">
+        <name-surrogate>1</name-surrogate>
+        <columns>creator_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.account_account.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="171" parent="12" name="#FAKE_library_learningresource_3">
+        <name-surrogate>1</name-surrogate>
+        <columns>library_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.library_library.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="172" parent="12" name="#FAKE_library_learningresource_2">
+        <name-surrogate>1</name-surrogate>
+        <columns>publishing_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.library_publishing.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="173" parent="12" name="#FAKE_library_learningresource_1">
+        <name-surrogate>1</name-surrogate>
+        <columns>resource_type_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.library_learningresourcetype.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <column id="174" parent="13" name="id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="175" parent="13" name="deleted_at">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="176" parent="13" name="create_time">
+        <mandatory>1</mandatory>
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="177" parent="13" name="update_time">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="178" parent="13" name="name">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(100)(0,-1)|12</data-type>
+      </column>
+      <column id="179" parent="13" name="description">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="180" parent="13" name="creator_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <key id="181" parent="13">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="182" parent="13" name="#FAKE_library_learningresourcetype_1">
+        <name-surrogate>1</name-surrogate>
+        <columns>creator_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.account_account.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <column id="183" parent="14" name="id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="184" parent="14" name="deleted_at">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="185" parent="14" name="name">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="186" parent="14" name="name_abbr">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="187" parent="14" name="address_1">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(100)(0,-1)|12</data-type>
+      </column>
+      <column id="188" parent="14" name="address_2">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(100)(0,-1)|12</data-type>
+      </column>
+      <column id="189" parent="14" name="address_3">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(100)(0,-1)|12</data-type>
+      </column>
+      <column id="190" parent="14" name="city">
+        <data-type>SMALLINT(0,-1)|4</data-type>
+      </column>
+      <column id="191" parent="14" name="create_time">
+        <mandatory>1</mandatory>
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="192" parent="14" name="update_time">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="193" parent="14" name="description">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="194" parent="14" name="creator_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="195" parent="14" name="university_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <key id="196" parent="14">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="197" parent="14" name="#FAKE_library_library_2">
+        <name-surrogate>1</name-surrogate>
+        <columns>creator_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.account_account.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="198" parent="14" name="#FAKE_library_library_1">
+        <name-surrogate>1</name-surrogate>
+        <columns>university_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.university_university.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <column id="199" parent="15" name="id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="200" parent="15" name="deleted_at">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="201" parent="15" name="name">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="202" parent="15" name="name_abbr">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="203" parent="15" name="create_time">
+        <mandatory>1</mandatory>
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="204" parent="15" name="update_time">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="205" parent="15" name="description">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="206" parent="15" name="creator_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <key id="207" parent="15">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="208" parent="15" name="#FAKE_library_publishing_1">
+        <name-surrogate>1</name-surrogate>
+        <columns>creator_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.account_account.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <column id="209" parent="16" name="id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="210" parent="16" name="deleted_at">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="211" parent="16" name="create_time">
+        <mandatory>1</mandatory>
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="212" parent="16" name="update_time">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="213" parent="16" name="day_of_week">
+        <mandatory>1</mandatory>
+        <data-type>SMALLINT(0,-1)|4</data-type>
+      </column>
+      <column id="214" parent="16" name="start_time">
+        <mandatory>1</mandatory>
+        <data-type>TIME(0,-1)|12</data-type>
+      </column>
+      <column id="215" parent="16" name="end_time">
+        <mandatory>1</mandatory>
+        <data-type>TIME(0,-1)|12</data-type>
+      </column>
+      <column id="216" parent="16" name="place">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="217" parent="16" name="description">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="218" parent="16" name="creator_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="219" parent="16" name="outline_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <key id="220" parent="16">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="221" parent="16" name="#FAKE_outline_advisorytime_2">
+        <name-surrogate>1</name-surrogate>
+        <columns>creator_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.account_account.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="222" parent="16" name="#FAKE_outline_advisorytime_1">
+        <name-surrogate>1</name-surrogate>
+        <columns>outline_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.outline_outline.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <column id="223" parent="17" name="id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="224" parent="17" name="deleted_at">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="225" parent="17" name="create_time">
+        <mandatory>1</mandatory>
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="226" parent="17" name="update_time">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="227" parent="17" name="description">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="228" parent="17" name="course_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="229" parent="17" name="creator_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="230" parent="17" name="scholastic_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="231" parent="17" name="subject_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <key id="232" parent="17">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="233" parent="17" name="#FAKE_outline_outline_4">
+        <name-surrogate>1</name-surrogate>
+        <columns>course_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.university_course.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="234" parent="17" name="#FAKE_outline_outline_3">
+        <name-surrogate>1</name-surrogate>
+        <columns>creator_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.account_account.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="235" parent="17" name="#FAKE_outline_outline_2">
+        <name-surrogate>1</name-surrogate>
+        <columns>scholastic_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.university_scholastic.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="236" parent="17" name="#FAKE_outline_outline_1">
+        <name-surrogate>1</name-surrogate>
+        <columns>subject_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.university_subject.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <column id="237" parent="18" name="id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="238" parent="18" name="deleted_at">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="239" parent="18" name="create_time">
+        <mandatory>1</mandatory>
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="240" parent="18" name="update_time">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="241" parent="18" name="resource_type">
+        <mandatory>1</mandatory>
+        <data-type>SMALLINT(0,-1)|4</data-type>
+      </column>
+      <column id="242" parent="18" name="description">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="243" parent="18" name="creator_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="244" parent="18" name="learning_resource_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="245" parent="18" name="outline_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <key id="246" parent="18">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="247" parent="18" name="#FAKE_outline_outlinelearningresource_3">
+        <name-surrogate>1</name-surrogate>
+        <columns>creator_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.account_account.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="248" parent="18" name="#FAKE_outline_outlinelearningresource_2">
+        <name-surrogate>1</name-surrogate>
+        <columns>learning_resource_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.library_learningresource.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="249" parent="18" name="#FAKE_outline_outlinelearningresource_1">
+        <name-surrogate>1</name-surrogate>
+        <columns>outline_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.outline_outline.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <column id="250" parent="19" name="id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="251" parent="19" name="deleted_at">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="252" parent="19" name="create_time">
+        <mandatory>1</mandatory>
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="253" parent="19" name="update_time">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="254" parent="19" name="name">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="255" parent="19" name="order">
+        <mandatory>1</mandatory>
+        <data-type>SMALLINT(0,-1)|4</data-type>
+      </column>
+      <column id="256" parent="19" name="description">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="257" parent="19" name="creator_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="258" parent="19" name="outline_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <key id="259" parent="19">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="260" parent="19" name="#FAKE_outline_problem_2">
+        <name-surrogate>1</name-surrogate>
+        <columns>creator_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.account_account.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="261" parent="19" name="#FAKE_outline_problem_1">
+        <name-surrogate>1</name-surrogate>
+        <columns>outline_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.outline_outline.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <column id="262" parent="20" name="id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="263" parent="20" name="deleted_at">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="264" parent="20" name="create_time">
+        <mandatory>1</mandatory>
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="265" parent="20" name="update_time">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="266" parent="20" name="content">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="267" parent="20" name="order">
+        <mandatory>1</mandatory>
+        <data-type>SMALLINT(0,-1)|4</data-type>
+      </column>
+      <column id="268" parent="20" name="description">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="269" parent="20" name="creator_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="270" parent="20" name="problem_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <key id="271" parent="20">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="272" parent="20" name="#FAKE_outline_problemdetail_2">
+        <name-surrogate>1</name-surrogate>
+        <columns>creator_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.account_account.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="273" parent="20" name="#FAKE_outline_problemdetail_1">
+        <name-surrogate>1</name-surrogate>
+        <columns>problem_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.outline_problem.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <column id="274" parent="21" name="id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="275" parent="21" name="deleted_at">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="276" parent="21" name="create_time">
+        <mandatory>1</mandatory>
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="277" parent="21" name="update_time">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="278" parent="21" name="level">
+        <mandatory>1</mandatory>
+        <data-type>SMALLINT(0,-1)|4</data-type>
+      </column>
+      <column id="279" parent="21" name="description">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="280" parent="21" name="creator_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="281" parent="21" name="problem_id">
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="282" parent="21" name="problem_detail_id">
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <key id="283" parent="21">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="284" parent="21" name="#FAKE_outline_targetawareness_3">
+        <name-surrogate>1</name-surrogate>
+        <columns>creator_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.account_account.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="285" parent="21" name="#FAKE_outline_targetawareness_2">
+        <name-surrogate>1</name-surrogate>
+        <columns>problem_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.outline_problem.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="286" parent="21" name="#FAKE_outline_targetawareness_1">
+        <name-surrogate>1</name-surrogate>
+        <columns>problem_detail_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.outline_problemdetail.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <column id="287" parent="22" name="id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="288" parent="22" name="deleted_at">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="289" parent="22" name="create_time">
+        <mandatory>1</mandatory>
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="290" parent="22" name="update_time">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="291" parent="22" name="order">
+        <mandatory>1</mandatory>
+        <data-type>SMALLINT(0,-1)|4</data-type>
+      </column>
+      <column id="292" parent="22" name="content">
+        <mandatory>1</mandatory>
+        <data-type>TEXT(0,-1)|12</data-type>
+      </column>
+      <column id="293" parent="22" name="description">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="294" parent="22" name="creator_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="295" parent="22" name="target_awareness_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <key id="296" parent="22">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="297" parent="22" name="#FAKE_outline_targetawarenessdetail_2">
+        <name-surrogate>1</name-surrogate>
+        <columns>creator_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.account_account.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="298" parent="22" name="#FAKE_outline_targetawarenessdetail_1">
+        <name-surrogate>1</name-surrogate>
+        <columns>target_awareness_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.outline_targetawareness.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <column id="299" parent="23" name="id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="300" parent="23" name="deleted_at">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="301" parent="23" name="create_time">
+        <mandatory>1</mandatory>
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="302" parent="23" name="update_time">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="303" parent="23" name="type">
+        <mandatory>1</mandatory>
+        <data-type>SMALLINT(0,-1)|4</data-type>
+      </column>
+      <column id="304" parent="23" name="description">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="305" parent="23" name="creator_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="306" parent="23" name="home_work_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="307" parent="23" name="subject_schedule_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <key id="308" parent="23">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="309" parent="23" name="#FAKE_schedule_homeworkaction_3">
+        <name-surrogate>1</name-surrogate>
+        <columns>creator_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.account_account.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="310" parent="23" name="#FAKE_schedule_homeworkaction_2">
+        <name-surrogate>1</name-surrogate>
+        <columns>home_work_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.homework_homework.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="311" parent="23" name="#FAKE_schedule_homeworkaction_1">
+        <name-surrogate>1</name-surrogate>
+        <columns>subject_schedule_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.schedule_subjectschedule.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <column id="312" parent="24" name="id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="313" parent="24" name="deleted_at">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="314" parent="24" name="create_time">
+        <mandatory>1</mandatory>
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="315" parent="24" name="update_time">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="316" parent="24" name="type">
+        <mandatory>1</mandatory>
+        <data-type>SMALLINT(0,-1)|4</data-type>
+      </column>
+      <column id="317" parent="24" name="description">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="318" parent="24" name="creator_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="319" parent="24" name="week_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <key id="320" parent="24">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="321" parent="24" name="#FAKE_schedule_learningday_2">
+        <name-surrogate>1</name-surrogate>
+        <columns>creator_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.account_account.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="322" parent="24" name="#FAKE_schedule_learningday_1">
+        <name-surrogate>1</name-surrogate>
+        <columns>week_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.schedule_week.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <column id="323" parent="25" name="id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="324" parent="25" name="deleted_at">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="325" parent="25" name="create_time">
+        <mandatory>1</mandatory>
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="326" parent="25" name="update_time">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="327" parent="25" name="order">
+        <mandatory>1</mandatory>
+        <data-type>SMALLINT(0,-1)|4</data-type>
+      </column>
+      <column id="328" parent="25" name="content">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="329" parent="25" name="description">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="330" parent="25" name="creator_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="331" parent="25" name="day_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <key id="332" parent="25">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="333" parent="25" name="#FAKE_schedule_learningdaycontent_2">
+        <name-surrogate>1</name-surrogate>
+        <columns>creator_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.account_account.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="334" parent="25" name="#FAKE_schedule_learningdaycontent_1">
+        <name-surrogate>1</name-surrogate>
+        <columns>day_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.schedule_learningday.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <column id="335" parent="26" name="id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="336" parent="26" name="deleted_at">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="337" parent="26" name="create_time">
+        <mandatory>1</mandatory>
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="338" parent="26" name="update_time">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="339" parent="26" name="order">
+        <mandatory>1</mandatory>
+        <data-type>SMALLINT(0,-1)|4</data-type>
+      </column>
+      <column id="340" parent="26" name="content">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="341" parent="26" name="description">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="342" parent="26" name="creator_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="343" parent="26" name="day_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <key id="344" parent="26">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="345" parent="26" name="#FAKE_schedule_learningdayrequirement_2">
+        <name-surrogate>1</name-surrogate>
+        <columns>creator_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.account_account.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="346" parent="26" name="#FAKE_schedule_learningdayrequirement_1">
+        <name-surrogate>1</name-surrogate>
+        <columns>day_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.schedule_learningday.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <column id="347" parent="27" name="id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="348" parent="27" name="deleted_at">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="349" parent="27" name="create_time">
+        <mandatory>1</mandatory>
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="350" parent="27" name="update_time">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="351" parent="27" name="description">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="352" parent="27" name="creator_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="353" parent="27" name="week_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <key id="354" parent="27">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="355" parent="27" name="#FAKE_schedule_subjectschedule_2">
+        <name-surrogate>1</name-surrogate>
+        <columns>creator_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.account_account.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="356" parent="27" name="#FAKE_schedule_subjectschedule_1">
+        <name-surrogate>1</name-surrogate>
+        <columns>week_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.schedule_week.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <column id="357" parent="28" name="id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="358" parent="28" name="deleted_at">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="359" parent="28" name="create_time">
+        <mandatory>1</mandatory>
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="360" parent="28" name="update_time">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="361" parent="28" name="order">
+        <mandatory>1</mandatory>
+        <data-type>SMALLINT(0,-1)|4</data-type>
+      </column>
+      <column id="362" parent="28" name="description">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="363" parent="28" name="creator_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="364" parent="28" name="outline_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <key id="365" parent="28">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="366" parent="28" name="#FAKE_schedule_week_2">
+        <name-surrogate>1</name-surrogate>
+        <columns>creator_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.account_account.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="367" parent="28" name="#FAKE_schedule_week_1">
+        <name-surrogate>1</name-surrogate>
+        <columns>outline_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.outline_outline.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <column id="368" parent="29" name="id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="369" parent="29" name="created_date">
+        <mandatory>1</mandatory>
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="370" parent="29" name="object_id">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(100)(0,-1)|12</data-type>
+      </column>
+      <column id="371" parent="29" name="content_type_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <key id="372" parent="29">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="373" parent="29" name="#FAKE_softdelete_changeset_1">
+        <name-surrogate>1</name-surrogate>
+        <columns>content_type_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.django_content_type.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <column id="374" parent="30" name="id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="375" parent="30" name="created_date">
+        <mandatory>1</mandatory>
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="376" parent="30" name="object_id">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(100)(0,-1)|12</data-type>
+      </column>
+      <column id="377" parent="30" name="changeset_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="378" parent="30" name="content_type_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <index id="379" parent="30" name="sqlite_autoindex_softdelete_softdeleterecord_1">
+        <name-surrogate>1</name-surrogate>
+        <columns>changeset_id
+content_type_id
+object_id</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="380" parent="30">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="381" parent="30" name="#FAKE_softdelete_softdeleterecord_2">
+        <name-surrogate>1</name-surrogate>
+        <columns>changeset_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.softdelete_changeset.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="382" parent="30" name="#FAKE_softdelete_softdeleterecord_1">
+        <name-surrogate>1</name-surrogate>
+        <columns>content_type_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.django_content_type.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <column id="383" parent="31" name="name">
+        <data-type>(0,-1)|12</data-type>
+      </column>
+      <column id="384" parent="31" name="seq">
+        <data-type>(0,-1)|12</data-type>
+      </column>
+      <column id="385" parent="32" name="id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="386" parent="32" name="deleted_at">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="387" parent="32" name="name">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="388" parent="32" name="name_abbr">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="389" parent="32" name="create_time">
+        <mandatory>1</mandatory>
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="390" parent="32" name="update_time">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="391" parent="32" name="description">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="392" parent="32" name="creator_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="393" parent="32" name="university_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <key id="394" parent="32">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="395" parent="32" name="#FAKE_university_course_2">
+        <name-surrogate>1</name-surrogate>
+        <columns>creator_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.account_account.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="396" parent="32" name="#FAKE_university_course_1">
+        <name-surrogate>1</name-surrogate>
+        <columns>university_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.university_university.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <column id="397" parent="33" name="id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="398" parent="33" name="deleted_at">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="399" parent="33" name="create_time">
+        <mandatory>1</mandatory>
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="400" parent="33" name="update_time">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="401" parent="33" name="nick_name">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="402" parent="33" name="description">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="403" parent="33" name="account_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="404" parent="33" name="creator_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="405" parent="33" name="specialized_study_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <key id="406" parent="33">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="407" parent="33" name="#FAKE_university_lecturer_3">
+        <name-surrogate>1</name-surrogate>
+        <columns>account_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.account_account.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="408" parent="33" name="#FAKE_university_lecturer_2">
+        <name-surrogate>1</name-surrogate>
+        <columns>creator_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.account_account.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="409" parent="33" name="#FAKE_university_lecturer_1">
+        <name-surrogate>1</name-surrogate>
+        <columns>specialized_study_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.university_specializedstudy.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <column id="410" parent="34" name="id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="411" parent="34" name="deleted_at">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="412" parent="34" name="create_time">
+        <mandatory>1</mandatory>
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="413" parent="34" name="update_time">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="414" parent="34" name="name">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="415" parent="34" name="description">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="416" parent="34" name="creator_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <key id="417" parent="34">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="418" parent="34" name="#FAKE_university_scholastic_1">
+        <name-surrogate>1</name-surrogate>
+        <columns>creator_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.account_account.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <column id="419" parent="35" name="id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="420" parent="35" name="deleted_at">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="421" parent="35" name="name">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="422" parent="35" name="name_abbr">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="423" parent="35" name="create_time">
+        <mandatory>1</mandatory>
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="424" parent="35" name="update_time">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="425" parent="35" name="address">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(100)(0,-1)|12</data-type>
+      </column>
+      <column id="426" parent="35" name="description">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="427" parent="35" name="creator_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="428" parent="35" name="university_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <key id="429" parent="35">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="430" parent="35" name="#FAKE_university_specializedstudy_2">
+        <name-surrogate>1</name-surrogate>
+        <columns>creator_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.account_account.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="431" parent="35" name="#FAKE_university_specializedstudy_1">
+        <name-surrogate>1</name-surrogate>
+        <columns>university_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.university_university.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <column id="432" parent="36" name="id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="433" parent="36" name="deleted_at">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="434" parent="36" name="create_time">
+        <mandatory>1</mandatory>
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="435" parent="36" name="update_time">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="436" parent="36" name="nick_name">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="437" parent="36" name="description">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="438" parent="36" name="account_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="439" parent="36" name="creator_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="440" parent="36" name="u_class_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <key id="441" parent="36">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="442" parent="36" name="#FAKE_university_student_3">
+        <name-surrogate>1</name-surrogate>
+        <columns>account_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.account_account.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="443" parent="36" name="#FAKE_university_student_2">
+        <name-surrogate>1</name-surrogate>
+        <columns>creator_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.account_account.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="444" parent="36" name="#FAKE_university_student_1">
+        <name-surrogate>1</name-surrogate>
+        <columns>u_class_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.university_uclass.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <column id="445" parent="37" name="id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="446" parent="37" name="deleted_at">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="447" parent="37" name="name">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="448" parent="37" name="name_abbr">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="449" parent="37" name="create_time">
+        <mandatory>1</mandatory>
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="450" parent="37" name="update_time">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="451" parent="37" name="credit">
+        <mandatory>1</mandatory>
+        <data-type>SMALLINT(0,-1)|4</data-type>
+      </column>
+      <column id="452" parent="37" name="description">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="453" parent="37" name="creator_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="454" parent="37" name="specialized_study_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <key id="455" parent="37">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="456" parent="37" name="#FAKE_university_subject_2">
+        <name-surrogate>1</name-surrogate>
+        <columns>creator_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.account_account.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="457" parent="37" name="#FAKE_university_subject_1">
+        <name-surrogate>1</name-surrogate>
+        <columns>specialized_study_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.university_specializedstudy.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <column id="458" parent="38" name="id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="459" parent="38" name="deleted_at">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="460" parent="38" name="name">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="461" parent="38" name="name_abbr">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="462" parent="38" name="create_time">
+        <mandatory>1</mandatory>
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="463" parent="38" name="update_time">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="464" parent="38" name="description">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="465" parent="38" name="course_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="466" parent="38" name="creator_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="467" parent="38" name="specialized_study_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <key id="468" parent="38">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="469" parent="38" name="#FAKE_university_uclass_3">
+        <name-surrogate>1</name-surrogate>
+        <columns>course_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.university_course.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="470" parent="38" name="#FAKE_university_uclass_2">
+        <name-surrogate>1</name-surrogate>
+        <columns>creator_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.account_account.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="471" parent="38" name="#FAKE_university_uclass_1">
+        <name-surrogate>1</name-surrogate>
+        <columns>specialized_study_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.university_specializedstudy.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <column id="472" parent="39" name="id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="473" parent="39" name="deleted_at">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="474" parent="39" name="name">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="475" parent="39" name="name_abbr">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="476" parent="39" name="address_1">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(100)(0,-1)|12</data-type>
+      </column>
+      <column id="477" parent="39" name="address_2">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(100)(0,-1)|12</data-type>
+      </column>
+      <column id="478" parent="39" name="address_3">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(100)(0,-1)|12</data-type>
+      </column>
+      <column id="479" parent="39" name="city">
+        <data-type>SMALLINT(0,-1)|4</data-type>
+      </column>
+      <column id="480" parent="39" name="create_time">
+        <mandatory>1</mandatory>
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="481" parent="39" name="update_time">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="482" parent="39" name="founding">
+        <mandatory>1</mandatory>
+        <data-type>DATE(0,-1)|12</data-type>
+      </column>
+      <column id="483" parent="39" name="description">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="484" parent="39" name="creator_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <key id="485" parent="39">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="486" parent="39" name="#FAKE_university_university_1">
+        <name-surrogate>1</name-surrogate>
+        <columns>creator_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.account_account.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+    </database-model>
+  </data-source>
+  <data-source name="Sqlite (Xerial) - db.sqlite3" uuid="b89fd621-faba-4ead-8aa0-5a080897794c">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source name="Sqlite (Xerial) - db.sqlite3 [2]" uuid="d2434c4e-4053-4a43-b6bb-f7d5ecd3bfd3">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source name="Sqlite (Xerial) - db.sqlite3 [3]" uuid="23014ded-d52c-425a-b209-d1175ac144b1">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+</component>

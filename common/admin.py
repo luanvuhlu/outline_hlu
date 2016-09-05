@@ -7,7 +7,6 @@ from account.models import CreatorModel
 
 class BaseAdmin(admin.ModelAdmin):
     exclude = ('creator', 'create_time', 'update_time', 'deleted_at')
-    readonly_fields = ('creator', 'create_time', 'update_time')
     fieldsets = (
         (u'Khác', {'fields': ('description',)}),
         (u'Lịch sử', {'fields': ('creator', 'create_time', 'update_time',)}),
@@ -28,6 +27,7 @@ class BaseAdmin(admin.ModelAdmin):
             return self.fieldsets + BaseAdmin.fieldsets
         return self.fieldsets+self.add_fieldsets
     def get_readonly_fields(self, request, obj=None):
+        self.readonly_fields = self.readonly_fields + ('creator', 'create_time', 'update_time')
         if not obj:  # Add Mode
             exclude_fields=('creator', 'create_time', 'update_time')
             return tuple(field for field in self.readonly_fields if field not in exclude_fields)
