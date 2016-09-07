@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'homework',
     # 'ajax_select',
     'bootstrap3',
+    'django_crontab',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -162,3 +163,6 @@ MEDIA_ROOT = ''
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
 MEDIA_URL = ''
+CRONJOBS = [
+    ('59 23 * * 0', 'schedule.cron.incre_week')
+]

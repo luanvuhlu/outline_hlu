@@ -119,9 +119,9 @@ class StudySessionAdmin(BaseAdmin):
         model = StudySession
 @admin.register(CurrentWeek)
 class CurrentWeekAdmin(BaseAdmin):
-    list_display = ('university', 'current_week_15', 'current_week_5', 'start_date', 'end_date', 'create_time')
+    list_display = ('semester', 'university_name', 'current_week_15', 'current_week_5', 'start_date', 'end_date', 'create_time')
     fieldsets = (
-        (None, {'fields': ('university', ('start_date', 'end_date'), 'current_week_15', 'current_week_5')}),
+        (None, {'fields': ('semester', ('start_date', 'end_date'), 'current_week_15', 'current_week_5')}),
     )
 
     # readonly_fields = ('start_date', 'end_date')

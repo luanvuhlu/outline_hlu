@@ -1,13 +1,16 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from datetime import date, datetime
+import logging
 from django.db import models
 from homework.models import HomeWork
-
 from account.models import CreatorModel
 from common.models import BaseModel, DescriptionField
 from outline.models import Outline
 from university.models import University, Scholastic
+
+logger = logging.getLogger(__name__)
 # Create your models here.
 WEEK_ORDER_CHOICES=[(order, order) for order in range(0, 16)]
 class Semester(BaseModel, CreatorModel):
@@ -158,7 +161,7 @@ class HomeWorkAction(BaseModel, CreatorModel):
     def __unicode__(self):
         return '%s %s' % (self.get_hwa_type_display(), self.homework)
 class CurrentWeek(BaseModel, CreatorModel):
-    university=models.ForeignKey(University, blank=False, verbose_name=u'Trường đại học')
+    semester=models.ForeignKey(Semester, blank=False, verbose_name=u'Học kỳ')
     start_date=models.DateField(blank=False, null=False, verbose_name=u'Ngày bắt đầu')
     end_date=models.DateField(blank=False, null=False, verbose_name=u'Ngày kết thúc')
     description = DescriptionField()
@@ -169,6 +172,13 @@ class CurrentWeek(BaseModel, CreatorModel):
     current_week_5 = models.SmallIntegerField(blank=False, default=0,
                                                choices = WEEK_5_ORDER_CHOICES,
                                                verbose_name = u'Tuần hiện tại môn 5 tuần')
+    off_next_week = models.BooleanField(blank=False, null=False, default=False,
+                                verbose_name=u'Bỏ qua tuần sau', help_text=u'Tuần sau được nghỉ')
     class Meta:
         verbose_name=u'Tuần hiện tại'
         verbose_name_plural=verbose_name
+    def university_name(self):
+        return self.semester.university
+    university_name.short_description = u'Đại học'
+    def __unicode__(self):
+        return u'Tuần hiện tại'
