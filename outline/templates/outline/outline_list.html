@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Outline{% endblock %}
+{% block content %}
+{% for outline in object_list %}
+	<li><a href="#">{{ outline.subject }} - {{ outline.scholastic }}</a></li>
+{% empty %}
+    <li>No outline yet.</li>
+{% endfor %}
+{% endblock content %}

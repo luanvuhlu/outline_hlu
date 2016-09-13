@@ -18,7 +18,10 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 
+from outline.views import OutlineListView
+
 urlpatterns = [
     url(r'^grappelli/', include('grappelli.urls')), # grappelli URLS
     url(r'^admin/', admin.site.urls),
+    url(r'^outline/$', OutlineListView.as_view(), name='outline-list'),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

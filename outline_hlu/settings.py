@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
+PREREQ_APPS = [
     # 'dal',
     # 'dal_select2',
     'material',
@@ -45,6 +45,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'softdelete',
+    # 'ajax_select',
+    'bootstrap3',
+    'django_crontab',
+]
+PROJECT_APPS = [
     'account',
     'common',
     'schedule',
@@ -52,11 +57,8 @@ INSTALLED_APPS = [
     'library',
     'outline',
     'homework',
-    # 'ajax_select',
-    'bootstrap3',
-    'django_crontab',
 ]
-
+INSTALLED_APPS = PREREQ_APPS + PROJECT_APPS
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -75,7 +77,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'templates')]
         ,
-        # 'APP_DIRS': True,
+        'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -84,9 +86,9 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.request',
             ],
-            'loaders': [
-                'django.template.loaders.eggs.Loader',
-            ]
+            # 'loaders': [
+            #     'django.template.loaders.eggs.Loader',
+            # ]
         },
     },
 ]
