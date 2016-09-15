@@ -155,7 +155,14 @@ FIRST_DAY_OF_WEEK = 1
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = 'static/'
+STATIC_ROOT = ''
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
 AUTH_USER_MODEL = 'account.Account'
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
