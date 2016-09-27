@@ -8,53 +8,11 @@ from homework.models import HomeWork
 from account.models import CreatorModel
 from common.models import BaseModel, DescriptionField
 from outline.models import Outline
-from university.models import University, Scholastic
+from university.models import University, Scholastic, Semester, StudySession
 
 logger = logging.getLogger(__name__)
 # Create your models here.
 WEEK_ORDER_CHOICES=[(order, order) for order in range(0, 16)]
-class Semester(BaseModel, CreatorModel):
-    university=models.ForeignKey(University, blank=False, null=False, verbose_name=u'Trường đại học')
-    scholastic=models.ForeignKey(Scholastic, blank=False, null=False,
-                                 verbose_name=u'Năm học')
-    ORDER_CHOICES = [(order, u'Kỳ %s' % order) for order in range(1, 3)]
-    order = models.SmallIntegerField(blank=False, null=True, choices=ORDER_CHOICES,
-                                    default=1,
-                                    verbose_name=u'Học kỳ')
-    start_date=models.DateField(blank=True, null=False, verbose_name=u'Ngày bắt đầu',
-                                    help_text=u'Để trống nếu trùng với ngày của năm học')
-    end_date=models.DateField(blank=True, null=False, verbose_name=u'Ngày kết thúc',
-                                    help_text=u'Để trống nếu trùng với ngày của năm học')
-    description = DescriptionField()
-    class Meta:
-        verbose_name = u'Học kỳ'
-        verbose_name_plural = verbose_name
-
-    def __unicode__(self):
-        return u'Năm học %s Học kỳ %s' % (self.scholastic.name, self.order)
-class StudySession(BaseModel, CreatorModel):
-    semester=models.ForeignKey(Semester, blank=False, null=False,
-                                 verbose_name=u'Học kỳ')
-    ORDER_CHOICES = (
-        (None, None),
-        (0, u'15 tuần'),
-        (1, 1),
-        (2, 2),
-        (3, 3),)
-    order = models.SmallIntegerField(blank=False, null=False, choices=ORDER_CHOICES,
-                                    default=None,
-                                    verbose_name=u'Đợt',
-                                    help_text=u'Để 0 nếu là môn 15 tuần')
-    start_date=models.DateField(blank=True, null=False, verbose_name=u'Ngày bắt đầu',
-                                    help_text=u'Để trống nếu trùng với ngày của kỳ học')
-    end_date=models.DateField(blank=True, null=False, verbose_name=u'Ngày kết thúc',
-                                    help_text=u'Để trống nếu trùng với ngày của kỳ học')
-    description = DescriptionField()
-    class Meta:
-        verbose_name = u'Đợt học'
-        verbose_name_plural = verbose_name
-    def __unicode__(self):
-        return u'Năm học %s Học kỳ %s Đợt %s' % (self.semester.scholastic.name, self.semester.order, self.order)
 class Week(BaseModel, CreatorModel):
     outline=models.ForeignKey(Outline, blank=False,
                               verbose_name=u'Đề cương')

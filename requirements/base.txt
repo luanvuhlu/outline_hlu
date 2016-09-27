@@ -1,9 +1,11 @@
 django==1.9.7
 pytz
-django-softdelete==0.4.2
+django-softdelete==0.7.0
 django-material==0.8.0
 #django-ajax-selects==1.4.3
 #django-autocomplete-light==3.1.6
 django-grappelli==2.8.1
 django-bootstrap3==7.0.1
 django-crontab==0.7.1
+django-debug-toolbar==1.5
+python-docx==0.8.6

@@ -4,16 +4,10 @@
 <div class="row">
 {% for outline in object_list %}
 <div class="col-xs-6 col-sm-4">
-	<h2><a href="#">{{ outline.subject }} - {{ outline.scholastic }}</a></h2>
-</div>
-<div class="col-xs-6 col-sm-4">
-	<h2><a href="#">{{ outline.subject }} - {{ outline.scholastic }}</a></h2>
-</div>
-<div class="col-xs-6 col-sm-4">
-	<h2><a href="#">{{ outline.subject }} - {{ outline.scholastic }}</a></h2>
+	<h2><a href="{% url 'outline-detail' outline.id %}">{{ outline.subject }} - {{ outline.scholastic }}</a></h2>
 </div>
 {% empty %}
-    <div class="col-xs-12">No outline yet.</div>
+    <div class="col-xs-12 empty-list">Không có đề cương nào</div>
 {% endfor %}
 </div>
 {% endblock content %}

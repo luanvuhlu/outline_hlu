@@ -48,6 +48,7 @@ PREREQ_APPS = [
     # 'ajax_select',
     'bootstrap3',
     'django_crontab',
+    'debug_toolbar',
 ]
 PROJECT_APPS = [
     'account',

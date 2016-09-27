@@ -33,14 +33,14 @@ class AdvisoryTimeInline(admin.TabularInline):
 @admin.register(Outline)
 class OutLineAdmin(BaseAdmin):
     inlines = [ProblemInline, OutlineLearningResourceInline, WeekInline,AdvisoryTimeInline, HomeWorkInine]
-    radio_fields = {'course': admin.VERTICAL, 'scholastic': admin.VERTICAL}
-    list_display = ('subject', 'course_verbose', 'scholastic', 'university_verbose', 'create_time')
+    radio_fields = {'course': admin.VERTICAL, 'study_session': admin.VERTICAL, 'study_time_type': admin.VERTICAL}
+    list_display = ('subject', 'course_verbose', 'study_session', 'university_verbose', 'create_time')
     fieldsets = (
-        (None, {'fields': ('scholastic', 'subject', 'course')}),
+        (None, {'fields': ('study_session', 'subject', 'study_time_type', 'course')}),
     )
-    raw_id_fields =('subject', )
+    raw_id_fields =('subject', 'study_session',)
     autocomplete_lookup_fields = {
-        'fk': ['subject'],
+        'fk': ['subject', 'study_session'],
     }
 @admin.register(OutlineLearningResource)
 class OutlineLearningResourceAdmin(BaseAdmin):

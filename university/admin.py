@@ -30,10 +30,10 @@ class SpecializedStudyAdmin(BaseAdmin):
         model = SpecializedStudy
 @admin.register(UClass)
 class UClassAdmin(BaseAdmin):
-    list_display = ('full_name', 'course', 'specialized_study', 'get_university', 'create_time')
-    radio_fields = {'course': admin.VERTICAL, 'specialized_study':  admin.VERTICAL}
+    list_display = ('full_name', 'course', 'get_university', 'create_time')
+    radio_fields = {'course': admin.VERTICAL}
     fieldsets = (
-        (None, {'fields': ('course', 'specialized_study', 'name', 'name_abbr')}),
+        (None, {'fields': ('course', 'name', 'name_abbr')}),
     )
     class Meta:
         model = UClass
@@ -66,13 +66,13 @@ class StudentAdmin(BaseAdmin):
 @admin.register(Lecturer)
 class LecturerAdmin(BaseAdmin):
     fieldsets = (
-        (None, {'fields': ('account', 'specialized_study', 'nick_name')}),
+        (None, {'fields': ('account', 'nick_name')}),
     )
     list_display = ('get_family_name', 'get_name', 'get_email', 'create_time')
     list_display_links = ('get_family_name', 'get_name', 'get_email', )
-    raw_id_fields = ('account', 'specialized_study', )
+    raw_id_fields = ('account', )
     autocomplete_lookup_fields = {
-        'fk' : ['account', 'specialized_study'],
+        'fk' : ['account', ],
     }
     class Meta:
         model = Lecturer

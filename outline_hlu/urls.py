@@ -18,10 +18,14 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 
-from outline.views import OutlineListView
+from outline.views import OutlineListView, OutlineDetailView
+from university.views import SubjectListView, SubjectDetailView
 
 urlpatterns = [
     url(r'^grappelli/', include('grappelli.urls')), # grappelli URLS
     url(r'^admin/', admin.site.urls),
     url(r'^outline/$', OutlineListView.as_view(), name='outline-list'),
+    url(r'^outline/(?P<pk>\d+)/$', OutlineDetailView.as_view(), name='outline-detail'),
+    url(r'^subject/$', SubjectListView.as_view(), name='subject-list'),
+    url(r'^subject/(?P<pk>\d+)/$', SubjectDetailView.as_view(), name='subject-detail'),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

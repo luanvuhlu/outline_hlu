@@ -4,24 +4,30 @@ from __future__ import unicode_literals
 from django.db import models
 from account.models import Account, CreatorModel
 from common.models import BaseModel, DescriptionField
-from university.models import UClass, SpecializedStudy, Subject, Course
-from university.models import Scholastic
+from university.models import UClass, SpecializedStudy, Subject, Course, StudySession
 from library.models import LearningResource
 
 # Create your models here.
 class Outline(BaseModel, CreatorModel):
-    scholastic=models.ForeignKey(Scholastic, blank=False, null=False,
-                                 verbose_name=u'Năm học')
+    study_session=models.ForeignKey(StudySession, blank=False, null=False,
+                                 verbose_name=u'Đợt học')
     subject=models.ForeignKey(Subject, blank=False, null=False,
                               verbose_name=u'Môn học')
     course=models.ForeignKey(Course, blank=True, null=True,
                              verbose_name=u'Khóa')
+    STUDY_TIME_TYPE=(
+        (0, u'15 tuần'),
+        (1, u'5 tuần'),
+    )
+    study_time_type=models.SmallIntegerField(blank=False, default=0, null=False,
+                                choices=STUDY_TIME_TYPE,
+                                verbose_name=u'Tuần học')
     description = DescriptionField()
     class Meta:
         verbose_name=u'Đề cương'
         verbose_name_plural=verbose_name
     def __unicode__(self):
-        return '%s %s' % (self.subject, self.scholastic)
+        return '%s %s' % (self.subject, self.study_session)
     def course_verbose(self):
         return self.course if self.course else u'Tất cả'
     course_verbose.short_description = u'Khoá'
