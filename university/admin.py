@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
-from models import University, SpecializedStudy, Course, UClass, Subject, Lecturer, Student
+from models import University, SpecializedStudy, Course, UClass, Subject, Lecturer, Student, Faculty
 from common.admin import BaseAdmin
 # Register your models here.
 
@@ -20,11 +20,19 @@ class CourseAdmin(BaseAdmin):
     )
     class Meta:
         model = Course
-@admin.register(SpecializedStudy)
-class SpecializedStudyAdmin(BaseAdmin):
+@admin.register(Faculty)
+class Faculty(BaseAdmin):
     list_display = ('name', 'university', 'create_time')
     fieldsets = (
         (None, {'fields': ('university', 'name', 'name_abbr', 'address')}),
+    )
+    class Meta:
+        model = Faculty
+@admin.register(SpecializedStudy)
+class SpecializedStudyAdmin(BaseAdmin):
+    list_display = ('name', 'university', 'faculty', 'create_time')
+    fieldsets = (
+        (None, {'fields': ('university', 'faculty', 'name', 'name_abbr', 'address')}),
     )
     class Meta:
         model = SpecializedStudy

@@ -3,11 +3,15 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic import ListView, DetailView
+from django.contrib.auth.decorators import login_required
 from datetime import datetime
 from models import Outline, Problem, ProblemDetail
 from schedule.models import CurrentWeek
 
 # Create your views here.
+@login_required(login_url="login/")
+def home(request):
+	return render(request, 'home.html')
 class OutlineListView(ListView):
 	model = Outline
 class OutlineDetailView(DetailView):

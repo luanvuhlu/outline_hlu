@@ -14,14 +14,27 @@ class University(BaseModel, AddressModel, NameModel, CreatorModel):
         verbose_name_plural=verbose_name
     def __unicode__(self):
         return self.name_abbr if self.name_abbr else self.name
-
-class SpecializedStudy(BaseModel, NameModel, CreatorModel):
+class Faculty(BaseModel, NameModel, CreatorModel):
     address = models.CharField(blank=True, max_length=100,
                                  verbose_name=u'Địa chỉ')
     university=models.ForeignKey(University, blank=False, verbose_name=u'Trường đại học')
     description = DescriptionField()
     class Meta:
         verbose_name = u'Khoa'
+        verbose_name_plural = verbose_name
+    def __unicode__(self):
+        return self.name
+    @staticmethod
+    def autocomplete_search_fields():
+        return ("name__icontains", )
+class SpecializedStudy(BaseModel, NameModel, CreatorModel):
+    faculty = models.ForeignKey(Faculty, blank=True, verbose_name=u'Khoa')
+    address = models.CharField(blank=True, max_length=100,
+                                 verbose_name=u'Địa chỉ')
+    university=models.ForeignKey(University, blank=False, verbose_name=u'Trường đại học')
+    description = DescriptionField()
+    class Meta:
+        verbose_name = u'Bộ môn'
         verbose_name_plural = verbose_name
     def __unicode__(self):
         return self.name

@@ -6,11 +6,11 @@ from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator, MaxLengthValidator
 from account.models import Account, CreatorModel
 from common.models import BaseModel, AddressModel, NameModel, DescriptionField
-from university.models import UClass, SpecializedStudy, Subject, Course, University
+from university.models import UClass, Subject, Course, University
 
 # Create your models here.
 class Library(BaseModel, AddressModel, NameModel, CreatorModel):
-    university=models.ForeignKey(University, blank=False, null=False)
+    university=models.ForeignKey(University, blank=False, null=False, verbose_name=u'Đại học')
     description = DescriptionField()
     class Meta:
         verbose_name = u'Thư viện'

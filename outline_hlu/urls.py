@@ -15,15 +15,19 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.contrib.auth import views
 from django.conf import settings
 from django.conf.urls.static import static
 
-from outline.views import OutlineListView, OutlineDetailView
+from outline.views import OutlineListView, OutlineDetailView, home
 from university.views import SubjectListView, SubjectDetailView
 
 urlpatterns = [
     url(r'^grappelli/', include('grappelli.urls')), # grappelli URLS
     url(r'^admin/', admin.site.urls),
+    url(r'^$', home, name='home'),
+    url(r'^login/$', views.login, {'template_name': 'account/login.html'}, name='login'),
+    url(r'^logout/$', views.logout, {'next_page': '/login'}, name='logout'),
     url(r'^outline/$', OutlineListView.as_view(), name='outline-list'),
     url(r'^outline/(?P<pk>\d+)/$', OutlineDetailView.as_view(), name='outline-detail'),
     url(r'^subject/$', SubjectListView.as_view(), name='subject-list'),
