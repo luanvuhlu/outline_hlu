@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Đăng nhập{% endblock %}
+{% block content %}
+<form method="post" action="{% url 'login' %}" class='form'>
+	{% csrf_token %}
+	<p class="bs-component">
+        {{form.as_p}}
+    </p>
+    <p class="bs-component">
+        <center>
+            <input class="btn btn-success btn-sm" type="submit" value="login" />
+        </center>
+    </p>
+    <input type="hidden" name="next" value="{{ next }}" />
+</form>
+{% endblock content %}

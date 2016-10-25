@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Outline{% endblock %}
+{% block content %}
+<div class="row">
+{% for subject in object_list %}
+<div class="col-xs-12">
+	<h2><a href="{% url 'subject-detail' subject.id %}">{{ subject.name }}</a></h2>
+</div>
+{% empty %}
+    <div class="col-xs-12 empty-list">Không có môn học nào.</div>
+{% endfor %}
+</div>
+{% endblock content %}

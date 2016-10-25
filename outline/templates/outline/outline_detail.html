@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Thông tin đề cương{% endblock %}
+{% block content %}
+<div class="row">
+	<div class="col-xs-3"><a href="{% url 'outline-list' %}">Danh sách</a></div>
+</div>
+<div class="row">
+	<div class="col-xs-12"><h1 class="text-center">Thông tin đề cương</h1></div>
+	<div class="col-xs-3">Môn học</div>
+	<div class="col-xs-9"><a href="{% url 'subject-detail' object.subject.id %}">{{ object.subject.name }}</a></div>
+	<div class="col-xs-3">Tuần học</div>
+	<div class="col-xs-9">{{ object.get_study_time_type_display }}</div>
+	<div class="col-xs-3">Tuần hiện tại</div>
+	<div class="col-xs-9">{{ current_week }}</div>
+	<div class="col-xs-3">Khóa học</div>
+	<div class="col-xs-9">
+		{% if object.course %}
+			<a href="#">{{ object.course }}</a>
+		{% else %}
+			Tất cả
+		{% endif %}
+	</div>
+	<div class="col-xs-3">Năm học</div>
+	<div class="col-xs-9"><a href="#">{{ object.scholastic.name }}</a></div>
+	<div class="col-xs-3">Mô tả</div>
+	<div class="col-xs-9">{{ object.description }}</div>
+</div>
+<div class="row">
+	{% if problems %}
+	<div class="col-xs-12"><h3 class="text-center">Danh sách vấn đề</h3></div>
+	<div class="col-xs-12">
+	<dl>
+	{% for problem, details in problems.items %}
+		<dt><a href="#">{{ problem.order }}.{{ problem.name }}</a></dt>
+		{% for detail in details  %}
+		<dd><a href="#">{{ problem.order }}.{{ detail.order }}.{{ detail.content }}</a></dd>
+		{% endfor %}
+	{% endfor %}
+	</dl>
+	{% else %}
+	<!--DEBUG Dont have any problem-->
+	{% endif %}
+	</div>
+</div>
+{% endblock content %}
