@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Đăng ký{% endblock %}
+{% block content %}
+ {{ form.non_field_errors }}
+<form method="post" action="{% url 'signup' %}" class='form'>
+	{% csrf_token %}
+	<p class="bs-component">
+        {{form.as_p}}
+    </p>
+    <p class="bs-component">
+        <center>
+            <a href={% url 'login' %}>Đã có tài khoản</a><input class="btn btn-success btn-sm" type="submit" value="Đăng ký" />
+        </center>
+    </p>
+</form>
+{% endblock content %}
