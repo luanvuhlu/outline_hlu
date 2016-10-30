@@ -173,6 +173,7 @@ MEDIA_ROOT = ''
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
 MEDIA_URL = ''
+LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 CRONJOBS = [
     ('59 23 * * 0', 'schedule.cron.incre_week')

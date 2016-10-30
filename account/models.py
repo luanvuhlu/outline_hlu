@@ -40,9 +40,11 @@ class Account(AbstractBaseUser, BaseModel, AddressModel):
     # REQUIRED_FIELDS = ('family_name', 'name', )
     objects = AccountManager()
     email = models.EmailField(
-        # verbose_name='Email',
         max_length=255,
         unique=True,
+        error_messages={
+            'unique': u'Địa chỉ email đã tồn tại',
+        },
     )
     creator=models.ForeignKey(u'self',
                               null=True,

@@ -10,9 +10,6 @@ from models import Account
 class UserAdmin(BaseUserAdmin, BaseAdmin):
     form = UserChangeForm
     add_form = UserCreationForm
-    readonly_fields = (
-                       'reset_pass_key',
-                       )
     radio_fields = {'login_type': admin.VERTICAL}
     list_display = ('email', 'date_of_birth', 'is_admin', 'deleted')
     fieldsets = (
@@ -34,6 +31,7 @@ class UserAdmin(BaseUserAdmin, BaseAdmin):
         )}),
         (u'Quyền hạn', {'fields': ('is_admin',)}),
         (u'Khác', {'fields': ('description', )}),
+        (u'Lịch sử', {'fields': ('creator', 'create_time', 'update_time',)}),
     )
     add_fieldsets = (
         (None, {
@@ -62,7 +60,13 @@ class UserAdmin(BaseUserAdmin, BaseAdmin):
             return self.add_fieldsets
         return self.fieldsets+BaseAdmin.fieldsets
     def get_readonly_fields(self, request, obj=None):
-        if obj: #Changing Mode
-            # Readonly Email
-            return self.readonly_fields+('email',)
-        return self.readonly_fields
+        self.readonly_fields = self.readonly_fields + ('creator', 'create_time', 'update_time')
+        if not obj:  # Add Mode
+            exclude_fields=('creator', 'create_time', 'update_time')
+            return tuple(field for field in self.readonly_fields if field not in exclude_fields)
+        return self.readonly_fields+('email', )
+
+        # if obj: #Changing Mode
+        #     # Readonly Email
+        #     return self.readonly_fields+('email',)
+        # return self.readonly_fields

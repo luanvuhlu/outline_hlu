@@ -1,16 +1,25 @@
 {% extends "base.html" %}
-{% block title %}Thông tin môn học{% endblock %}
+{% block title %}Môn {{ object.name }}{% endblock %}
 {% block content %}
 <div class="row">
-	<div class="col-xs-3"><a href="{% url 'subject-list' %}">Danh sách</a></div>
+	<div class="col-xs-3"><a href="{% url 'subject_list' %}">Danh sách</a></div>
 </div>
 <div class="row">
 	<div class="col-xs-12"><h1 class="text-center">Thông tin môn học</h1></div>
 	<div class="col-xs-3">Tên</div>
 	<div class="col-xs-9">{{ object.name }}</div>
 	<div class="col-xs-3">Bộ môn</div>
-	<div class="col-xs-9"><a href="#">{{ object.specialized_study.name }}</a></div>
+	<div class="col-xs-9"><a href="{% url 'specialized_study_detail' object.specialized_study.id %}"><b>{{ object.specialized_study.name | upper }}</b></a></div>
 	<div class="col-xs-3">Mô tả</div>
 	<div class="col-xs-9">{{ object.description }}</div>
+</div>
+<div class="row">
+<div class="col-xs-12"><h2>Các đề cương</h2></div>
+{% for outline in outlines %}
+	<div class="col-xs-3">Tên</div>
+	<div class="col-xs-9"><a href="{% url 'outline_detail' outline.id %}">{{ outline }}</a></div>
+{% empty %}
+    <div class="col-xs-12 empty-list">Không có đề cương nào.</div>
+{% endfor %}
 </div>
 {% endblock content %}

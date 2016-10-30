@@ -4,12 +4,13 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic import ListView, DetailView
 from django.contrib.auth.decorators import login_required
+# from django.contrib.auth.mixins import LoginRequiredMixin
 from datetime import datetime
 from models import Outline, Problem, ProblemDetail
 from schedule.models import CurrentWeek
 
 # Create your views here.
-@login_required(login_url="login/")
+@login_required
 def home(request):
 	return render(request, 'home.html')
 class OutlineListView(ListView):

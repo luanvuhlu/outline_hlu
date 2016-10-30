@@ -18,9 +18,9 @@ from django.contrib import admin
 from django.contrib.auth import views
 from django.conf import settings
 from django.conf.urls.static import static
-
+from account.views import RegistrationView
 from outline.views import OutlineListView, OutlineDetailView, home
-from university.views import SubjectListView, SubjectDetailView
+from university.views import SubjectListView, SubjectDetailView, SpecializedStudyListView, SpecializedStudyDetailView
 
 urlpatterns = [
     url(r'^grappelli/', include('grappelli.urls')), # grappelli URLS
@@ -28,8 +28,11 @@ urlpatterns = [
     url(r'^$', home, name='home'),
     url(r'^login/$', views.login, {'template_name': 'account/login.html'}, name='login'),
     url(r'^logout/$', views.logout, {'next_page': '/login'}, name='logout'),
-    url(r'^outline/$', OutlineListView.as_view(), name='outline-list'),
-    url(r'^outline/(?P<pk>\d+)/$', OutlineDetailView.as_view(), name='outline-detail'),
-    url(r'^subject/$', SubjectListView.as_view(), name='subject-list'),
-    url(r'^subject/(?P<pk>\d+)/$', SubjectDetailView.as_view(), name='subject-detail'),
+    url(r'^signup/$', RegistrationView.as_view(), name='signup'),
+    url(r'^outline/$', OutlineListView.as_view(), name='outline_list'),
+    url(r'^outline/(?P<pk>\d+)/$', OutlineDetailView.as_view(), name='outline_detail'),
+    url(r'^subject/$', SubjectListView.as_view(), name='subject_list'),
+    url(r'^subject/(?P<pk>\d+)/$', SubjectDetailView.as_view(), name='subject_detail'),
+    url(r'^specialized-study/$', SpecializedStudyListView.as_view(), name='specialized_study_list'),
+    url(r'^specialized-study/(?P<pk>\d+)/$', SpecializedStudyDetailView.as_view(), name='specialized_study_detail'),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
