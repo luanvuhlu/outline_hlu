@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 # from django.contrib.auth.mixins import LoginRequiredMixin
 from datetime import datetime
 from models import Outline, Problem, ProblemDetail
-from schedule.models import CurrentWeek, LearningDayContent, LearningDayRequirement
+from schedule.models import CurrentWeek, LearningDayContent, LearningDayRequirement, HomeWorkAction
 
 # Create your views here.
 @login_required
@@ -33,24 +33,37 @@ class OutlineDetailView(DetailView):
 	def get_weeks(self, outline_id):
 		weeks = {}
 		days = {}
+		home_work_actions = HomeWorkAction.objects.filter(week__outline__id=outline_id).select_related('week').select_related('homework')
 		learning_day_contents = LearningDayContent.objects.filter(day__week__outline__id=outline_id).select_related('day').select_related('day__week')
 		learning_day_requirements = LearningDayRequirement.objects.filter(day__week__outline__id=outline_id).select_related('day').select_related('day__week')
 		for learning_day_content in learning_day_contents:
-			if learning_day_content.day not in days:
-				days[learning_day_content.day]={}
-				days[learning_day_content.day]['contents']=[]
-				days[learning_day_content.day]['requirements']=[]
-			days[learning_day_content.day]['contents'].append(learning_day_content)
-		for learning_day_requirement in learning_day_requirement:
-			if learning_day_requirement.day not in days:
-				days[learning_day_requirement.day]={}
-				days[learning_day_requirement.day]['contents']=[]
-				days[learning_day_requirement.day]['requirements']=[]
-			days[learning_day_requirement.day]['requirements'].append(learning_day_requirement)
-		for day in days:
-			if day.week not in weeks:
-				weeks[day.week]=[]
-			weeks[day.week].append(day)
+			day = learning_day_content.day
+			if day not in days:
+				days[day]={}
+				days[day]['contents']=[]
+				days[day]['requirements']=[]
+			days[day]['contents'].append(learning_day_content)
+		for learning_day_requirement in learning_day_requirements:
+			day = learning_day_requirement.day
+			if day not in days:
+				days[day]={}
+				days[day]['contents']=[]
+				days[day]['requirements']=[]
+			days[day]['requirements'].append(learning_day_requirement)
+		for day, day_content in days.iteritems():
+			week = day.week
+			if week not in weeks:
+				weeks[week]={}
+				weeks[week]['days']=[]
+				weeks[week]['home_work_actions']=[]
+			weeks[week]['days'].append({day: day_content})
+		for home_work_action in home_work_actions:
+			week = home_work_action.week
+			if week not in weeks:
+				weeks[week]={}
+				weeks[week]['days']=[]
+				weeks[week]['home_work_actions']=[]
+			weeks[week]['home_work_actions'].append(home_work_action)
 		return weeks
 	def get_context_data(self, **kwargs):
 		context = super(OutlineDetailView, self).get_context_data(**kwargs)

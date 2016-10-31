@@ -116,6 +116,10 @@ class HomeWorkAction(BaseModel, CreatorModel):
     def university_name(self):
         return self.homework.outline.subject.specialized_study.university
     university_name.short_description = u'Đại học'
+    def get_pretty_name(self):
+        if self.homework.order == 0 :
+            return '%s Bài tập %s' % (self.get_hwa_type_display(), self.homework.get_hw_type_display())
+        return '%s Bài tập %s %s' % (self.get_hwa_type_display(), self.homework.get_hw_type_display(), self.homework.order)
     def __unicode__(self):
         return '%s %s' % (self.get_hwa_type_display(), self.homework)
 class CurrentWeek(BaseModel, CreatorModel):
