@@ -80,7 +80,7 @@
 				{% endfor %}	{# End Days #}
 				{% if week_infos.home_work_actions %}
 
-			<div class="col-xs-8"><b>CHÚ Ý: {% for home_work_action in week_infos.home_work_actions %}{{ home_work_action.get_pretty_name }} {% endfor %}</b></div>
+			<div class="col-xs-8"><b>CHÚ Ý: {% for home_work_action in week_infos.home_work_actions %}{{home_work_action.get_hwa_type_display}} <a href="{% url 'home_work_detail' home_work_action.homework.id %}">{{ home_work_action.get_home_work_name }}</a>{% endfor %}</b></div>
 				{% endif %}
 				</div>
 			<hr />

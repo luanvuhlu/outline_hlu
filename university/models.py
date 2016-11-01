@@ -168,4 +168,6 @@ class StudySession(BaseModel, CreatorModel):
         verbose_name = u'Đợt học'
         verbose_name_plural = verbose_name
     def __unicode__(self):
+        if self.order == 0 :
+            return u'Năm học %s Học kỳ %s' % (self.semester.scholastic.name, self.semester.order)        
         return u'Năm học %s Học kỳ %s Đợt %s' % (self.semester.scholastic.name, self.semester.order, self.order)

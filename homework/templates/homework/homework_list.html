@@ -1,10 +1,10 @@
 {% extends "base.html" %}
-{% block title %}Outline{% endblock %}
+{% block title %}Danh sach bai tap{% endblock %}
 {% block content %}
 <div class="row">
-{% for subject in object_list %}
+{% for home_work in object_list %}
 <div class="col-xs-12">
-	<h2><a href="{% url 'subject_detail' subject.id %}">{{ subject.name }}</a></h2>
+	<h2><a href="{% url 'home_work_detail' home_work.id %}">{{ home_work.name }}</a></h2>
 </div>
 {% empty %}
     <div class="col-xs-12 empty-list">Không có môn học nào.</div>

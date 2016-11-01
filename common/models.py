@@ -103,4 +103,5 @@ class DescriptionField(models.CharField):
         super(DescriptionField, self).__init__(*args, **kwargs)
         self.max_length = 255
         self.blank = True
+        self.null = True
         self.verbose_name = u'Mô tả'

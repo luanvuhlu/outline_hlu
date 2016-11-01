@@ -51,7 +51,7 @@ class LearningDayRequirementInline(admin.TabularInline):
 @admin.register(LearningDay)
 class LearningDayAdmin(BaseAdmin):
     inlines = [LearningDayContentInline, LearningDayRequirementInline]
-    list_display = ('outline_name', 'week', 'day_type', 'order', 'university_name', 'create_time')
+    list_display = ('outline_name', 'week_order', 'day_type', 'order', 'university_name', 'create_time')
     fieldsets = (
         (None, {'fields': ('week', 'day_type', 'order')}),
     )

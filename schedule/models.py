@@ -51,10 +51,16 @@ class LearningDay(BaseModel, CreatorModel):
     order = models.SmallIntegerField(blank=True, null=True, choices=ORDER_CHOICES,
                                     help_text=u'Để trống nếu chỉ có 1 giờ',
                                      verbose_name=u'Số')
+    DAY_ORDER_OF_WEEK_CHOICES = [(x, x) for x in range(1, 7)]
+    day_order_of_week = models.SmallIntegerField(blank=True, null=True, choices=DAY_ORDER_OF_WEEK_CHOICES,
+                                     verbose_name=u'Thứ tự học trong tuần')
     description = DescriptionField()
     class Meta:
         verbose_name=u'Ngày học'
         verbose_name_plural=verbose_name
+    def week_order(self):
+        return self.week.order
+    week_order.short_description = u'Tuần'
     def university_name(self):
         return self.week.outline.subject.specialized_study.university
     university_name.short_description = u'Đại học'
@@ -116,10 +122,10 @@ class HomeWorkAction(BaseModel, CreatorModel):
     def university_name(self):
         return self.homework.outline.subject.specialized_study.university
     university_name.short_description = u'Đại học'
-    def get_pretty_name(self):
+    def get_home_work_name(self):
         if self.homework.order == 0 :
-            return '%s Bài tập %s' % (self.get_hwa_type_display(), self.homework.get_hw_type_display())
-        return '%s Bài tập %s %s' % (self.get_hwa_type_display(), self.homework.get_hw_type_display(), self.homework.order)
+            return 'Bài tập %s' % self.homework.get_hw_type_display()
+        return 'Bài tập %s %s' % (self.homework.get_hw_type_display(), self.homework.order)
     def __unicode__(self):
         return '%s %s' % (self.get_hwa_type_display(), self.homework)
 class CurrentWeek(BaseModel, CreatorModel):

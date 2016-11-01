@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Môn {{ object.type_order_name }}{% endblock %}
+{% block content %}
+<div class="row">
+	<div class="col-xs-3"><a href="{% url 'home_work_list' %}">Danh sách</a></div>
+</div>
+<div class="row">
+	<div class="col-xs-12"><h1 class="text-center">Thông tin môn học</h1></div>
+	<div class="col-xs-3">Tên</div>
+	<div class="col-xs-9">{{ object.type_order_name }}</div>
+	<div class="col-xs-3">Mô tả</div>
+	<div class="col-xs-9">{{ object.description }}</div>
+</div>
+{% endblock content %}
