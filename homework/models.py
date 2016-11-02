@@ -102,3 +102,35 @@ class HomeWork(BaseModel, CreatorModel):
         if self.order:
             return "%s %s %s" % (self.get_hw_type_display(), self.order, self.outline.__unicode__())
         return "%s %s" % (self.get_hw_type_display(), self.outline.__unicode__())
+class HomeWorkQuestion(BaseModel, CreatorModel):
+  home_work = models.ForeignKey(HomeWork, 
+                                verbose_name=u'Bài tập',
+                                blank=False,
+                                null=False)
+  no = models.CharField(max_length=50, 
+                                verbose_name=u'Đề',
+                                blank=True,
+                                help_text=u'Số thứ tự đề')
+  content = model.CharField(max_length=500,
+                            verbose_name=u'Nội dung',
+                            blank=False)
+class HomeWorkSolution(BaseModel, CreatorModel):
+  home_work_question = models.ForeignKey(HomeWorkQuestion, 
+                                verbose_name=u'Đề bài',
+                                blank=False,
+                                null=False)
+  TYPE_CHOICES=(
+        (0, u'Lời giải'),
+        (1, u'Gợi ý'),
+        (2, u'Dàn bài'),
+    )
+  solution_type = models.SmallIntegerField(choices=TYPE_CHOICES,
+                            verbose_name=u'Loại',
+                            blank=False,
+                            null=False,
+                            default=0)
+  content = model.CharField(max_length=500,
+                            verbose_name=u'Nội dung',
+                            blank=True,
+                            help_text=u'Vui lòng tải lên file doc hoặc pdf nếu nội dung quá dài')
+  
