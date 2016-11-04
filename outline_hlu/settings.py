@@ -38,6 +38,7 @@ PREREQ_APPS = [
     # 'material.frontend',
     # 'material.admin',
     'grappelli',
+    'filebrowser',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -167,14 +168,39 @@ STATICFILES_FINDERS = (
 AUTH_USER_MODEL = 'account.Account'
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = ''
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = ''
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 CRONJOBS = [
     ('59 23 * * 0', 'schedule.cron.incre_week')
 ]
+# DANGO-FILE BROWSER
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/uploads')
+MEDIA_URL = '/media/'
+ADMIN_MEDIA_PREFIX = STATIC_URL + "grappelli/"
+FILEBROWSER_DIRECTORY = ""
+FILEBROWSER_VERSIONS_BASEDIR = "_versions"
+FILEBROWSER_EXTENSIONS = {
+    'Image': ['.jpg','.jpeg','.gif','.png','.tif','.tiff'],
+    'Document': ['.pdf','.doc', '.docx', '.rtf','.txt','.xls','.csv'],
+    'Video': ['.mov','.wmv','.mpeg','.mpg','.avi','.rm'],
+    'Audio': ['.mp3','.mp4','.wav','.aiff','.midi','.m4p'],
+}
+FILEBROWSER_SELECT_FORMATS = {
+    'file': ['Image','Document','Video','Audio'],
+    'image': ['Image'],
+    'document': ['Document'],
+    'media': ['Video','Audio'],
+}
+FILEBROWSER_VERSIONS = {
+    'admin_thumbnail': {'verbose_name': 'Admin Thumbnail', 'width': 60, 'height': 60, 'opts': 'crop'},
+    'thumbnail': {'verbose_name': 'Thumbnail (1 col)', 'width': 60, 'height': 60, 'opts': 'crop'},
+    'small': {'verbose_name': 'Small (2 col)', 'width': 140, 'height': '', 'opts': ''},
+    'medium': {'verbose_name': 'Medium (4col )', 'width': 300, 'height': '', 'opts': ''},
+    'big': {'verbose_name': 'Big (6 col)', 'width': 460, 'height': '', 'opts': ''},
+    'large': {'verbose_name': 'Large (8 col)', 'width': 680, 'height': '', 'opts': ''},
+}
+FILEBROWSER_ADMIN_VERSIONS = ['thumbnail', 'small', 'medium', 'big', 'large']

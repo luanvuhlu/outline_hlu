@@ -5,7 +5,9 @@ from django.db import models
 from account.models import Account, CreatorModel
 from common.models import BaseModel, DescriptionField
 from outline.models import Outline
+from .validator import validate_homework_file_extension
 
+UPLOAD_DIRECTORY="uploads/"
 # Create your models here.
 class HomeWorkFormat(BaseModel, CreatorModel):
     name=models.CharField(blank=False, max_length=100,
@@ -111,12 +113,23 @@ class HomeWorkQuestion(BaseModel, CreatorModel):
                                 verbose_name=u'Đề',
                                 blank=True,
                                 help_text=u'Số thứ tự đề')
-  content = model.CharField(max_length=500,
+  content = models.CharField(max_length=500,
                             verbose_name=u'Nội dung',
                             blank=False)
+class HomeWorkQuestionAttachment(BaseModel, CreatorModel):
+  question = models.ForeignKey(HomeWorkQuestion,
+                              verbose_name=u'Đề bài',
+                              blank=False,
+                              null=False)
+  document = models.FileField("HomeWork Question", 
+                              max_length=200, 
+                              upload_to=UPLOAD_DIRECTORY+"questions/%Y/%m/%d/", 
+                              validators=[validate_homework_file_extension]
+                              blank=False,
+                              null=False)
 class HomeWorkSolution(BaseModel, CreatorModel):
   home_work_question = models.ForeignKey(HomeWorkQuestion, 
-                                verbose_name=u'Đề bài',
+                                verbose_name=u'Giải pháp',
                                 blank=False,
                                 null=False)
   TYPE_CHOICES=(
@@ -129,8 +142,18 @@ class HomeWorkSolution(BaseModel, CreatorModel):
                             blank=False,
                             null=False,
                             default=0)
-  content = model.CharField(max_length=500,
+  content = models.CharField(max_length=500,
                             verbose_name=u'Nội dung',
                             blank=True,
-                            help_text=u'Vui lòng tải lên file doc hoặc pdf nếu nội dung quá dài')
-  
+                            help_text=u'Vui lòng tải lên file nếu nội dung quá dài')
+class HomeWorkSolutionAttachment(BaseModel, CreatorModel):
+  solution = models.ForeignKey(HomeWorkQuestion,
+                              verbose_name=u'Giải pháp',
+                              blank=False,
+                              null=False)
+  document = models.FileField("HomeWork Solution", 
+                              max_length=200, 
+                              upload_to=UPLOAD_DIRECTORY+"solutions/%Y/%m/%d/", 
+                              validators=[validate_homework_file_extension]
+                              blank=False,
+                              null=False)  

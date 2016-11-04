@@ -18,12 +18,14 @@ from django.contrib import admin
 from django.contrib.auth import views
 from django.conf import settings
 from django.conf.urls.static import static
+from filebrowser.sites import site
 from account.views import RegistrationView
 from outline.views import OutlineListView, OutlineDetailView, home
 from homework.views import HomeWorkDetailView, HomeWorkListView
 from university.views import SubjectListView, SubjectDetailView, SpecializedStudyListView, SpecializedStudyDetailView
 
 urlpatterns = [
+    url(r'^admin/filebrowser/', include(site.urls)),
     url(r'^grappelli/', include('grappelli.urls')), # grappelli URLS
     url(r'^admin/', admin.site.urls),
     url(r'^$', home, name='home'),
@@ -38,4 +40,4 @@ urlpatterns = [
     url(r'^specialized-study/(?P<pk>\d+)/$', SpecializedStudyDetailView.as_view(), name='specialized_study_detail'),
     url(r'^homework/$', HomeWorkListView.as_view(), name='home_work_list'),
     url(r'^homework/(?P<pk>\d+)/$', HomeWorkDetailView.as_view(), name='home_work_detail'),
-]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
