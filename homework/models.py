@@ -5,7 +5,7 @@ from django.db import models
 from account.models import Account, CreatorModel
 from common.models import BaseModel, DescriptionField
 from outline.models import Outline
-from .validator import validate_homework_file_extension
+from .validators import validate_homework_file_extension
 
 UPLOAD_DIRECTORY="uploads/"
 # Create your models here.
@@ -105,55 +105,62 @@ class HomeWork(BaseModel, CreatorModel):
             return "%s %s %s" % (self.get_hw_type_display(), self.order, self.outline.__unicode__())
         return "%s %s" % (self.get_hw_type_display(), self.outline.__unicode__())
 class HomeWorkQuestion(BaseModel, CreatorModel):
-  home_work = models.ForeignKey(HomeWork, 
+    home_work = models.ForeignKey(HomeWork, 
                                 verbose_name=u'Bài tập',
                                 blank=False,
                                 null=False)
-  no = models.CharField(max_length=50, 
+    no = models.CharField(max_length=50, 
                                 verbose_name=u'Đề',
                                 blank=True,
-                                help_text=u'Số thứ tự đề')
-  content = models.CharField(max_length=500,
+                                help_text=u'Số thứ tự đề. Để 0 nếu không xác định')
+    content = models.CharField(max_length=500,
                             verbose_name=u'Nội dung',
                             blank=False)
+    description = DescriptionField()
+    class Meta:
+        verbose_name=u'Đề bài tập'
+        verbose_name_plural=verbose_name
 class HomeWorkQuestionAttachment(BaseModel, CreatorModel):
-  question = models.ForeignKey(HomeWorkQuestion,
+    question = models.ForeignKey(HomeWorkQuestion,
                               verbose_name=u'Đề bài',
                               blank=False,
                               null=False)
-  document = models.FileField("HomeWork Question", 
+    document = models.FileField("HomeWork Question", 
                               max_length=200, 
                               upload_to=UPLOAD_DIRECTORY+"questions/%Y/%m/%d/", 
-                              validators=[validate_homework_file_extension]
+                              validators=[validate_homework_file_extension],
                               blank=False,
                               null=False)
+    description = DescriptionField()
 class HomeWorkSolution(BaseModel, CreatorModel):
-  home_work_question = models.ForeignKey(HomeWorkQuestion, 
+    home_work_question = models.ForeignKey(HomeWorkQuestion, 
                                 verbose_name=u'Giải pháp',
                                 blank=False,
                                 null=False)
-  TYPE_CHOICES=(
+    TYPE_CHOICES=(
         (0, u'Lời giải'),
         (1, u'Gợi ý'),
         (2, u'Dàn bài'),
     )
-  solution_type = models.SmallIntegerField(choices=TYPE_CHOICES,
+    solution_type = models.SmallIntegerField(choices=TYPE_CHOICES,
                             verbose_name=u'Loại',
                             blank=False,
                             null=False,
                             default=0)
-  content = models.CharField(max_length=500,
+    content = models.CharField(max_length=500,
                             verbose_name=u'Nội dung',
                             blank=True,
                             help_text=u'Vui lòng tải lên file nếu nội dung quá dài')
+    description = DescriptionField()
 class HomeWorkSolutionAttachment(BaseModel, CreatorModel):
-  solution = models.ForeignKey(HomeWorkQuestion,
+    solution = models.ForeignKey(HomeWorkQuestion,
                               verbose_name=u'Giải pháp',
                               blank=False,
                               null=False)
-  document = models.FileField("HomeWork Solution", 
+    document = models.FileField("HomeWork Solution", 
                               max_length=200, 
                               upload_to=UPLOAD_DIRECTORY+"solutions/%Y/%m/%d/", 
-                              validators=[validate_homework_file_extension]
+                              validators=[validate_homework_file_extension],
                               blank=False,
-                              null=False)  
+                              null=False)
+    description = DescriptionField()    # DEBUG
