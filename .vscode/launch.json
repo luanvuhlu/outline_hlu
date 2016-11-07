@@ -138,6 +138,24 @@
                 "RedirectOutput",
                 "DjangoDebugging"
             ]
+        },
+        {
+            "name": "Outline2",
+            "type": "python",
+            "request": "launch",
+            "stopOnEntry": true,
+            "pythonPath": "/home/luanvv/.virtualenv/outline/bin/python",
+            "program": "${workspaceRoot}/manage.py",
+            "args": [
+                "runserver",
+                "--noreload"
+            ],
+            "debugOptions": [
+                "WaitOnAbnormalExit",
+                "WaitOnNormalExit",
+                "RedirectOutput",
+                "DjangoDebugging"
+            ]
         }
     ]
 }

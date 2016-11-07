@@ -1,93 +1,98 @@
-{% extends "base.html" %}
-{% block title %}Đề cương {{ object }}{% endblock %}
-{% block static %}
+{% extends "base.html" %} {% block title %}Đề cương {{ object }}{% endblock %} {% block static %}
 <style type="text/css">
-	/*div.row.odd{
+    /*div.row.odd{
 		background-color: #98DAF6;
 	}*/
-	hr{
-		border-top: 3px solid #98DAF6;
-	}
+    
+    hr {
+        border-top: 3px solid #98DAF6;
+    }
 </style>
-{% endblock %}
-{% block content %}
-		<div class="col-xs-3"><a href="{% url 'outline_list' %}">Danh sách</a></div>
-		<div class="col-xs-12"><h1 class="text-center">Thông tin đề cương</h1></div>
-		<div class="col-xs-3">Môn học</div>
-		<div class="col-xs-9"><a href="{% url 'subject_detail' object.subject.id %}">{{ object.subject.name }}</a></div>
-		<div class="col-xs-3">Tuần học</div>
-		<div class="col-xs-9">{{ object.get_study_time_type_display }}</div>
-		<div class="col-xs-3">Tuần hiện tại</div>
-		<div class="col-xs-9">{{ current_week }}</div>
-		<div class="col-xs-3">Khóa học</div>
-		<div class="col-xs-9">
-			{% if object.course %}
-				<a href="#">{{ object.course }}</a>
-			{% else %}
-				Tất cả
-			{% endif %}
-		</div>
-		<div class="col-xs-3">Năm học</div>
-		<div class="col-xs-9"><a href="#">{{ object.scholastic.name }}</a></div>
-		<div class="col-xs-3">Mô tả</div>
-		<div class="col-xs-9">{{ object.description }}</div>
-		{% if problems %}
-		<div class="col-xs-12"><h3 class="text-center">Danh sách vấn đề</h3></div>
-		<div class="col-xs-12">
-			<dl>
-			{% for problem, details in problems.items %}
-				<dt><a href="#">{{ problem.order }}. {{ problem.name }}</a></dt>
-				{% for detail in details  %}
-				<dd><a href="#">{{ problem.order }}.{{ detail.order }}. {{ detail.content }}</a></dd>
-				{% endfor %}
-			{% endfor %}
-			</dl>
-		{% else %}
-			<!--DEBUG Dont have any problem-->
-		{% endif %}
-		
-		{% if weeks %}
-		<div class="col-xs-12"><h3 class="text-center">Lịch trình học</h3></div>
-		<div class="col-xs-12">
-			{% for week, week_infos in weeks.items %}	{# Start Week #}
-			<div class="row {% if forloop.counter|divisibleby:2 %}even{% else %}odd{% endif %}">
-			<div class="col-xs-12 ">TUẦN {{ week.order }}</div>
-				{% for day in week_infos.days %}	{# Start Days #}
-					{% for day_info, day_content in day.items %}	{# Start day info #}
-			<div class="col-xs-offset-1 col-xs-11">
-						{# Giờ Thảo luận #}
-						{% if day_info.day_type = 1 %} 
-							<b>{{ day_info.get_day_type_display|upper }}</b>
-						{% else %}
-							{{ day_info.get_day_type_display|upper }}
-						{% endif %}
-			</div>
-			<div class="col-xs-offset-2 col-xs-5">
-				<ol>
-						{% for content in day_content.contents %}
-					<li>{{ content.content }}</li>
-						{% endfor %}
-				</ol>
-			</div>
-			<div class="col-xs-5">
-				<ol>
-						{% for requirement in day_content.requirements %}
-					<li>{{ requirement.content }}</li>
-						{% endfor %}
-				</ol>
-			</div>
-					{% endfor %}	{# End day info #}
-				{% endfor %}	{# End Days #}
-				{% if week_infos.home_work_actions %}
+{% endblock %} {% block content %}
+<div class="col-xs-3"><a href="{% url 'outline_list' %}">Danh sách</a></div>
+<div class="col-xs-12">
+    <h1 class="text-center">Thông tin đề cương</h1>
+</div>
+<div class="col-xs-3">Môn học</div>
+<div class="col-xs-9"><a href="{% url 'subject_detail' object.subject.id %}">{{ object.subject.name }}</a></div>
+<div class="col-xs-3">Tuần học</div>
+<div class="col-xs-9">{{ object.get_study_time_type_display }}</div>
+<div class="col-xs-3">Tuần hiện tại</div>
+<div class="col-xs-9">{{ current_week }}</div>
+<div class="col-xs-3">Khóa học</div>
+<div class="col-xs-9">
+    {% if object.course %}<a href="#">{{ object.course }}</a> {% else %} Tất cả {% endif %}
+</div>
+<div class="col-xs-3">Năm học</div>
+<div class="col-xs-9"><a href="#">{{ object.study_session.semester.scholastic.name }}</a></div>
+<div class="col-xs-3">Mô tả</div>
+<div class="col-xs-9">{{ object.description }}</div>
+{% if problems %}
+<div class="col-xs-12">
+    <h3 class="text-center">Danh sách vấn đề</h3>
+</div>
+<div class="col-xs-12">
+    <dl>
+        {% for problem, details in problems.items %}
+        <dt><a href="#">{{ problem.order }}. {{ problem.name }}</a></dt>
+            {% for detail in details %}
+        <dd><a href="#">{{ problem.order }}.{{ detail.order }}. {{ detail.content }}</a></dd>
+            {% endfor %} 
+        {% endfor %}
+    </dl>
+{% else %}
+    <!--DEBUG Dont have any problem-->
+{% endif %} 
+{% if weeks %}
+<div class="col-xs-12">
+    <h3 class="text-center">Lịch trình học</h3>
+</div>
+<div class="col-xs-12">
+        {% for week, week_infos in weeks.items %} {# Start Week #}
+    <div class="row {% if forloop.counter|divisibleby:2 %}even{% else %}odd{% endif %}">
+        <div class="col-xs-12 ">TUẦN {{ week.order }}</div>
+            {% for day in week_infos.days %} {# Start Days #} 
+                {% for day_info, day_content in day.items %} {# Start day info #}
+        <div class="col-xs-offset-1 col-xs-11">
+                {# Giờ Thảo luận #} 
+                    {% if day_info.day_type == 1 %}
+            <b>{{ day_info.get_day_type_display|upper }}</b> 
+                    {% else %} 
+            {{ day_info.get_day_type_display|upper }} 
+                    {% endif %}
+        </div>
+        <div class="col-xs-offset-2 col-xs-5">
+            <ol>
+                    {% for content in day_content.contents %}
+               <li>{{ content.content }}</li>
+                    {% endfor %}
+            </ol>
+        </div>
+        <div class="col-xs-5">
+            <ol>
+                    {% for requirement in day_content.requirements %}
+                <li>{{ requirement.content }}</li>
+                    {% endfor %}
+            </ol>
+        </div>
+                {% endfor %} {# End day info #} 
+            {% endfor %} {# End Days #} 
+            {% if week_infos.home_work_actions %}
+        <div class="col-xs-8"><b>CHÚ Ý: 
+                {% for home_work_action in week_infos.home_work_actions %}
+                {{home_work_action.get_hwa_type_display}} 
+                <a href="{% url 'home_work_detail' home_work_action.homework.id %}">
+                    {{ home_work_action.get_home_work_name }}
+                </a>
+             {% endfor %}
+            </b></div>
+            {% endif %}
+    </div>
+    <hr /> 
+        {% endfor %} {# End Week #}
+</div>
+{% else %}
+    <!--DEBUG Dont have any week-->
+{% endif %}
 
-			<div class="col-xs-8"><b>CHÚ Ý: {% for home_work_action in week_infos.home_work_actions %}{{home_work_action.get_hwa_type_display}} <a href="{% url 'home_work_detail' home_work_action.homework.id %}">{{ home_work_action.get_home_work_name }}</a>{% endfor %}</b></div>
-				{% endif %}
-				</div>
-			<hr />
-			{% endfor %}	{# End Week #}
-		</div>
-		{% else %}
-			<!--DEBUG Dont have any week-->
-		{% endif %}
-	
 {% endblock %}
