@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Bộ môn {{ object.name }}{% endblock %}
+{% block content %}
+<div class="row">
+	<div class="col-xs-3"><a href="{% url 'specialized_study_list' %}">Danh sách</a></div>
+</div>
+<div class="row">
+	<div class="col-xs-12"><h1 class="text-center">Thông tin bộ môn</h1></div>
+	<div class="col-xs-3">Tên</div>
+	<div class="col-xs-9">{{ object.name }}</div>
+	<div class="col-xs-3">Mô tả</div>
+	<div class="col-xs-9">{{ object.description }}</div>
+</div>
+<div class="row">
+	<div class="col-xs-12"><h2>Các môn thuộc bộ môn</h2></div>
+{% for subject in subjects %}
+	<div class="col-xs-3">Tên</div>
+	<div class="col-xs-9"><a href="{% url 'subject_detail' subject.id %}">{{ subject.name }}</a></div>
+{% empty %}
+    <div class="col-xs-12 empty-list">Không có môn học nào.</div>
+{% endfor %}
+</div>
+{% endblock content %}

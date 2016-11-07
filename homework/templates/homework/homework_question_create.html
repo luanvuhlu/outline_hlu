@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Bài tập {{ homework.type_order_name }}{% endblock %}
+{% block content %}
+<div class="row">
+	<div class="col-xs-3"><a href="{% url 'home_work_list' %}">Danh sách</a></div>
+</div>
+<div class="row">
+	<div class="col-xs-12"><h2>Bài tập {{ homework.type_order_name }}</h2></div>
+</div>
+{% for question, attachments in questions.items %}
+	<div class="row">
+		<div class="col-xs-1">Đề </div>
+		<div class="col-xs-11">{% if question.no > 0 %} {{ question.no }} {% else %}Tất cả{% endif %}</div>
+		<div class="col-xs-1">Nội dung</div>
+		<div class="col-xs-11">{{ question.content }}</div>
+		{% if attachments %}
+		<div class="col-xs-1">Đính kèm</div>
+		{% for attach in attachments %}
+		<div class="col-xs-11"><a href="{{ attach.document.url }}">{{ attach.document.name }}</a></div>
+		{% endfor %}
+		{% endif %}
+	</div>
+	{% endfor %}
+{% if user.is_authenticated %}
+	
+{% endif %}
+{% endblock content %}
