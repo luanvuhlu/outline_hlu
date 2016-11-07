@@ -110,9 +110,9 @@ class HomeWorkQuestion(BaseModel, CreatorModel):
                                 blank=False,
                                 null=False)
     no = models.CharField(max_length=50, 
-                                verbose_name=u'Đề',
-                                blank=True,
-                                help_text=u'Số thứ tự đề. Để 0 nếu không xác định')
+                        verbose_name=u'Đề',
+                        blank=True,
+                        help_text=u'Số thứ tự đề. Để 0 nếu không xác định')
     content = models.CharField(max_length=500,
                             verbose_name=u'Nội dung',
                             blank=False)
@@ -120,6 +120,8 @@ class HomeWorkQuestion(BaseModel, CreatorModel):
     class Meta:
         verbose_name=u'Đề bài tập'
         verbose_name_plural=verbose_name
+    def __unicode__(self):
+        return u'Đề %s' % self.home_work
 class HomeWorkQuestionAttachment(BaseModel, CreatorModel):
     question = models.ForeignKey(HomeWorkQuestion,
                               verbose_name=u'Đề bài',
@@ -132,6 +134,8 @@ class HomeWorkQuestionAttachment(BaseModel, CreatorModel):
                               blank=False,
                               null=False)
     description = DescriptionField()
+    def __unicode__(self):
+        return u'Đề %s' % self.home_work
 class HomeWorkSolution(BaseModel, CreatorModel):
     home_work_question = models.ForeignKey(HomeWorkQuestion, 
                                 verbose_name=u'Giải pháp',
@@ -152,6 +156,8 @@ class HomeWorkSolution(BaseModel, CreatorModel):
                             blank=True,
                             help_text=u'Vui lòng tải lên file nếu nội dung quá dài')
     description = DescriptionField()
+    def __unicode__(self):
+        return u'Lời giải %s' % self.home_work
 class HomeWorkSolutionAttachment(BaseModel, CreatorModel):
     solution = models.ForeignKey(HomeWorkQuestion,
                               verbose_name=u'Giải pháp',
@@ -164,3 +170,5 @@ class HomeWorkSolutionAttachment(BaseModel, CreatorModel):
                               blank=False,
                               null=False)
     description = DescriptionField()    # DEBUG
+    def __unicode__(self):
+        return u'Lời giải %s' % self.home_work
