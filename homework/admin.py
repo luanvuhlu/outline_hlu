@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
+from django import forms
 from common.admin import BaseAdmin
 from models import HomeWorkFormat, HomeWork, HomeWorkQuestion, HomeWorkQuestionAttachment, HomeWorkSolution, HomeWorkSolutionAttachment
 # Register your models here.
@@ -28,6 +29,13 @@ class HomeWorkQuestionAttachmentInline(admin.TabularInline):
     model = HomeWorkQuestionAttachment
     exclude = ('description', 'creator', 'create_time', 'deleted_at', 'update_time')
     extra = 5
+# class HomeWorkQuestionForm(forms.ModelForm):
+#     class Meta:
+#         model = HomeWorkQuestion
+#     def clean(self):
+#         data = self.cleaned_data
+#         if not data.get('content', None):
+#             raise forms.ValidationError(u'Bạn phải nhập nội dung hoặc đính kèm file')
 @admin.register(HomeWorkQuestion)
 class HomeWorkQuestionAdmin(BaseAdmin):
     list_display = ('home_work', 'no', 'content')
@@ -35,3 +43,9 @@ class HomeWorkQuestionAdmin(BaseAdmin):
         (None, {'fields': ('home_work', 'no', 'content')}),
     )
     inlines = [HomeWorkQuestionAttachmentInline]
+    # form = HomeWorkQuestionForm
+    def save_model(self, request, obj, form, change):
+        if not obj.no:
+            obj.no = u'Tất cả'
+            obj.save()
+

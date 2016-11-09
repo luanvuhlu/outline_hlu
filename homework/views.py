@@ -21,7 +21,7 @@ class HomeWorkQuestionCreate(TemplateView):
 		context['questions'] = questions
 		return context
 	def get_questions(self, homework_id):
-		questions = HomeWorkQuestion.objects.filter(home_work__id=homework_id)
+    		questions = HomeWorkQuestion.objects.filter(home_work__id=homework_id)
 		question_attachments = HomeWorkQuestionAttachment.objects.filter(question__home_work__id=homework_id).select_related('question')
 		questions_dict={question: [] for question in questions}
 		for question_attachment in question_attachments:

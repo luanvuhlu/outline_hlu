@@ -2,12 +2,14 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from filebrowser.fields import FileBrowseField
 from account.models import Account, CreatorModel
 from common.models import BaseModel, DescriptionField
 from outline.models import Outline
 from .validators import validate_homework_file_extension
 
 UPLOAD_DIRECTORY="uploads/"
+HOMEWORK_ATTACHMENTS = ['.pdf', '.doc', '.docx', '.jpg', '.png', '.xlsx', '.xls']
 # Create your models here.
 class HomeWorkFormat(BaseModel, CreatorModel):
     name=models.CharField(blank=False, max_length=100,
@@ -112,10 +114,10 @@ class HomeWorkQuestion(BaseModel, CreatorModel):
     no = models.CharField(max_length=50, 
                         verbose_name=u'Đề',
                         blank=True,
-                        help_text=u'Số thứ tự đề. Để 0 nếu không xác định')
+                        help_text=u'Số thứ tự đề. Để 0 nếu không xác định. <br />Nếu đề bài thay đổi theo lớp, vui lòng ghi tên lớp vào')
     content = models.CharField(max_length=500,
                             verbose_name=u'Nội dung',
-                            blank=False)
+                            blank=True)
     description = DescriptionField()
     class Meta:
         verbose_name=u'Đề bài tập'
@@ -127,15 +129,18 @@ class HomeWorkQuestionAttachment(BaseModel, CreatorModel):
                               verbose_name=u'Đề bài',
                               blank=False,
                               null=False)
-    document = models.FileField("HomeWork Question", 
-                              max_length=200, 
-                              upload_to=UPLOAD_DIRECTORY+"questions/%Y/%m/%d/", 
-                              validators=[validate_homework_file_extension],
+    document = FileBrowseField("HomeWork Question", 
+                              max_length=200,
+                              directory="questions/",
+                              extensions=HOMEWORK_ATTACHMENTS,
+                            #   upload_to=UPLOAD_DIRECTORY+"questions/%Y/%m/%d/", 
+                            #   validators=[validate_homework_file_extension],
                               blank=False,
                               null=False)
     description = DescriptionField()
+    
     def __unicode__(self):
-        return u'Đề %s' % self.home_work
+        return u'Đề %s' % self.question.home_work
 class HomeWorkSolution(BaseModel, CreatorModel):
     home_work_question = models.ForeignKey(HomeWorkQuestion, 
                                 verbose_name=u'Giải pháp',

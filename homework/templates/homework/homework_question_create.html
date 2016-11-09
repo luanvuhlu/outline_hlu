@@ -1,27 +1,54 @@
 {% extends "base.html" %}
 {% block title %}Bài tập {{ homework.type_order_name }}{% endblock %}
+{% block static %}
+<style>
+	/*.question-block{
+
+	}*/
+	.question-block-odd{
+		background: red;
+	}
+</style>
+{% endblock %}
 {% block content %}
+{% load file_tags %}
+{% load fb_versions %}
 <div class="row">
 	<div class="col-xs-3"><a href="{% url 'home_work_list' %}">Danh sách</a></div>
 </div>
 <div class="row">
 	<div class="col-xs-12"><h2>Bài tập {{ homework.type_order_name }}</h2></div>
 </div>
+<div class="row">
 {% for question, attachments in questions.items %}
-	<div class="row">
-		<div class="col-xs-1">Đề </div>
-		<div class="col-xs-11">{% if question.no > 0 %} {{ question.no }} {% else %}Tất cả{% endif %}</div>
-		<div class="col-xs-1">Nội dung</div>
-		<div class="col-xs-11">{{ question.content }}</div>
-		{% if attachments %}
-		<div class="col-xs-1">Đính kèm</div>
-		{% for attach in attachments %}
-		<div class="col-xs-11"><a href="{{ attach.document.url }}">{{ attach.document.name }}</a></div>
-		{% endfor %}
+	<div class="question-block {% if forloop.counter|divisibleby:2 %}question-block-even{% else %}question-block-odd{% endif %} col-xs-12 col-md-6">
+		<div class="row">
+			<div class="col-xs-1 col-md-2">Đề </div>
+			<div class="col-xs-11 col-md-10">{% if question.no|length > 0 %} {{ question.no }} {% else %}Tất cả{% endif %}</div>
+		{% if question.content %}
+			<div class="col-xs-1 col-md-2">Nội dung</div>
+			<div class="col-xs-11 col-md-10">{{ question.content }}</div>
 		{% endif %}
+		{% if attachments %}
+			<div class="col-xs-12 col-md-12">Đính kèm</div>
+			{% for attach in attachments %}
+			<div class="col-xs-11 col-md-12"><a href="{{ attach.document.url }}">
+				{% if attach.document|is_image %}
+					{% version attach.document 'small' as version_object %}
+					<img src="{{ version_object.url }}"/>
+				{% else %}
+					{{ attach.document.name }}
+				{% endif %}
+				</a></div>
+			{% endfor %}
+		{% endif %}
+		</div>
 	</div>
 	{% endfor %}
+</div>
 {% if user.is_authenticated %}
-	
+<div class="row add-new">
+	<div class="col-xs-12"><a href="#">Thêm mới</a></div>
+</div>	
 {% endif %}
 {% endblock content %}
