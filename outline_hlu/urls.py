@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 from filebrowser.sites import site
 from account.views import RegistrationView
 from outline.views import OutlineListView, OutlineDetailView, home
-from homework.views import HomeWorkDetailView, HomeWorkListView, HomeWorkQuestionCreate
+from homework.views import HomeWorkDetailView, HomeWorkListView, HomeWorkQuestionView
 from university.views import SubjectListView, SubjectDetailView, SpecializedStudyListView, SpecializedStudyDetailView
 
 urlpatterns = [
@@ -40,5 +40,5 @@ urlpatterns = [
     url(r'^specialized-study/(?P<pk>\d+)/$', SpecializedStudyDetailView.as_view(), name='specialized_study_detail'),
     url(r'^homework/$', HomeWorkListView.as_view(), name='home_work_list'),
     url(r'^homework/(?P<pk>\d+)/$', HomeWorkDetailView.as_view(), name='home_work_detail'),
-    url(r'^homework/(?P<pk>\d+)/question/create/$', HomeWorkQuestionCreate.as_view(), name='homework_question_create'),
+    url(r'^homework/(?P<pk>\d+)/question/$', HomeWorkQuestionView.as_view(), name='homework_question'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

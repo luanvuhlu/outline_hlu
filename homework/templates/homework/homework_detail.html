@@ -12,7 +12,7 @@
 	<div class="col-xs-9">{{ object.description }}</div>
 </div>
 {% if user.is_authenticated %}
-	<a href="{% url 'homework_question_create' object.id %}">Thêm đề bài</a>
-	<a href="#">Thêm Solution</a>
+	<a href="{% url 'homework_question' object.id %}">Đề bài</a>
+	<a href="#">Solution</a>
 {% endif %}
 {% endblock content %}

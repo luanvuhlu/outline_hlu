@@ -1,20 +1,31 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+
+from django.core.urlresolvers import reverse
 from django.shortcuts import render
 from django.http import HttpResponse, Http404
 from django.views.generic import ListView, DetailView, TemplateView
-from django.views.generic.edit import FormView
+from django.views.generic.edit import FormView, CreateView
 from models import HomeWork, HomeWorkQuestion, HomeWorkQuestionAttachment
+from forms import HomeWorkQuestionForm
 # Create your views here.
 
 class HomeWorkDetailView(DetailView):
 	model = HomeWork
 class HomeWorkListView(ListView):
 	model = HomeWork
-class HomeWorkQuestionCreate(TemplateView):
-	template_name = "homework/homework_question_create.html"
+class HomeWorkQuestionView(CreateView):
+	template_name = "homework/homework_question.html"
+	form_class = HomeWorkQuestionForm
+	def get_form_kwargs(self):
+		kwargs = super(HomeWorkQuestionView, self ).get_form_kwargs()
+		kwargs['user'] = self.request.user
+		kwargs['home_work_id'] = self.kwargs.get('pk', None)
+		return kwargs
+	def get_success_url(self):
+    		return reverse('homework_question',args=(self.kwargs.get('pk', None)))
 	def get_context_data(self, **kwargs):
-		context = super(HomeWorkQuestionCreate, self).get_context_data(**kwargs)
+		context = super(HomeWorkQuestionView, self).get_context_data(**kwargs)
 		homework = self.get_homework()
 		questions = self.get_questions(homework.id)
 		context['homework'] = homework
@@ -40,10 +51,5 @@ class HomeWorkQuestionCreate(TemplateView):
 		except HomeWork.DoesNotExist:
 			raise Http404
 		return homework
-	def get(self, request, *args, **kwargs):
-    		self.kwargs.get('pk', None)
-		return super(HomeWorkQuestionCreate, self).get(request, *args, **kwargs)
-	def post(self, request, *args, **kwargs):
-		return super(HomeWorkQuestionCreate, self).get(request, *args, **kwargs)
 	
 	

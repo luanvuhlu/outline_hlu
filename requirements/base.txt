@@ -11,3 +11,4 @@ django-debug-toolbar==1.5
 python-docx==0.8.6
 Pillow==3.4.2
 django-filebrowser==3.7.2
+django-multiupload==0.5.2

@@ -45,6 +45,7 @@ class HomeWorkQuestionAdmin(BaseAdmin):
     inlines = [HomeWorkQuestionAttachmentInline]
     # form = HomeWorkQuestionForm
     def save_model(self, request, obj, form, change):
+        super(HomeWorkQuestionAdmin, self).save_model(request, obj, form, change)        
         if not obj.no:
             obj.no = u'Tất cả'
             obj.save()

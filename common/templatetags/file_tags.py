@@ -19,5 +19,4 @@ def file_name(file):
 @register.filter
 def is_image(file):
     ext = ".%s" % file_extension(file)
-    print settings.FILEBROWSER_EXTENSIONS['Image']
     return ext in settings.FILEBROWSER_EXTENSIONS['Image']

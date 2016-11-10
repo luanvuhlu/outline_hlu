@@ -129,16 +129,18 @@ class HomeWorkQuestionAttachment(BaseModel, CreatorModel):
                               verbose_name=u'Đề bài',
                               blank=False,
                               null=False)
-    document = FileBrowseField("HomeWork Question", 
+    document = models.FileField("HomeWork Question", 
                               max_length=200,
-                              directory="questions/",
-                              extensions=HOMEWORK_ATTACHMENTS,
-                            #   upload_to=UPLOAD_DIRECTORY+"questions/%Y/%m/%d/", 
-                            #   validators=[validate_homework_file_extension],
+                            #   directory="questions/",
+                            #   extensions=HOMEWORK_ATTACHMENTS,
+                              upload_to="questions/%Y/%m/%d/", 
+                              validators=[validate_homework_file_extension],
                               blank=False,
                               null=False)
     description = DescriptionField()
-    
+    class Meta:
+        verbose_name=u'File đính kèm đề bài tập'
+        verbose_name_plural=verbose_name
     def __unicode__(self):
         return u'Đề %s' % self.question.home_work
 class HomeWorkSolution(BaseModel, CreatorModel):
@@ -170,7 +172,9 @@ class HomeWorkSolutionAttachment(BaseModel, CreatorModel):
                               null=False)
     document = models.FileField("HomeWork Solution", 
                               max_length=200, 
-                              upload_to=UPLOAD_DIRECTORY+"solutions/%Y/%m/%d/", 
+                            #   directory="solutions/",
+                            #   extensions=HOMEWORK_ATTACHMENTS,
+                              upload_to="solutions/%Y/%m/%d/", 
                               validators=[validate_homework_file_extension],
                               blank=False,
                               null=False)

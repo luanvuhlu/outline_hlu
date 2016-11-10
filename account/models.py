@@ -123,3 +123,4 @@ class CreatorModel(models.Model):
                                 verbose_name=u'Người tạo')
     class Meta:
         abstract = True
+        

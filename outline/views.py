@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 # from django.contrib.auth.mixins import LoginRequiredMixin
 from datetime import datetime
 from models import Outline, Problem, ProblemDetail
-from schedule.models import CurrentWeek, LearningDayContent, LearningDayRequirement, HomeWorkAction
+from schedule.models import CurrentWeek, LearningDayContent, LearningDayRequirement, HomeWorkAction, Week
 
 # Create your views here.
 @login_required
@@ -24,14 +24,17 @@ class OutlineDetailView(DetailView):
 			current_week = None
 		return u'Chưa bắt đầu' if not current_week else current_week.current_week_15 if study_time_type==0 else current_week.current_week_5
 	def get_problems(self, outline_id):
-		problems = {}
+		problems_db = Problem.objects.filter(outline__id=outline_id)
+		problems = {problem: [] for problem in problems_db}
 		problem_details = ProblemDetail.objects.filter(problem__outline__id=outline_id).select_related('problem')
 		for detail in problem_details:
 			if detail.problem not in problems:
 				problems[detail.problem]=[]
 			problems[detail.problem].append(detail)
+		return problems
 	def get_weeks(self, outline_id):
-		weeks = {}
+		weeks_db = Week.objects.filter(outline__id=outline_id)
+		weeks = {week: [] for week in weeks_db}
 		days = {}
 		home_work_actions = HomeWorkAction.objects.filter(week__outline__id=outline_id).select_related('week').select_related('homework')
 		learning_day_contents = LearningDayContent.objects.filter(day__week__outline__id=outline_id).select_related('day').select_related('day__week')

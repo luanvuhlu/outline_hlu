@@ -178,7 +178,7 @@ CRONJOBS = [
     ('59 23 * * 0', 'schedule.cron.incre_week')
 ]
 # DANGO-FILE BROWSER
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/uploads')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/uploads/')
 MEDIA_URL = '/media/'
 ADMIN_MEDIA_PREFIX = STATIC_URL + "grappelli/"
 FILEBROWSER_DIRECTORY = ""
