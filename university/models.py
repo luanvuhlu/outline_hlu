@@ -68,6 +68,9 @@ class UClass(BaseModel, NameModel, CreatorModel):
     def autocomplete_search_fields():
         return ("name__icontains", )
 class Subject(BaseModel, NameModel, CreatorModel):
+    code = models.CharField(max_length=25,
+                            blank=True,
+                            verbose_name=u'Mã môn học')
     CREDIT_CHOICES = [(i, "%s tín chỉ" % i) for i in range(1, 6)]
     specialized_study=models.ForeignKey(SpecializedStudy, blank=True, verbose_name=u'Bộ môn')
     credit=models.SmallIntegerField(blank=False, default=2,
@@ -77,14 +80,16 @@ class Subject(BaseModel, NameModel, CreatorModel):
     class Meta:
         verbose_name=u'Môn học'
         verbose_name_plural=verbose_name
-    def __unicode__(self):
-        return self.name
     def get_university(self):
         return self.specialized_study.university
     get_university.short_description=u'Đại học'
     @staticmethod
     def autocomplete_search_fields():
         return ("name__icontains", "name_abbr__icontains")
+    def __unicode__(self):
+        if self.code:
+            return u'%s - %s' % (self.code, self.name)
+        return self.name
 class Person(BaseModel, CreatorModel):
     nick_name = models.CharField(blank=True, max_length=255,
                                  verbose_name=u'Biệt hiệu')
@@ -108,6 +113,9 @@ class Person(BaseModel, CreatorModel):
     get_family_name.short_description = u'Họ'
     get_name.short_description = u'Tên'
 class Student(Person):
+    code = models.CharField(max_length=25,
+                            blank=True,
+                            verbose_name=u'Mã sinh viên')
     account = models.ForeignKey(Account, verbose_name=u'Tài khoản', related_name='student_account')
     u_class=models.ForeignKey(UClass, verbose_name=u'Lớp')
     class Meta:
@@ -131,7 +139,7 @@ class Semester(BaseModel, CreatorModel):
     university=models.ForeignKey(University, blank=False, null=False, verbose_name=u'Trường đại học')
     scholastic=models.ForeignKey(Scholastic, blank=False, null=False,
                                  verbose_name=u'Năm học')
-    ORDER_CHOICES = [(order, u'Kỳ %s' % order) for order in range(1, 3)]
+    ORDER_CHOICES = [(order, u'Kỳ %s' % order) for order in range(1, 4)]
     order = models.SmallIntegerField(blank=False, null=True, choices=ORDER_CHOICES,
                                     default=1,
                                     verbose_name=u'Học kỳ')
@@ -147,8 +155,10 @@ class Semester(BaseModel, CreatorModel):
     def __unicode__(self):
         return u'Năm học %s Học kỳ %s' % (self.scholastic.name, self.order)
 class StudySession(BaseModel, CreatorModel):
-    semester=models.ForeignKey(Semester, blank=False, null=False,
-                                 verbose_name=u'Học kỳ')
+    semester=models.ForeignKey(Semester, 
+                            blank=False,
+                            null=False,
+                            verbose_name=u'Học kỳ')
     ORDER_CHOICES = (
         (None, None),
         (0, u'15 tuần'),
@@ -171,3 +181,29 @@ class StudySession(BaseModel, CreatorModel):
         if self.order == 0 :
             return u'Năm học %s Học kỳ %s' % (self.semester.scholastic.name, self.semester.order)        
         return u'Năm học %s Học kỳ %s Đợt %s' % (self.semester.scholastic.name, self.semester.order, self.order)
+class LessionTime(BaseModel, CreatorModel):
+    university = models.ForeignKey(University,
+                                blank=False,
+                                null=False,
+                                verbose_name=u'Đại học')
+    name = models.CharField(max_length=10,
+                            blank=True,
+                            verbose_name=u'Tiết học')
+    ORDER_CHOICES = [(order, order) for order in range(1, 15)]
+    start = models.TimeField(blank=False, null=False, verbose_name=u'Bắt đầu')
+    end = models.TimeField(blank=False, 
+                            null=False, 
+                            verbose_name=u'kết thúc',
+                            help_text=u'Thời gian kết thúc phải nhỏ hơn thời gian bắt đầu')
+    order = models.SmallIntegerField(blank=False,
+                                    null=False, choices=ORDER_CHOICES,
+                                    verbose_name=u'Thứ tự')
+    description = DescriptionField()
+    class Meta:
+        verbose_name = u'Tiết học'
+        verbose_name_plural = verbose_name
+    @staticmethod
+    def autocomplete_search_fields():
+        return ("university__name__icontains", "university__name_abbr__icontains", "name__icontains") 
+    def __unicode__(self):
+        return u'%s Tiết %s' %(self.university, self.name)

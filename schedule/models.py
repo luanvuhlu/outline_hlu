@@ -13,6 +13,11 @@ from university.models import University, Scholastic, Semester, StudySession
 logger = logging.getLogger(__name__)
 # Create your models here.
 WEEK_ORDER_CHOICES=[(order, order) for order in range(0, 16)]
+LEARNING_DAY_TYPE_CHOICES=(
+        (0, u'Lý thuyết'),
+        (1, u'Thảo luận'),
+        (2, u'Tự học'),
+    )
 class Week(BaseModel, CreatorModel):
     outline=models.ForeignKey(Outline, blank=False,
                               verbose_name=u'Đề cương')
@@ -40,13 +45,8 @@ class SubjectSchedule(BaseModel, CreatorModel):
         return self.week.__unicode__()
 class LearningDay(BaseModel, CreatorModel):
     week=models.ForeignKey(Week, blank=False, verbose_name=u'Tuần')
-    TYPE_CHOICES=(
-        (0, u'Lý thuyết'),
-        (1, u'Thảo luận'),
-        (2, u'Tự học'),
-    )
     ORDER_CHOICES = [(x, x) for x in range(1, 3)]
-    day_type=models.SmallIntegerField(blank=False, choices=TYPE_CHOICES,
+    day_type=models.SmallIntegerField(blank=False, choices=LEARNING_DAY_TYPE_CHOICES,
                                   verbose_name=u'Giờ')
     order = models.SmallIntegerField(blank=True, null=True, choices=ORDER_CHOICES,
                                     help_text=u'Để trống nếu chỉ có 1 giờ',

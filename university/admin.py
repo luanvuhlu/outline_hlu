@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
-from models import University, SpecializedStudy, Course, UClass, Subject, Lecturer, Student, Faculty
+from django import forms
+# from datetimewidget.widgets import TimeWidget
+from models import University, SpecializedStudy, Course, UClass, Subject, Lecturer, Student, Faculty, LessionTime
 from common.admin import BaseAdmin
 # Register your models here.
 
@@ -84,3 +86,24 @@ class LecturerAdmin(BaseAdmin):
     }
     class Meta:
         model = Lecturer
+# class LesstionTimeForm(forms.ModelForm):
+#     class Meta:
+#         model = LessionTime
+#         fields = ('university', 'name', 'order', 'start', 'end')
+#         widgets = {
+#             'start': TimeWidget(usel10n=True, bootstrap_version=3),
+#         }
+@admin.register(LessionTime)
+class LessionTimeAdmin(BaseAdmin):
+    # form = LesstionTimeForm
+    fieldsets = (
+        (None, {'fields': ('university', 'name', 'order', 'start', 'end')}),
+    )
+    list_display = ('university', 'name', 'order', 'start', 'end')
+    class Meta:
+        model = LessionTime
+    def save_model(self, request, obj, form, change):
+        super(LessionTimeAdmin, self).save_model(request, obj, form, change)        
+        if not obj.name:
+            obj.name = str(obj.order)
+            obj.save()

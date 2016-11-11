@@ -7,6 +7,15 @@ from common.models import BaseModel, DescriptionField
 from university.models import UClass, Subject, Course, StudySession
 from library.models import LearningResource
 
+DAY_OF_WEEK_CHOICE=(
+        (0, u'Thứ 2'),
+        (1, u'Thứ 3'),
+        (2, u'Thứ 4'),
+        (3, u'Thứ 5'),
+        (4, u'Thứ 6'),
+        (5, u'Thứ 7'),
+        (6, u'Chủ nhật'),
+    )
 # Create your models here.
 class Outline(BaseModel, CreatorModel):
     study_session=models.ForeignKey(StudySession, blank=False, null=False,
@@ -119,15 +128,6 @@ class TargetAwarenessDetail(BaseModel, CreatorModel):
     description = DescriptionField()
 class AdvisoryTime(BaseModel, CreatorModel):
     outline=models.ForeignKey(Outline, blank=False, verbose_name=u'Đề cương')
-    DAY_OF_WEEK_CHOICE=(
-        (0, u'Thứ 2'),
-        (1, u'Thứ 3'),
-        (2, u'Thứ 4'),
-        (3, u'Thứ 5'),
-        (4, u'Thứ 6'),
-        (5, u'Thứ 7'),
-        (6, u'Chủ nhật'),
-    )
     day_of_week=models.SmallIntegerField(blank=False, choices=DAY_OF_WEEK_CHOICE,
                                          verbose_name=u'Ngày')
     start_time=models.TimeField(blank=True, verbose_name=u'Bắt đầu')

@@ -50,6 +50,7 @@ PREREQ_APPS = [
     'bootstrap3',
     'django_crontab',
     'debug_toolbar',
+    # 'datetimewidget',
 ]
 PROJECT_APPS = [
     'account',
@@ -59,6 +60,7 @@ PROJECT_APPS = [
     'library',
     'outline',
     'homework',
+    'student_schedule',
 ]
 INSTALLED_APPS = PREREQ_APPS + PROJECT_APPS
 MIDDLEWARE_CLASSES = [
@@ -70,6 +72,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'outline_hlu.urls'
@@ -140,7 +143,7 @@ TIME_ZONE = 'Asia/Ho_Chi_Minh'
 
 USE_I18N = True
 
-USE_L10N = False
+USE_L10N = True
 
 USE_TZ = True
 
