@@ -8,11 +8,11 @@ from account.models import CreatorModel
 class BaseAdmin(admin.ModelAdmin):
     exclude = ('creator', 'create_time', 'update_time', 'deleted_at')
     fieldsets = (
-        (u'Khác', {'fields': ('description',)}),
+        # (u'Khác', {'fields': ('description',)}),
         (u'Lịch sử', {'fields': ('creator', 'create_time', 'update_time',)}),
     )
     add_fieldsets = (
-        (u'Khác', {'fields': ('description',)}),
+        # (u'Khác', {'fields': ('description',)}),
     )
     date_hierarchy = 'create_time'
     def save_model(self, request, obj, form, change):

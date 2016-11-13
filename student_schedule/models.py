@@ -5,8 +5,8 @@ from django.db import models
 from account.models import CreatorModel
 from common.models import BaseModel, DescriptionField
 from university.models import  Student, Subject, Semester, StudySession, LessionTime
-from outline.models import DAY_OF_WEEK_CHOICE
-from schedule.models import LEARNING_DAY_TYPE_CHOICES
+from outline.models import DAY_OF_WEEK_CHOICE, Outline
+from schedule.models import LEARNING_DAY_TYPE_CHOICES, LearningDay
 
 # Create your models here.
 class StudentSchedule(BaseModel, CreatorModel):
@@ -90,3 +90,36 @@ class LearningDaySubjectSchedule(BaseModel, CreatorModel):
         "subject_student_schedule__subject__name__icontains")
     def __unicode__(self):
         return u'%s %s' % (self.day_of_week, self.subject_student_schedule)
+class LearningDaySubjectScheduleDetail(BaseModel, CreatorModel):
+    learning_day_subject_schedule = models.ForeignKey(LearningDaySubjectSchedule,
+                                                    blank=False,
+                                                    null=False)
+    learning_day = models.ForeignKey(LearningDay,
+                                    blank=False,
+                                    null=False)
+    real_day = models.DateField(blank=False,
+                                null=False)
+class TempStudentScheduleGenerator(BaseModel, CreatorModel):
+    student = models.ForeignKey(Student)
+    student_schedule = models.ForeignKey(StudentSchedule,
+                                        blank=True,
+                                        null=True)
+    step = models.SmallIntegerField(verbose_name=u'Bước',
+                                default=1)
+    done = models.BooleanField(default=False)
+    class Meta:
+        verbose_name=u'Bảng tạm quá trình tạo lịch học sinh viên. Chọn lịch'
+        verbose_name_plural=verbose_name
+    # def __init__(self, student_schedule, *args, **kwargs):
+    #     super(TempStudentScheduleGenerator, self).__init__(*args, **kwargs)
+    #     self.student = student_schedule.student
+    #     self.student_schedule = student_schedule
+class TempSubjectStudentScheduleGenerator(BaseModel, CreatorModel):
+    temp_student_schedule = models.ForeignKey(TempStudentScheduleGenerator)
+    # subject_student_schedule = models.ForeignKey(SubjectStudentSchedule)
+    outline = models.ForeignKey(Outline, 
+                            null=True, 
+                            blank=True)
+    class Meta:
+        verbose_name=u'Bảng tạm quá trình tạo lịch học sinh viên. Chọn đề cương'
+        verbose_name_plural=verbose_name

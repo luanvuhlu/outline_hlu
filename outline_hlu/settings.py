@@ -34,9 +34,10 @@ ALLOWED_HOSTS = []
 PREREQ_APPS = [
     # 'dal',
     # 'dal_select2',
-    'material',
+    # 'material',
     # 'material.frontend',
     # 'material.admin',
+    'grappelli.dashboard',
     'grappelli',
     'filebrowser',
     'django.contrib.admin',
@@ -207,3 +208,6 @@ FILEBROWSER_VERSIONS = {
     'large': {'verbose_name': 'Large (8 col)', 'width': 680, 'height': '', 'opts': ''},
 }
 FILEBROWSER_ADMIN_VERSIONS = ['thumbnail', 'small', 'medium', 'big', 'large']
+GRAPPELLI_INDEX_DASHBOARD = {
+    'django.contrib.admin.site': 'outline_hlu.dashboard.CustomIndexDashboard',
+}
