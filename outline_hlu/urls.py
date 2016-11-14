@@ -24,7 +24,7 @@ from account.views import RegistrationView
 from outline.views import OutlineListView, OutlineDetailView, home
 from homework.views import HomeWorkDetailView, HomeWorkListView, HomeWorkQuestionView
 from university.views import SubjectListView, SubjectDetailView, SpecializedStudyListView, SpecializedStudyDetailView
-from student_schedule.views import StudentScheduleGeneratorChoiceView, StudentScheduleGeneratorOutlineForSubjectView
+from student_schedule.views import StudentScheduleGeneratorView, StudentScheduleGeneratorOutlineForSubjectView, StudentScheduleDetailView
 urlpatterns = [
     url(r'^admin/filebrowser/', include(site.urls)),
     url(r'^grappelli/', include('grappelli.urls')), # grappelli URLS
@@ -43,6 +43,7 @@ urlpatterns = [
     url(r'^homework/(?P<pk>\d+)/$', HomeWorkDetailView.as_view(), name='home_work_detail'),
     url(r'^homework/(?P<pk>\d+)/question/$', HomeWorkQuestionView.as_view(), name='homework_question'),
     # url(r'^student-schedule-genrator/0/$', StudentScheduleCreateView.as_view(), name='student_schedule_create'),
-    url(r'^student-schedule-genrator/1/$', StudentScheduleGeneratorChoiceView.as_view(), name='student_schedule_generator_choice_1'),
+    url(r'^student-schedule-genrator/1/$', StudentScheduleGeneratorView.as_view(), name='student_schedule_generator_choice_1'),
+    url(r'^student-schedule-detail/(?P<pk>\d+)/$', StudentScheduleDetailView.as_view(), name='student_schedule_detail'),
     url(r'^student-schedule-genrator/2/$', StudentScheduleGeneratorOutlineForSubjectView.as_view(), name='student_schedule_generator_choice_2'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

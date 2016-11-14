@@ -15,10 +15,10 @@ class AbstractStudentScheduleGeneratorForm(forms.Form):
         self.user = kwargs.pop('user', None)
         super(AbstractStudentScheduleGeneratorForm, self).__init__(*args, **kwargs)
     
-    def create_new_temp_student_schedule(self, user):
-        student_id = Student.objects.values_list('id', flat=True).get(account__id=user.id)
-        student = Student(id=student_id)
-        TempStudentScheduleGenerator.objects.create(student=student, creator=user)
+    # def create_new_temp_student_schedule(self, user):
+    #     student_id = Student.objects.values_list('id', flat=True).get(account__id=user.id)
+    #     student = Student(id=student_id)
+    #     TempStudentScheduleGenerator.objects.create(student=student, creator=user)
 class StudentScheduleChoiceForm(AbstractStudentScheduleGeneratorForm):
     student_schedule = forms.ChoiceField(label=u'Lịch học',
                                         required=True)

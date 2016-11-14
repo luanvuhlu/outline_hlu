@@ -43,10 +43,15 @@ class SubjectStudentSchedule(BaseModel, CreatorModel):
                                 blank=False, 
                                 null=False,
                                 verbose_name=u'Môn học')
+    outline = models.ForeignKey(Outline,
+                            verbose_name=u'Đề cương',
+                            null=True, 
+                            blank=True)
     description = DescriptionField()
     class Meta:
         verbose_name=u'Lịch học sinh viên theo môn'
         verbose_name_plural=verbose_name
+        unique_together = ('student_schedule', 'subject')
     def university_verbose(self):
         return self.student_schedule.university_verbose
     university_verbose.short_description = u'Đại học'
@@ -116,8 +121,7 @@ class TempStudentScheduleGenerator(BaseModel, CreatorModel):
     #     self.student_schedule = student_schedule
 class TempSubjectStudentScheduleGenerator(BaseModel, CreatorModel):
     temp_student_schedule = models.ForeignKey(TempStudentScheduleGenerator)
-    # subject_student_schedule = models.ForeignKey(SubjectStudentSchedule)
-    outline = models.ForeignKey(Outline, 
+    outline = models.ForeignKey(Outline,
                             null=True, 
                             blank=True)
     class Meta:

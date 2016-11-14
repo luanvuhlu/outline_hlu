@@ -8,7 +8,7 @@ from django.core.urlresolvers import reverse
 from django.views.generic import ListView, DetailView, TemplateView
 from django.views.generic.edit import FormView, CreateView
 from forms import StudentScheduleChoiceForm, OutlineForSubjectChoiceForm
-from models import StudentSchedule, TempStudentScheduleGenerator, TempSubjectStudentScheduleGenerator
+from models import StudentSchedule, TempStudentScheduleGenerator, TempSubjectStudentScheduleGenerator, LearningDaySubjectSchedule
 
 logger = logging.getLogger(__name__)
 # Create your views here.
@@ -21,7 +21,6 @@ logger = logging.getLogger(__name__)
 #         kwargs = super(StudentScheduleCreateView, self ).get_form_kwargs()
 #         kwargs['user'] = self.request.user
 #         return kwargs
-
 class StudentScheduleGeneratorChoiceView(FormView):
     template_name = "student_schedule/student_schedule_generator.html"
     form_class = StudentScheduleChoiceForm
@@ -29,14 +28,10 @@ class StudentScheduleGeneratorChoiceView(FormView):
         if self.step == 2:
             return reverse("student_schedule_generator_choice_3")
         return reverse("student_schedule_generator_choice_2")
-    # def __init__(self, *args, **kwargs):
-    #     super(StudentScheduleGeneratorChoiceView, self).__init__(*args, **kwargs)
     def get_form_kwargs(self):
         kwargs = super(StudentScheduleGeneratorChoiceView, self ).get_form_kwargs()
         kwargs['user'] = self.request.user
         return kwargs
-    # def __init__(self, *args, **kwargs):
-    #     super(StudentScheduleGeneratorChoiceView, self).__init__(*args, **kwargs)
     def form_valid(self, form):
         student_schedule_id = form.cleaned_data.get('student_schedule', None)
         if not student_schedule_id:
@@ -99,7 +94,6 @@ class StudentScheduleGeneratorOutlineForSubjectView(AbstractStudentScheduleGener
         return 2
     def form_valid(self, form):
         cleaned_data = form.cleaned_data
-        # student_schedule_id = self.get_student_schedule_id_from_current_temp(self.request.user)
         outline_ids = []
         for name, id in cleaned_data.iteritems():
             if not name.startswith('outline_'):
@@ -124,4 +118,39 @@ class StudentScheduleGeneratorOutlineForSubjectView(AbstractStudentScheduleGener
             return TempStudentScheduleGenerator.objects.values_list('student_schedule__id', flat=True).get(student_schedule__student__account__id=user.id, done=False)
         except TempStudentScheduleGenerator.DoesNotExist:
             return None
-    
+class StudentScheduleGeneratorView(FormView):
+    template_name = "student_schedule/student_schedule_generator.html"
+    form_class = StudentScheduleChoiceForm
+    def get_success_url(self):
+        return reverse("student_schedule_detail", args={self.student_schedule_id})
+    def get_form_kwargs(self):
+        kwargs = super(StudentScheduleGeneratorView, self ).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+    def form_valid(self, form):
+        student_schedule_id = form.cleaned_data.get('student_schedule', None)
+        if not student_schedule_id:
+            logger.error(u'Không tìm được thông tin lịch học trong form')
+            raise Http404
+        student_schedule = get_object_or_404(StudentSchedule, pk=student_schedule_id)
+        if student_schedule.creator != self.user:
+            logger.error(u'Sai thông tin chủ sở hữu')
+            raise Http404
+        if not self.create_learning_days(student_schedule_id):
+            logger.error(u'Có lỗi xảy ra khi tạo ngày')
+            raise Http404
+        self.student_schedule_id = student_schedule_id
+        return super(StudentScheduleGeneratorView, self).form_valid(form)
+    def create_learning_days(self, student_schedule_id):
+        subject_student_schedules = SubjectStudentSchedule.objects.filter(student_schedule__id=student_schedule_id)
+        for subject_student_schedule in subject_student_schedules:
+            learning_day_of_subjects=LearningDaySubjectSchedule.objects.filter(subject_student_schedule__id=subject_student_schedule.id)
+            
+            pass
+        return True
+class StudentScheduleDetailView(TemplateView):
+    template_name = "student_schedule/student_schedule_detail.html"
+    def get_context_data(self, **kwargs):
+        context = super(StudentScheduleDetailView, self).get_context_data(**kwargs)
+        
+        return context

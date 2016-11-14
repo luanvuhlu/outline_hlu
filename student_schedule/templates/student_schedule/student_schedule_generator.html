@@ -2,9 +2,11 @@
 {% load bootstrap3 %}
 {% block title %}Chọn lịch học{% endblock %}
 {% block content %}
+    {% block container %}
  <form role="form" method="post" {% if layout != 'vertical' %}class="form-{{ layout }}"{% endif %}>
     {% csrf_token %}
     {% bootstrap_form form layout=layout %}
     {% buttons submit='Tiếp' reset="Hủy" %}{% endbuttons %}
 </form>
+    {% endblock %}
 {% endblock %}

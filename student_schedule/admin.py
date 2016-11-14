@@ -5,8 +5,18 @@ from common.admin import BaseAdmin
 from models import StudentSchedule, SubjectStudentSchedule, LearningDaySubjectSchedule
 # Register your models here.
 
+class SubjectStudentScheduleAdminInline(admin.TabularInline):
+    model = SubjectStudentSchedule
+    exclude = ('description', 'creator', 'create_time', 'deleted_at', 'update_time')
+    # radio_fields = {'study_session': admin.VERTICAL}
+    raw_id_fields =('subject', 'outline')
+    autocomplete_lookup_fields = {
+        'fk': ['subject', 'outline'],
+    }
+    extra = 10
 @admin.register(StudentSchedule)
 class StudentScheduleAdmin(BaseAdmin):
+    inlines = [SubjectStudentScheduleAdminInline]
     list_display = ('student', 'semester')
     fieldsets = (
         (None, {'fields': ('student', 'semester')}),
