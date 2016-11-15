@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.contrib.admin import SimpleListFilter, RelatedFieldListFilter
+# from django.contrib.admin import SimpleListFilter, RelatedFieldListFilter
+from django.contrib import admin
 from models import University
 class BaseUniversityListFilter(admin.SimpleListFilter):
-	# Human-readable title which will be displayed in the
-    # right admin sidebar just above the filter options.
     title = _(u'Đại học')
 
     # Parameter for the filter that will be used in the URL query.

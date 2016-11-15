@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 # from django.contrib.auth.mixins import LoginRequiredMixin
 from datetime import datetime
 from models import Outline, Problem, ProblemDetail
-from schedule.models import CurrentWeek, LearningDayContent, LearningDayRequirement, HomeWorkAction, Week
+from schedule.models import LearningDayContent, LearningDayRequirement, HomeWorkAction, Week
 
 # Create your views here.
 @login_required
@@ -17,12 +17,12 @@ class OutlineListView(ListView):
 	model = Outline
 class OutlineDetailView(DetailView):
 	model = Outline
-	def get_current_week(self, study_time_type):
-		try:
-			current_week = CurrentWeek.objects.get(semester__start_date__lte=datetime.now(), deleted_at__isnull=True)
-		except CurrentWeek.DoesNotExist:
-			current_week = None
-		return u'Chưa bắt đầu' if not current_week else current_week.current_week_15 if study_time_type==0 else current_week.current_week_5
+	# def get_current_week(self, study_time_type):
+	# 	try:
+	# 		current_week = CurrentWeek.objects.get(semester__start_date__lte=datetime.now(), deleted_at__isnull=True)
+	# 	except CurrentWeek.DoesNotExist:
+	# 		current_week = None
+	# 	return u'Chưa bắt đầu' if not current_week else current_week.current_week_15 if study_time_type==0 else current_week.current_week_5
 	def get_problems(self, outline_id):
 		problems_db = Problem.objects.filter(outline__id=outline_id)
 		problems = {problem: [] for problem in problems_db}
@@ -71,6 +71,6 @@ class OutlineDetailView(DetailView):
 	def get_context_data(self, **kwargs):
 		context = super(OutlineDetailView, self).get_context_data(**kwargs)
 		context['problems'] = self.get_problems(context['object'].id)
-		context['current_week'] = self.get_current_week(context['object'].study_time_type)
+		# context['current_week'] = self.get_current_week(context['object'].study_time_type)
 		context['weeks'] = self.get_weeks(context['object'].id)
 		return context

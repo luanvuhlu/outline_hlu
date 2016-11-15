@@ -2,9 +2,9 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from filebrowser.fields import FileBrowseField
-from account.models import Account, CreatorModel
-from common.models import BaseModel, DescriptionField
+# from filebrowser.fields import FileBrowseField
+from account.models import CreatorModel
+from common.models import BaseModel
 from outline.models import Outline
 from .validators import validate_homework_file_extension
 
@@ -48,7 +48,7 @@ class HomeWorkFormat(BaseModel, CreatorModel):
                                     verbose_name=u'Dãn dòng')
     other=models.CharField(blank=True, max_length=255,
                            verbose_name=u'Yêu cầu khác')
-    description = DescriptionField()
+    
     class Meta:
         verbose_name=u'Định dạng bài tập'
         verbose_name_plural=verbose_name
@@ -90,7 +90,7 @@ class HomeWork(BaseModel, CreatorModel):
                                   verbose_name=u'Nội dung thuyết trình')
     other_requirement=models.CharField(blank=True, max_length=255,
                                        verbose_name=u'Yêu cầu khác')
-    description = DescriptionField()
+    
     class Meta:
         verbose_name=u'Bài tập'
         verbose_name_plural=verbose_name
@@ -118,7 +118,7 @@ class HomeWorkQuestion(BaseModel, CreatorModel):
     content = models.CharField(max_length=500,
                             verbose_name=u'Nội dung',
                             blank=True)
-    description = DescriptionField()
+    
     class Meta:
         verbose_name=u'Đề bài tập'
         verbose_name_plural=verbose_name
@@ -137,7 +137,7 @@ class HomeWorkQuestionAttachment(BaseModel, CreatorModel):
                               validators=[validate_homework_file_extension],
                               blank=False,
                               null=False)
-    description = DescriptionField()
+    
     class Meta:
         verbose_name=u'File đính kèm đề bài tập'
         verbose_name_plural=verbose_name
@@ -162,7 +162,7 @@ class HomeWorkSolution(BaseModel, CreatorModel):
                             verbose_name=u'Nội dung',
                             blank=True,
                             help_text=u'Vui lòng tải lên file nếu nội dung quá dài')
-    description = DescriptionField()
+    
     def __unicode__(self):
         return u'Lời giải %s' % self.home_work
 class HomeWorkSolutionAttachment(BaseModel, CreatorModel):
@@ -178,6 +178,6 @@ class HomeWorkSolutionAttachment(BaseModel, CreatorModel):
                               validators=[validate_homework_file_extension],
                               blank=False,
                               null=False)
-    description = DescriptionField()    # DEBUG
+        # DEBUG
     def __unicode__(self):
         return u'Lời giải %s' % self.home_work

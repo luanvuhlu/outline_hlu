@@ -7,7 +7,7 @@ from models import StudentSchedule, SubjectStudentSchedule, LearningDaySubjectSc
 
 class SubjectStudentScheduleAdminInline(admin.TabularInline):
     model = SubjectStudentSchedule
-    exclude = ('description', 'creator', 'create_time', 'deleted_at', 'update_time')
+    exclude = ('creator', 'create_time', 'deleted_at', 'update_time')
     # radio_fields = {'study_session': admin.VERTICAL}
     raw_id_fields =('subject', 'outline')
     autocomplete_lookup_fields = {
@@ -23,7 +23,7 @@ class StudentScheduleAdmin(BaseAdmin):
     )
 class LearningDaySubjectScheduleInline(admin.TabularInline):
     model = LearningDaySubjectSchedule
-    exclude = ('description', 'creator', 'create_time', 'deleted_at', 'update_time')
+    exclude = ('creator', 'create_time', 'deleted_at', 'update_time')
     radio_fields = {'day_type': admin.VERTICAL}
     raw_id_fields =('lession_times', )
     autocomplete_lookup_fields = {

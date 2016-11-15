@@ -2,15 +2,15 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from account.models import Account, CreatorModel
-from common.models import BaseModel, DescriptionField
-from university.models import UClass, Subject, Course, StudySession
+from account.models import CreatorModel
+from common.models import BaseModel
+from university.models import Subject, Course
 from library.models import LearningResource
 
 DAY_OF_WEEK_CHOICE=(
         (0, u'Thứ 2'),
         (1, u'Thứ 3'),
-        (2, u'Thứ 4'),
+        (2, u'Thứ 4'),  
         (3, u'Thứ 5'),
         (4, u'Thứ 6'),
         (5, u'Thứ 7'),
@@ -18,7 +18,7 @@ DAY_OF_WEEK_CHOICE=(
     )
 # Create your models here.
 class Outline(BaseModel, CreatorModel):
-    study_session=models.ForeignKey(StudySession, blank=False, null=False,
+    study_session=models.ForeignKey("schedule.StudySession", blank=False, null=False,
                                  verbose_name=u'Đợt học')
     subject=models.ForeignKey(Subject, blank=False, null=False,
                               verbose_name=u'Môn học')
@@ -31,7 +31,6 @@ class Outline(BaseModel, CreatorModel):
     study_time_type=models.SmallIntegerField(blank=False, default=0, null=False,
                                 choices=STUDY_TIME_TYPE,
                                 verbose_name=u'Tuần học')
-    description = DescriptionField()
     class Meta:
         verbose_name=u'Đề cương'
         verbose_name_plural=verbose_name
@@ -60,7 +59,7 @@ class OutlineLearningResource(BaseModel, CreatorModel):
     resource_type=models.SmallIntegerField(blank=False, default=REQUIRED_TYPE,
                                    choices=RESOURCE_TYPE_CHOICES,
                                    verbose_name=u'Loại tài liệu')
-    description = DescriptionField()
+    
     class Meta:
         verbose_name = u'Tài liệu cho môn học'
         verbose_name_plural = verbose_name
@@ -74,7 +73,7 @@ class Problem(BaseModel, CreatorModel):
     ORDER_CHOICES=[(x, x) for x in range(1, 16)]
     order=models.SmallIntegerField(blank=False, choices=ORDER_CHOICES,
                                    verbose_name=u'Số')
-    description = DescriptionField()
+    
     class Meta:
         verbose_name = u'Vấn đề'
         verbose_name_plural = verbose_name
@@ -91,7 +90,7 @@ class ProblemDetail(BaseModel, CreatorModel):
     ORDER_CHOICES = [(x, x) for x in range(1, 11)]
     order = models.SmallIntegerField(blank=False, choices=ORDER_CHOICES,
                                      verbose_name=u'Số')
-    description = DescriptionField()
+    
     def outline_name(self):
         return self.problem.outline
     outline_name.short_description = u'Đề cương'
@@ -112,7 +111,7 @@ class TargetAwareness(BaseModel, CreatorModel):
     LEVEL_CHOICES=[(x, x) for x in range(1, 4)]
     level=models.SmallIntegerField(blank=False, choices=LEVEL_CHOICES,
                                    verbose_name=u'Bậc')
-    description = DescriptionField()
+    
     class Meta:
         verbose_name=u'Mục tiêu nhận thức'
         verbose_name_plural=verbose_name
@@ -125,7 +124,7 @@ class TargetAwarenessDetail(BaseModel, CreatorModel):
                                          verbose_name=u'Thứ tự')
     content=models.TextField(blank=False, max_length=500,
                              verbose_name=u'Nội dung')
-    description = DescriptionField()
+    
 class AdvisoryTime(BaseModel, CreatorModel):
     outline=models.ForeignKey(Outline, blank=False, verbose_name=u'Đề cương')
     day_of_week=models.SmallIntegerField(blank=False, choices=DAY_OF_WEEK_CHOICE,
@@ -134,7 +133,7 @@ class AdvisoryTime(BaseModel, CreatorModel):
     end_time = models.TimeField(blank=True, verbose_name=u'Kết thúc')
     place=models.CharField(blank=True, max_length=255,
                            verbose_name=u'Địa điểm')
-    description = DescriptionField()
+    
     class Meta:
         verbose_name=u'Thời gian tư vấn'
         verbose_name_plural=verbose_name

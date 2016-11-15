@@ -2,11 +2,11 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from common.models import BaseModel
 from account.models import CreatorModel
-from common.models import BaseModel, DescriptionField
-from university.models import  Student, Subject, Semester, StudySession, LessionTime
+from university.models import  Student, Subject, LessionTime
 from outline.models import DAY_OF_WEEK_CHOICE, Outline
-from schedule.models import LEARNING_DAY_TYPE_CHOICES, LearningDay
+from schedule.models import LEARNING_DAY_TYPE_CHOICES, LearningDay, Semester, StudySession
 
 # Create your models here.
 class StudentSchedule(BaseModel, CreatorModel):
@@ -18,7 +18,7 @@ class StudentSchedule(BaseModel, CreatorModel):
                                         blank=False,
                                         null=False,
                                         verbose_name=u'Kỳ học')
-    description = DescriptionField()
+    
     class Meta:
         verbose_name=u'Lịch học sinh viên'
         verbose_name_plural=verbose_name
@@ -47,7 +47,7 @@ class SubjectStudentSchedule(BaseModel, CreatorModel):
                             verbose_name=u'Đề cương',
                             null=True, 
                             blank=True)
-    description = DescriptionField()
+    
     class Meta:
         verbose_name=u'Lịch học sinh viên theo môn'
         verbose_name_plural=verbose_name
@@ -80,7 +80,7 @@ class LearningDaySubjectSchedule(BaseModel, CreatorModel):
     place = models.CharField(max_length=100,
                             blank=True,
                             verbose_name=u'Nơi học')
-    description = DescriptionField()
+    
     class Meta:
         verbose_name=u'Ngày học của sinh viên theo môn'
         verbose_name_plural=verbose_name

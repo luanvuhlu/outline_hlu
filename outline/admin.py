@@ -2,13 +2,13 @@
 from django.contrib import admin
 from common.admin import BaseAdmin
 from homework.admin import HomeWorkInine
-from schedule.admin import WeekInline
+# from schedule.admin import WeekInline
 from models import Outline, OutlineLearningResource, Problem, ProblemDetail, AdvisoryTime
 # Register your models here.
 
 class ProblemInline(admin.TabularInline):
     model = Problem
-    exclude = ('description', 'creator', 'create_time', 'deleted_at', 'update_time')
+    exclude = ('creator', 'create_time', 'deleted_at', 'update_time')
     extra = 15
     def save_formset(self, request, form, formset, change):
         instances = formset.save(commit = False)
@@ -19,7 +19,7 @@ class ProblemInline(admin.TabularInline):
         formset.save_m2m()
 class OutlineLearningResourceInline(admin.TabularInline):
     model = OutlineLearningResource
-    exclude = ('description', 'creator', 'create_time', 'deleted_at', 'update_time')
+    exclude = ('creator', 'create_time', 'deleted_at', 'update_time')
     radio_fields = {'resource_type': admin.VERTICAL}
     raw_id_fields =('outline', 'learning_resource')
     autocomplete_lookup_fields = {
@@ -28,11 +28,11 @@ class OutlineLearningResourceInline(admin.TabularInline):
     extra = 20
 class AdvisoryTimeInline(admin.TabularInline):
     model = AdvisoryTime
-    exclude = ('description', 'creator', 'create_time', 'deleted_at', 'update_time')
+    exclude = ('creator', 'create_time', 'deleted_at', 'update_time')
     extra = 3
 @admin.register(Outline)
 class OutLineAdmin(BaseAdmin):
-    inlines = [ProblemInline, OutlineLearningResourceInline, WeekInline,AdvisoryTimeInline, HomeWorkInine]
+    inlines = [ProblemInline, OutlineLearningResourceInline,AdvisoryTimeInline, HomeWorkInine]
     radio_fields = {'course': admin.VERTICAL, 'study_session': admin.VERTICAL, 'study_time_type': admin.VERTICAL}
     list_display = ('subject', 'course_verbose', 'study_session', 'university_verbose', 'create_time')
     fieldsets = (
@@ -56,7 +56,7 @@ class OutlineLearningResourceAdmin(BaseAdmin):
     pass
 class ProblemDetailInline(admin.TabularInline):
     model = ProblemDetail
-    exclude = ('description', 'creator', 'create_time', 'deleted_at', 'update_time')
+    exclude = ('creator', 'create_time', 'deleted_at', 'update_time')
     extra = 10
 @admin.register(Problem)
 class ProblemAdmin(BaseAdmin):

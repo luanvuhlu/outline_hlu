@@ -9,6 +9,7 @@ from django.views.generic import ListView, DetailView, TemplateView
 from django.views.generic.edit import FormView, CreateView
 from forms import StudentScheduleChoiceForm, OutlineForSubjectChoiceForm
 from models import StudentSchedule, TempStudentScheduleGenerator, TempSubjectStudentScheduleGenerator, LearningDaySubjectSchedule
+from student_schedule.models import SubjectStudentSchedule
 
 logger = logging.getLogger(__name__)
 # Create your views here.

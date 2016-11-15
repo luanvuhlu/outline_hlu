@@ -30,7 +30,7 @@ class UserAdmin(BaseUserAdmin, BaseAdmin):
             'block_expire',
         )}),
         (u'Quyền hạn', {'fields': ('is_admin',)}),
-        (u'Khác', {'fields': ('description', )}),
+        # (u'Khác', {'fields': ('description', )}),
         (u'Lịch sử', {'fields': ('creator', 'create_time', 'update_time',)}),
     )
     add_fieldsets = (
@@ -49,7 +49,7 @@ class UserAdmin(BaseUserAdmin, BaseAdmin):
             'city',
         )}),
         (u'Quyền hạn', {'fields': ('is_admin',)}),
-        (u'Khác', {'fields': ('description', )}),
+        # (u'Khác', {'fields': ('description', )}),
     )
     search_fields = ('email', )
     ordering = ('email', )

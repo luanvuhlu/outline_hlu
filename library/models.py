@@ -11,7 +11,7 @@ from university.models import UClass, Subject, Course, University
 # Create your models here.
 class Library(BaseModel, AddressModel, NameModel, CreatorModel):
     university=models.ForeignKey(University, blank=False, null=False, verbose_name=u'Đại học')
-    description = DescriptionField()
+    
     class Meta:
         verbose_name = u'Thư viện'
         verbose_name_plural = verbose_name
@@ -21,14 +21,14 @@ class Library(BaseModel, AddressModel, NameModel, CreatorModel):
 class LearningResourceType(BaseModel, CreatorModel):
     name=models.CharField(blank=False, max_length=100,
                           verbose_name=u'Tên loại')
-    description = DescriptionField()
+    
     class Meta:
         verbose_name=u'Loại học liệu'
         verbose_name_plural=verbose_name
     def __unicode__(self):
         return self.name
 class Publishing(BaseModel, CreatorModel, NameModel):
-    description = DescriptionField()
+    
     class Meta:
         verbose_name=u'Nhà xuất bản'
         verbose_name_plural=verbose_name
@@ -59,7 +59,7 @@ class LearningResource(BaseModel, CreatorModel):
     is_borrow=models.BooleanField(blank=False, default=True, verbose_name=u'Có thể mượn')
     borrow_place=models.CharField(blank=True, max_length=255, verbose_name=u'Nơi mượn',
                                   help_text=u'Để trống nếu cho mượn ngay tại thư viện')
-    description = DescriptionField()
+    
     class Meta:
         verbose_name = u'Học liệu'
         verbose_name_plural = verbose_name

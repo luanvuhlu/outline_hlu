@@ -36,7 +36,7 @@ class LearningResourceAdmin(BaseAdmin):
         (None, {'fields' : (('name', 'resource_type'), 'author', ('publishing', 'pub_year'), 'library', 'is_avaiable')}),
         (u'Mượn', {'fields': (('is_borrow', 'borrow_place'), )}),
         (u'Bán', {'fields': (('is_sale', 'sale_place'), )}),
-        (u'Khác', {'fields': ('description', )}),
+        # (u'Khác', {'fields': ('description', )}),
     )
     search_fields = ['name', 'author', 'pub_year', 'publishing__name']
     list_filter = (

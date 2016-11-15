@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.db import models
-from django.db.models.query import QuerySet
+# from django.db.models.query import QuerySet
 from softdelete.models import SoftDeleteObject, SoftDeleteManager
 
 # Create your models here.
@@ -85,7 +85,7 @@ class AddressModel(models.Model):
                                  verbose_name=u'Địa chỉ 2')
     address_3 = models.CharField(blank=True, max_length=100,
                                  verbose_name=u'Địa chỉ 3')
-    city = models.SmallIntegerField(blank=False,
+    city = models.SmallIntegerField(blank=True,
                                     null=True,
                                     choices=CITIES_CHOICES,
                                     verbose_name=u'Thành phố')

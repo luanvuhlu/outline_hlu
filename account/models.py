@@ -5,7 +5,7 @@ from django.conf.global_settings import EMAIL_BACKEND
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from softdelete.models import SoftDeleteObject, SoftDeleteManager
-from common.models import BaseModel, AddressModel, DescriptionField
+from common.models import BaseModel, AddressModel
 
 class AccountManager(BaseUserManager, SoftDeleteManager):
     def create_user(self, email, password=None):
@@ -94,7 +94,7 @@ class Account(AbstractBaseUser, BaseModel, AddressModel):
                                  help_text=u'Họ và tên đệm')
     name=models.CharField(blank=False, max_length=255,
                           verbose_name=u'Tên')
-    description = DescriptionField()
+    
     def get_full_name(self):
         return self.email
     def username(self):
